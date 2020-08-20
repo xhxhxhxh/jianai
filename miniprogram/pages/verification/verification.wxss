@@ -1,0 +1,97 @@
+page {
+  height: 100%;
+  position: relative;
+}
+.verification-container {
+  padding: 100rpx 80rpx 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size:48rpx;
+  font-weight:bold;
+}
+
+.sended-phone {
+  margin-top: 15rpx;
+  font-size:24rpx;
+  color:rgba(153,153,153,1);
+}
+
+.weui-cells {
+  margin-top: 45rpx;
+}
+
+.weui-cells::before {
+  border-top: 0;
+}
+
+.weui-cells::after {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.weui-cell__bd {
+  height: 110rpx;
+  display: flex;
+  align-items: center;
+}
+
+.weui-cell {
+  position: relative;
+}
+
+.timer {
+  position: absolute;
+  width:160rpx;
+  height:60rpx;
+  border-radius:8rpx;
+  border:2rpx solid rgba(0,0,0,1);
+  font-size:26rpx;
+  color:rgba(51,51,51,1);
+  text-align: center;
+  line-height: 56rpx;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.weui-cell_select .weui-cell__bd::after {
+  width: 0;
+  height: 0;
+}
+
+.weui-input {
+  font-size:34rpx;
+  color:rgba(51,51,51,1);
+}
+
+.submit {
+  width:510rpx!important;
+  height:96rpx!important;
+  border-radius:48rpx!important;
+  font-size:32rpx!important;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  margin-top: 80rpx;
+  padding: 0;
+  line-height: 96rpx;
+}
+
+.warn {
+  font-size:24rpx;
+  color:rgba(153,153,153,1);
+  text-align: center;
+  margin-top: 22rpx;
+}
+
+.footer {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 60rpx;
+  font-size:24rpx;
+  font-weight:bold;
+  color:rgba(153,153,153,1);
+}

@@ -1,0 +1,10 @@
+<!--miniprogram/pages/login/login.wxml-->
+<view class="gender-container">
+  <view class="title"><text>性别</text></view>
+  <view class="sended-phone"><text>选择完成，你的性别将无法修改</text></view>
+  <view class="gender-select">
+      <x-gender width="432rpx" bind:genderSelected="genderSelected"/>
+  </view>
+  <button class="submit themeBackgroundColor" disabled="{{buttonDisabled}}" bind:tap="submit">下一步</button>
+</view>
+

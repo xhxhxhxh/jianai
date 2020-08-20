@@ -1,0 +1,13 @@
+<!--components/gender/gender.wxml-->
+<view class="gender" style="width: {{width}}">
+  <view class="male" data-gender="male" bind:tap="genderSelect">
+    <image src="/images/img_zhuce_normal_nan@2x.png" wx:if="{{!maleSelected}}"></image>
+    <image src="/images/img_zhuce_selected_nan@2x.png" wx:else></image>
+    <text class="content">男</text>
+  </view>
+  <view class="female" data-gender="female" bind:tap="genderSelect">
+    <image src="/images/img_zhuce_normal_nv@2x.png" wx:if="{{!femaleSelected}}"></image>
+    <image src="/images/img_zhuce_selected_nv@2x.png" wx:else></image>
+    <text class="content">女</text>
+  </view>
+</view>

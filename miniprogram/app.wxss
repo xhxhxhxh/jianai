@@ -1,0 +1,16 @@
+.themeBackgroundColor {
+  background-color: #FF4F4C;
+}
+
+.textColor {
+  color: #FF503A;
+}
+
+.arrow::after {
+  content: "";
+  width: 0; 
+  height: 0;
+  border-width: 10rpx;
+  border-style: solid;
+  border-color:#000 transparent transparent transparent;
+}

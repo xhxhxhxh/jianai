@@ -1,0 +1,17 @@
+<!--miniprogram/pages/login/login.wxml-->
+<view class="verification-container">
+  <view class="title"><text>输入验证码</text></view>
+  <view class="sended-phone"><text>短信验证码已发送至{{sendedNumber}}</text></view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__bd weui-cell__bd_in-select-before">
+              <input class="weui-input" placeholder="请输入验证码" placeholder-style="color: #ccc; font-size: 34rpx" type="number" bindinput="handleInput"
+              maxlength="6"/>                    
+          </view>
+          <view class="timer" bind:tap="sendVerificationCode">{{timer}}</view>
+      </view>
+  </view>
+  <button class="submit themeBackgroundColor" disabled="{{buttonDisabled}}" bind:tap="submit">验证</button>
+  <view class="warn" wx:if="{{buttonDisabled}}">没有收到短信可在倒计时结束后重新获取</view>
+</view>
+<text class="footer">登录注册即表示同意<text class="textColor">用户协议</text>和<text class="textColor">隐私政策</text></text>

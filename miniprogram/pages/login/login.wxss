@@ -1,0 +1,102 @@
+page {
+  height: 100%;
+  position: relative;
+}
+.login-container {
+  padding: 100rpx 80rpx 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size:48rpx;
+  font-weight:bold;
+}
+
+.weui-cells {
+  margin-top: 90rpx;
+}
+
+.weui-cells::before {
+  border-top: 0;
+}
+
+.weui-cells::after {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.weui-select {
+  box-sizing: border-box;
+  padding-left: 0;
+  font-size:34rpx;
+  color:rgba(51,51,51,1);
+}
+
+.weui-cell__hd {
+  width: 136rpx;
+}
+
+.arrow {
+  position: relative;
+}
+
+.arrow::after {
+  position: absolute;
+  top: 50rpx;
+  right: 40rpx;
+}
+
+.weui-cell__bd {
+  position: relative;
+  padding-right: 40rpx;
+}
+
+.clearArea {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+  height: 100rpx;
+  width: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+}
+
+.weui-cell_select .weui-cell__bd::after {
+  width: 0;
+  height: 0;
+}
+
+.weui-input {
+  font-size:34rpx;
+  color:rgba(51,51,51,1);
+}
+
+.submit {
+  width:510rpx!important;
+  height:96rpx!important;
+  border-radius:48rpx!important;
+  font-size:32rpx!important;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  margin-top: 80rpx;
+  padding: 0;
+  line-height: 96rpx;
+}
+
+.footer {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 60rpx;
+  font-size:24rpx;
+  font-weight:bold;
+  color:rgba(153,153,153,1);
+}

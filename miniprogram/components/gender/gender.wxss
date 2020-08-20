@@ -1,0 +1,22 @@
+.gender {
+  display: flex;
+  justify-content: space-between;
+}
+
+.gender image {
+  width: 176rpx;
+  height: 176rpx;
+}
+
+.gender .content {
+  font-size:32rpx;
+  color:rgba(51,51,51,1);
+}
+
+.male, .female {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 244rpx;
+}

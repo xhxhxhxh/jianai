@@ -1,0 +1,23 @@
+<!--miniprogram/pages/login/login.wxml-->
+<view class="login-container">
+  <text class="title">手机号登录注册</text>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd">
+              <picker bindchange="bindCountryCodeChange" value="{{countryCodeIndex}}" range="{{countryCodes}}">
+                  <view class="weui-select arrow">{{countryCodes[countryCodeIndex]}}</view>
+              </picker>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd_in-select-before">
+              <input class="weui-input" placeholder="请在这里输入手机号" placeholder-style="color: #ccc; font-size: 34rpx" type="number" bindinput="handleInput" value="{{inputValue}}" 
+              maxlength="11"/>         
+              <view class="clearArea" bind:tap="clearNumber">
+                <mp-icon type="field" icon="close2" color="#d8d8d8" size="{{20}}" class="close" 
+                  ></mp-icon>
+              </view>
+          </view>
+      </view>
+  </view>
+  <button class="submit themeBackgroundColor" disabled="{{buttonDisabled}}" bind:tap="submit">获取验证码</button>
+</view>
+<text class="footer">登录注册即表示同意<text class="textColor">用户协议</text>和<text class="textColor">隐私政策</text></text>

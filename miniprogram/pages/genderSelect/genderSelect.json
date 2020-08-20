@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "x-gender": "/components/gender/gender"
+  },
+  "navigationBarTitleText": ""
+}

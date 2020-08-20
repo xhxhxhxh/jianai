@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/match/match",
+    "pages/message/message",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/verification/verification",
+    "pages/genderSelect/genderSelect"
+  ],
+  "window": {
+    "backgroundColor": "#FFF",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "相亲",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#333333",
+    "list": [
+      {
+        "pagePath": "pages/match/match",
+        "text": "匹配",
+        "iconPath": "images/tab_normal_pipei@2x.png",
+        "selectedIconPath": "images/tab_selected_pipei@2x.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "images/tab_normal_xiaoxi@2x.png",
+        "selectedIconPath": "images/tab_selected_xiaoxi@2x.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab_normal_wod@2x.png",
+        "selectedIconPath": "images/tab_selected_wod@2x.png"
+      }
+    ]
+  },
+  "useExtendedLib": {
+    "weui": true
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
