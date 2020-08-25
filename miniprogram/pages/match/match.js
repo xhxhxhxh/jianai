@@ -1,11 +1,23 @@
 // miniprogram/pages/match/match.js
+let timer = null
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    matching: false,
+    loadingText: ['给你一个24小时的TA，能不能假戏真做就看你自己了', '嘘，别着急，静静等待，你的TA正在来的路上~'],
+    loadingIndex: 0,
+    showDialog: false,
+    title: '择偶信息填写',
+    content: '为了给您匹配更合适的TA，请填写择偶信息，然后再次匹配',
+    buttons: [{text: '狠心离开'}, {text: '去填写'}],
+    textColorPosition: [],
+    contentTitle: '',
+    showImage: false,
+    showClose: false,
+    imageSrc: '/images/img_tanchuang_shenqing@2x.png'
   },
 
   /**
@@ -15,52 +27,58 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  startMatch() {
+    this.startTimer()
+    this.setData({
+      matching: true
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  stopMatch() {
+    this.stopTimer()
+    this.setData({
+      matching: false,
+      loadingIndex: 0
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  startTimer() {
+    if(!timer) {
+      timer = setInterval(() => {
+        let {loadingText, loadingIndex} = this.data
+        const length = loadingText.length - 1
+        loadingIndex++
+        if(loadingIndex > length) {
+          loadingIndex = 0
+        }
+        this.setData({
+          loadingIndex
+        })
+      }, 5000)
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  stopTimer() {
+    if(timer) {
+      clearInterval(timer)
+      timer = null
+    }
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  // 关闭弹窗
+  closeDialog() {
+    this.setData({
+      showDialog: false
+    })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  // 确认弹窗
+  confirmDialog() {
+    console.log("确认")
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  // 取消弹窗
+  cancelDialog() {
+    console.log("取消")
+  },
 })

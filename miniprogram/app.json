@@ -5,13 +5,14 @@
     "pages/profile/profile",
     "pages/login/login",
     "pages/verification/verification",
-    "pages/genderSelect/genderSelect"
+    "pages/genderSelect/genderSelect",
+    "pages/spouseInformation/spouseInformation"
   ],
   "window": {
     "backgroundColor": "#FFF",
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "相亲",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

@@ -1,0 +1,5 @@
+<view class="genderSelect-container">
+  <view class="title">请选择择偶性别(可多选)</view>
+  <view class="warn">认真填写，为你匹配最合适的对象</view>
+  <x-gender multiple="{{true}}" bind:genderSelected="genderSelected"/>
+</view>

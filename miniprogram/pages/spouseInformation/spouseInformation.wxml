@@ -1,0 +1,17 @@
+<view class="spouseInformation-container">
+  <view class="step-box">
+    <view class="step left {{stepClass.step1}}">1</view>
+    <view class="step middle {{stepClass.step2}}">2</view>
+    <view class="step right {{stepClass.step3}}">3</view>
+    <view class="line"></view>
+  </view>
+  <view class="information-select">
+    <view class="information-box" style="{{informationBoxStyle}}">
+      <x-genderSelect bind:getGender="getGender" wx:if="{{stepComponent.step1}}" class="information-item step1"/>
+      <x-ageSelect bind:getAge="getAge" wx:if="{{stepComponent.step2}}" class="information-item step2"/>
+      <x-moreInformation bind:getInformation="getInformation" wx:if="{{stepComponent.step3}}" class="information-item step3" style="width: 100%"/>
+    </view>
+  </view>
+  <button class="submit themeBackgroundColor" disabled="{{buttonDisabled}}" bind:tap="next">下一步</button>
+
+</view>

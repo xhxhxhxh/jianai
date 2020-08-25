@@ -1,0 +1,8 @@
+<mp-dialog title="{{title}}" show="{{showDialog}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask-closable="{{maskClosable}}" showClose="{{showClose}}" ext-class="my-dialog">
+  <view class="dialog-box">
+    <mp-icon icon="close" color="#333" size="{{15}}" extClass="close" wx:if="{{showClose}}" bindtap="closeDialog"></mp-icon>
+    <image wx:if="{{showImage}}" src="{{imageSrc}}" class="image"></image>
+    <view class="content-title" wx:if="{{showImage}}">{{contentTitle}}</view>
+    <view class="text">{{head}}<text class="textColor">{{redContent}}</text>{{tail}}</view>
+  </view>
+</mp-dialog>

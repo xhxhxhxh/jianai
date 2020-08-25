@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "x-genderSelect": "/components/spouseInformationComponent/genderSelect/genderSelect",
+    "x-ageSelect": "/components/spouseInformationComponent/ageSelect/ageSelect",
+    "x-moreInformation": "/components/spouseInformationComponent/moreInformation/moreInformation"
+  },
+  "navigationBarTitleText": "择偶信息"
+}

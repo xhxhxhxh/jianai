@@ -1,0 +1,16 @@
+<view class="ageSelect-container">
+  <view class="title">你想找几岁的</view>
+  <view class="warn">认真填写，为你匹配最合适的对象</view>
+  <picker-view indicator-style="height: 60rpx;" style="width: 100%; height: 480rpx;" value="{{age}}" bindchange="ageChange">
+      <picker-view-column>
+        <view class="ageItem" wx:for="{{ageArr}}" wx:key="*this">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="ageItem">至</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="ageItem" wx:for="{{ageArr}}" wx:key="*this">{{item}}</view>
+      </picker-view-column>
+    
+    </picker-view>
+</view>

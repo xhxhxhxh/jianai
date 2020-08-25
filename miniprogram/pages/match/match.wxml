@@ -1,2 +1,32 @@
-<!--miniprogram/pages/match/match.wxml-->
-<text>匹配</text>
+<view class="match-container">
+  <view class="remain-number">
+   本周剩余<text class="textColor">3</text>次
+  </view>
+  <image src="/images/img_pipei@2x.png" class="iamge"></image>
+  <view class="circle first" wx:if="{{matching}}"></view>
+  <view class="circle second" wx:if="{{matching}}"></view>
+  <view class="messsage" wx:if="{{matching}}">
+    <view class="matching">
+      匹配中
+      <view class="dots">
+        <view class="dot">.</view>
+        <view class="dot">.</view>
+        <view class="dot">.</view>
+      </view>
+    </view>
+    <view class="content">
+      {{loadingText[loadingIndex]}}
+    </view>
+    <view class="cancel-box" bind:tap="stopMatch">
+      <view class="cancel">
+        <mp-icon icon="close" color="#999" size="{{24}}"></mp-icon>
+      </view>
+      <text class="cancel-text">取消</text>
+    </view>
+  </view>
+  <button class="start-match themeBackgroundColor" bind:tap="startMatch" wx:else>
+    <image src="/images/icon_ziliao_xitongtongzhi.png" class="image"></image>
+    <text>开始匹配</text>
+  </button>
+  <my-dialog showDialog="{{showDialog}}" title="{{title}}" content="{{content}}" buttons="{{buttons}}" textColorPosition="{{textColorPosition}}" imageSrc="{{imageSrc}}" showImage="{{showImage}}" contentTitle="{{contentTitle}}" showClose="{{showClose}}" bind:closeDialog="closeDialog" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog"></my-dialog>
+</view>

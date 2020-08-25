@@ -1,0 +1,18 @@
+.genderSelect-container {
+  padding: 0 80rpx;
+}
+
+.title {
+  font-size:46rpx;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+  text-align: center;
+}
+
+.warn {
+  margin-top: 15rpx;
+  font-size:30rpx;
+  color:rgba(153,153,153,1);
+  margin-bottom: 65rpx;
+  text-align: center;
+}

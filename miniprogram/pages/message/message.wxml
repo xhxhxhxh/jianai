@@ -1,2 +1,15 @@
-<!--miniprogram/pages/message/message.wxml-->
-<text>消息</text>
+<view class="message-container">
+  <view class="message" wx:for="{{message}}" wx:key="id">
+    <view class="avatar">
+      <image src="{{item.avatar}}" class="image"></image>
+      <text class="message-num">{{item.messageNum}}</text>
+    </view>
+    <view class="content-box">
+      <view class="content-top">
+        <text class="name">{{item.name}}</text>
+        <text class="time">{{item.date}}</text>
+      </view>
+      <view class="content-bottom">{{item.message}}</view>
+    </view>
+  </view>
+</view>

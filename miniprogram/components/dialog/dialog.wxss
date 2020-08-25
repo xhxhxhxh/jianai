@@ -1,0 +1,74 @@
+.my-dialog .weui-dialog{
+  width: 600rpx;
+  border-radius: 40rpx;
+}
+
+.my-dialog .weui-dialog .weui-dialog__bd {
+  padding: 0 40rpx;
+  margin-bottom: 80rpx;
+  overflow-y: unset;
+}
+
+.my-dialog .weui-dialog__hd {
+  padding-top: 40rpx;
+  padding-bottom: 48rpx;
+}
+
+.my-dialog .weui-dialog__title {
+  font-size:36rpx;
+  color: #333;
+}
+
+.dialog-box {
+  font-size:28rpx;
+  color:rgba(51,51,51,1);
+  line-height:40rpx;
+}
+
+.dialog-box .close {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;  
+}
+
+.dialog-box .image {
+  width: 282rpx;
+  height: 282rpx;
+  margin-top: -24rpx;
+}
+
+.dialog-box .content-title {
+  font-size:36rpx;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+  line-height:50rpx;
+  margin-top: 44rpx;
+  margin-bottom: 20rpx;
+}
+
+.my-dialog .weui-dialog__ft {
+  min-height: unset;
+  line-height: unset;
+}
+
+.my-dialog .weui-dialog__ft::after {
+  border-top: 0;
+}
+
+.my-dialog .weui-dialog__ft .weui-dialog__btn_default {
+  background:rgba(246,246,246,1);
+  font-size:32rpx;
+  color:rgba(51,51,51,1);
+  font-weight: 500;
+  min-height: 96rpx;
+  line-height: 96rpx;
+}
+
+.my-dialog .weui-dialog__ft .weui-dialog__btn_primary {
+  background:#FF4F4C;
+  font-size:32rpx;
+  color:#fff;
+  font-weight: 500;
+  min-height: 96rpx;
+  line-height: 96rpx;
+}

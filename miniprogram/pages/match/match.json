@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon",
+    "my-dialog": "/components/dialog/dialog"
+  },
+  "navigationBarTitleText": "即使匹配"
 }

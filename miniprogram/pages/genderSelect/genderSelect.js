@@ -31,5 +31,8 @@ Page({
 
   submit() {
     console.log(gender)
+    // wx.navigateTo({
+    //   url: '/pages/spouseInformation/spouseInformation'
+    // })
   }
 })

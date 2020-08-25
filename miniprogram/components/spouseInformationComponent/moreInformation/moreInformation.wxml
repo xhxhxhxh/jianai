@@ -1,0 +1,50 @@
+<view class="moreInformation-container">
+  <view class="title">完善更多信息</view>
+  <view class="warn">认真填写，为你匹配最合适的对象</view>
+  <view class="information">
+    <view class="information-item">
+      <view class="name">身高范围</view>
+      <view class="content">
+        <picker bindchange="heightChange" mode="multiSelector" value="{{height}}" range="{{heightArr}}" style="width: 100%; height: 100%">
+          <view class="picker" wx:if="{{heightSelected}}">
+            {{heightArr[0][height[0]]}}cm-{{heightArr[1][height[1]]}}cm
+          </view>
+          <view class="default-text picker" wx:else >{{defaultText}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="information-item">
+      <view class="name">学历</view>
+      <view class="content">
+        <picker bindchange="educationChange" mode="multiSelector" value="{{education}}" range="{{educationArr}}" style="width: 100%; height: 100%">
+          <view class="picker" wx:if="{{educationSelected}}">
+            {{educationArr[0][education[0]]}}-{{educationArr[1][education[1]]}}
+          </view>
+          <view class="default-text picker" wx:else >{{defaultText}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="information-item">
+      <view class="name">收入</view>
+      <view class="content">
+        <picker bindchange="incomeChange" value="{{income}}" range="{{incomeArr}}" style="width: 100%; height: 100%">
+          <view class="picker" wx:if="{{incomeSelected}}">
+            {{incomeArr[income]}}
+          </view>
+          <view class="default-text picker" wx:else >{{defaultText}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="information-item">
+      <view class="name">地区</view>
+      <view class="content">
+        <picker bindchange="localeChange" mode="region" value="{{locale}}" style="width: 100%; height: 100%">
+          <view class="picker locale-text" wx:if="{{localeSelected}}">
+            {{localeStr}}
+          </view>
+          <view class="default-text picker" wx:else >{{defaultText}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>
