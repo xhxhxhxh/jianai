@@ -1,5 +1,5 @@
 <view class="message-container">
-  <view class="message" wx:for="{{message}}" wx:key="id">
+  <view class="message" wx:for="{{message}}" wx:key="id" bind:tap="goToChat" data-name="{{item.name}}">
     <view class="avatar">
       <image src="{{item.avatar}}" class="image"></image>
       <text class="message-num">{{item.messageNum}}</text>

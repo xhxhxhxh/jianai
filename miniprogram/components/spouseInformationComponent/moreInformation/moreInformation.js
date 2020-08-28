@@ -1,5 +1,7 @@
 // components/spouseInformationComponent/moreInformation/moreInformation.js
 const information = {}
+const request = require('../../../request.js')
+
 Component({
   /**
    * 组件的属性列表
@@ -18,8 +20,8 @@ Component({
     locale: [],
     localeStr: '',
     heightArr: [[150, 160, 170, 180, 190, 200], [150, 160, 170, 180, 190, 200]],
-    educationArr: [['大专及以下', '大专', '本科', '硕士', '博士'], ['大专及以下', '大专', '本科', '硕士', '博士']],
-    incomeArr: ['2千以下', '2-5千', '5-10千', '1-2万', '2-5万', '5-10万', '10万以上'],
+    educationArr: [],
+    incomeArr: [],
     defaultText: '请选择(必选)',
     heightSelected: false,
     educationSelected: false,
@@ -30,6 +32,12 @@ Component({
   observers: {
     'height, education, income, locale': function() {
       this.triggerEvent('getInformation', {...information})
+    }
+  },
+
+  lifetimes: {
+    attached: function() {
+      this.getSelectData()
     }
   },
 
@@ -60,7 +68,7 @@ Component({
         value[0] = value[1]
         value[1] = cache
       }
-      information.education = [educationArr[0][value[0]], educationArr[1][value[1]]]
+      information.education = [educationArr[0][value[0]]['k'], educationArr[1][value[1]]['k']]
       this.setData({
         education: value,
         educationSelected: true
@@ -70,7 +78,7 @@ Component({
     incomeChange(e) {
       const value = e.detail.value
       const incomeArr = this.data.incomeArr
-      information.income = incomeArr[value]
+      information.income = incomeArr[value]['k']
       this.setData({
         income: value,
         incomeSelected: true
@@ -88,6 +96,20 @@ Component({
         locale,
         localeStr: localeStr.substr(1),
         localeSelected: true
+      })
+    },
+
+    // 获取下拉数据
+    getSelectData() {
+      request(4, {
+        types: 'education,income'
+      }).then(data => {
+        this.setData({
+          educationArr: [data.education, data.education],
+          incomeArr: data.income
+        })
+      }).catch(err => {
+        console.log(err)
       })
     }
   }

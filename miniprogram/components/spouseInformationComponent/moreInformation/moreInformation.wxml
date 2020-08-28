@@ -16,9 +16,9 @@
     <view class="information-item">
       <view class="name">学历</view>
       <view class="content">
-        <picker bindchange="educationChange" mode="multiSelector" value="{{education}}" range="{{educationArr}}" style="width: 100%; height: 100%">
+        <picker bindchange="educationChange" mode="multiSelector" value="{{education}}" range="{{educationArr}}" range-key="v" style="width: 100%; height: 100%">
           <view class="picker" wx:if="{{educationSelected}}">
-            {{educationArr[0][education[0]]}}-{{educationArr[1][education[1]]}}
+            {{educationArr[0][education[0]]['v']}}-{{educationArr[1][education[1]]['v']}}
           </view>
           <view class="default-text picker" wx:else >{{defaultText}}</view>
         </picker>
@@ -27,9 +27,9 @@
     <view class="information-item">
       <view class="name">收入</view>
       <view class="content">
-        <picker bindchange="incomeChange" value="{{income}}" range="{{incomeArr}}" style="width: 100%; height: 100%">
+        <picker bindchange="incomeChange" value="{{income}}" range="{{incomeArr}}" range-key="v" style="width: 100%; height: 100%">
           <view class="picker" wx:if="{{incomeSelected}}">
-            {{incomeArr[income]}}
+            {{incomeArr[income]['v']}}
           </view>
           <view class="default-text picker" wx:else >{{defaultText}}</view>
         </picker>

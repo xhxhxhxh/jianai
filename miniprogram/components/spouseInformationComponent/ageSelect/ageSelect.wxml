@@ -10,7 +10,6 @@
       </picker-view-column>
       <picker-view-column>
         <view class="ageItem" wx:for="{{ageArr}}" wx:key="*this">{{item}}</view>
-      </picker-view-column>
-    
+      </picker-view-column>  
     </picker-view>
 </view>

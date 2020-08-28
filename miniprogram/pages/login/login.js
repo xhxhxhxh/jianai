@@ -1,4 +1,5 @@
 // miniprogram/pages/login/login.js
+const request = require('../../request.js')
 let cacheInputValue = ''
 Page({
 
@@ -48,7 +49,6 @@ Page({
   submit() {
     const {countryCodes, countryCodeIndex} = this.data
     const phone = countryCodes[countryCodeIndex] + cacheInputValue
-    console.log(phone)
     wx.navigateTo({
       url: '/pages/verification/verification?phone=' + phone,
     })

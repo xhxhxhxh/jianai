@@ -1,6 +1,10 @@
 // miniprogram/pages/spouseInformation/spouseInformation.js
+const request = require('../../request.js')
 let stepIndex = 1
 let informationBoxWidth = 0
+let complete = false // 资料是否全部填写完成
+let gender, age, ageArr, information
+
 Page({
 
   /**
@@ -18,7 +22,8 @@ Page({
       step2: false,
       step3: false
     },
-    informationBoxStyle: '' // 控制step切换动画
+    informationBoxStyle: '', // 控制step切换动画
+    buttonText: '下一步'
   },
 
   /**
@@ -45,10 +50,14 @@ Page({
       informationBoxStyle
     }
     data[key] = true
-    if(stepIndex === 3) {
+    if(stepIndex === 3 && !complete) {
       data['buttonDisabled'] = true
+      data['buttonText'] = '已完成'
     }
     this.setData(data)
+    if(complete) { // 提交信息
+      this.submit()
+    }
     // this.slide(`.information-box .step${stepIndex - 1}`, function() {
       
     // }.bind(this))
@@ -80,7 +89,7 @@ Page({
   },
 
   getGender(e) {
-    const gender = e.detail
+    gender = e.detail
     if(stepIndex === 1) {
       if(!gender.male && !gender.female) {
         this.setData({
@@ -96,8 +105,8 @@ Page({
 
   getAge(e) {
     const data = e.detail
-    const age = data.age.value
-    const ageArr = data.ageArr
+    age = data.age
+    ageArr = data.ageArr
     if(stepIndex === 2) {
       if(ageArr[age[0]] > ageArr[age[2]]) {
         this.setData({
@@ -112,7 +121,7 @@ Page({
   },
 
   getInformation(e) {
-    const information = e.detail
+    information = e.detail
     let num = 0
     for(let key in information) {
       if(information[key]) num++
@@ -121,8 +130,47 @@ Page({
       this.setData({
         buttonDisabled: false
       })
+      complete = true
     }
-    console.log(information)
+  },
+
+  // 提交择偶信息
+  submit() {
+    let sex = -1
+    if(gender.male) {
+      sex = 1
+    }
+    if(gender.female) {
+      sex = 2
+    }
+    if(gender.male && gender.female) {
+      sex = 3
+    }
+    const data = {
+      sex,
+      age_min: ageArr[age[0]],
+      age_max: ageArr[age[2]],
+      height_min: information.height[0],
+      height_max: information.height[1],
+      education_min: information.education[0],
+      education_max: information.education[1],
+      income: information.income,
+      region: information.locale
+    }
+    request(7, data).then(data => {
+      if(data.error === 0) {
+        const pages = getCurrentPages()
+        wx.navigateBack().then(() => {
+          pages[pages.length - 2].closeDialog()      
+        }).catch(err => {
+          wx.switchTab({
+            url: '/pages/match/match',
+          })
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
   
 })

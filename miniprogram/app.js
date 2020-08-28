@@ -1,4 +1,5 @@
 //app.js
+const request = require('./request')
 App({
   onLaunch: function () {
     
@@ -16,5 +17,52 @@ App({
     }
 
     this.globalData = {}
+
+    this.loadLocalInfo()
+    this.getServerTime()
+    let auth = this.getGlobal('auth')
+    if(!auth.token) {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    }
+    
+  },
+
+  // 获取服务器时间
+  getServerTime() {
+    request(0, null, 'GET', this).then(data => {
+      console.log(data)
+      const serverTime = data.server_time
+      const time = {
+        localTime: new Date(),
+        serverTime
+      }
+      wx.setStorage({
+        data: time,
+        key: 'time',
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
+  // 将本地缓存读取到global
+  loadLocalInfo() {
+    let auth = wx.getStorageSync('auth')
+    let time = wx.getStorageSync('time')
+    this.setGlobal('auth', auth)
+    this.setGlobal('time', time)
+  },
+
+  // 设置global值
+  setGlobal(key, value) {
+    this.globalData[key] = value
+  },
+
+  // 获取global的值
+  getGlobal(key) {
+    return this.globalData[key]
   }
 })
+

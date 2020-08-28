@@ -1,5 +1,6 @@
 // miniprogram/pages/match/match.js
 let timer = null
+const request = require('../../request.js')
 Page({
 
   /**
@@ -24,14 +25,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   
   },
 
-  startMatch() {
-    this.startTimer()
-    this.setData({
-      matching: true
-    })
+  async startMatch() {
+    const data = await this.getSpouseInfo()
+    if(data.error === -10006) {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    }else if(data.error === 0) {
+      if(data.sex === -1) {
+        this.setData({
+          showDialog: true,
+          title: '择偶信息填写',
+          content: '为了给您匹配更合适的TA，请填写择偶信息，然后再次匹配',
+          buttons: [{text: '狠心离开'}, {text: '去填写'}],
+        })
+        this.confirmDialog = function() {
+          wx.navigateTo({
+            url: '/pages/spouseInformation/spouseInformation',
+          })
+        }
+      }else {
+        this.startTimer()
+        this.setData({
+          matching: true
+        })
+      }
+    }
+    console.log(data)
   },
 
   stopMatch() {
@@ -79,6 +102,17 @@ Page({
 
   // 取消弹窗
   cancelDialog() {
-    console.log("取消")
+    this.setData({
+      showDialog: false
+    })
+  },
+
+  // 获取择偶信息
+  getSpouseInfo() {
+    return request(6).then(data => {
+      return data
+    }).catch(err => {
+      console.log(err)
+    })
   },
 })

@@ -55,7 +55,7 @@
   border-top: 0;
 }
 
-.my-dialog .weui-dialog__ft .weui-dialog__btn_default {
+.my-dialog .weui-dialog__ft .weui-dialog__btn:first-child {
   background:rgba(246,246,246,1);
   font-size:32rpx;
   color:rgba(51,51,51,1);
@@ -64,7 +64,7 @@
   line-height: 96rpx;
 }
 
-.my-dialog .weui-dialog__ft .weui-dialog__btn_primary {
+.my-dialog .weui-dialog__ft .weui-dialog__btn:last-child {
   background:#FF4F4C;
   font-size:32rpx;
   color:#fff;

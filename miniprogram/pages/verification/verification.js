@@ -1,7 +1,8 @@
 // miniprogram/pages/verification/verification.js
 let timeout = null
 let cacheInputValue = ''
-
+const request = require('../../request.js')
+const app = getApp()
 Page({
 
   /**
@@ -11,7 +12,8 @@ Page({
     inputValue: '',
     timer: '发送',
     buttonDisabled: true,
-    sendedNumber: ''
+    sendedNumber: '',
+    _phone: ''
   },
 
   /**
@@ -26,12 +28,14 @@ Page({
     this.setData({
       sendedNumber: head + '****' + foot
     })
+    this.data._phone = phone.substr(3)
+    this.sendVerificationCode()
   },
 
   // 输入验证码
   handleInput(e) {
     const value = e.detail.value
-    const reg = /^\d{6}$/
+    const reg = /^\d{4}$/
     cacheInputValue = value
     if(reg.test(value)) {
       this.setData({
@@ -47,7 +51,15 @@ Page({
   // 发送验证码
   sendVerificationCode() {
     if(!timeout) {
-      this.startTimeout()
+      request(2, {
+        mobile: this.data._phone
+      }).then(data => {
+        if(data.error === 0) {
+          this.startTimeout()
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     }else {
       wx.showToast({
         title: '验证码已发送，请稍后再试',
@@ -78,7 +90,27 @@ Page({
 
   // 验证
   submit() {
-    console.log(cacheInputValue)
+    request(1, {
+      mobile: this.data._phone,
+      code: cacheInputValue
+    }).then(data => {
+      console.log(data)
+      if(data.error === 0) {
+        const auth = app.getGlobal('auth')
+        auth.token = data.token
+        auth.uid = data.uid
+        app.setGlobal('auth', auth)
+        wx.setStorage({
+          data: auth,
+          key: 'auth',
+        })
+        wx.switchTab({
+          url: '/pages/match/match',
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
 })

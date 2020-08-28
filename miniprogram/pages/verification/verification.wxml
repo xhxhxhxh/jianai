@@ -6,7 +6,7 @@
       <view class="weui-cell weui-cell_select">
           <view class="weui-cell__bd weui-cell__bd_in-select-before">
               <input class="weui-input" placeholder="请输入验证码" placeholder-style="color: #ccc; font-size: 34rpx" type="number" bindinput="handleInput"
-              maxlength="6"/>                    
+              maxlength="4"/>                    
           </view>
           <view class="timer" bind:tap="sendVerificationCode">{{timer}}</view>
       </view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "mp-emoji": "../../miniprogram_npm/@miniprogram-component-plus/emoji"
+  }
+}

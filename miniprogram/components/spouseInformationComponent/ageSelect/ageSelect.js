@@ -19,13 +19,20 @@ Component({
     ageArr
   },
 
+  lifetimes: {
+    attached: function() {
+      this.triggerEvent('getAge', {age: this.data.age, ageArr})
+    },
+    
+  },
+
   /**
    * 组件的方法列表
    */
   methods: {
     // 年龄选择
     ageChange(e) {
-      const age = e.detail
+      const age = e.detail.value
       this.triggerEvent('getAge', {age, ageArr})
     }
   }

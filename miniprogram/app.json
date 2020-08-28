@@ -6,7 +6,8 @@
     "pages/login/login",
     "pages/verification/verification",
     "pages/genderSelect/genderSelect",
-    "pages/spouseInformation/spouseInformation"
+    "pages/spouseInformation/spouseInformation",
+    "pages/chat/chat"
   ],
   "window": {
     "backgroundColor": "#FFF",
