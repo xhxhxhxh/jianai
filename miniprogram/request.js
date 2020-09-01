@@ -74,6 +74,12 @@ const request = function(opt, data, method, app) {
       method: method || 'GET',
       data: origin,
       success (res) {
+        const data = res.data
+        if(data.error === -10007) { // token过期
+          wx.redirectTo({
+            url: '/pages/login/login',
+          })
+        }
         resolve(res.data)
       },
       fail (err) {

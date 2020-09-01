@@ -103,6 +103,20 @@
 					"pathName": "pages/chat/chat",
 					"query": "userName=test",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "profile",
+					"pathName": "pages/profile/profile",
+					"query": "userName=test",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "editPhoto",
+					"pathName": "pages/editPhoto/editPhoto",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

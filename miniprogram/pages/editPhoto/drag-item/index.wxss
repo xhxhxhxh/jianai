@@ -1,0 +1,26 @@
+.info {
+  position: relative;
+  padding-top: 100%;
+  background: rgba(0, 0, 0, 0);
+  box-sizing: border-box; }
+  .info__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 8rpx;
+    box-sizing: border-box; }
+    .info__item .image {
+      border-radius: 12rpx;
+      width: 100%;
+      height: 100%; }
+      .info__item .select {
+        position: absolute;
+        width: 52rpx;
+        height: 52rpx;
+        top: 10rpx;
+        right: 10rpx;
+      }
+

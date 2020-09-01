@@ -1,5 +1,4 @@
 // miniprogram/pages/login/login.js
-const request = require('../../request.js')
 let cacheInputValue = ''
 Page({
 

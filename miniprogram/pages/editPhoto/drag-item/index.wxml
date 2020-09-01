@@ -1,0 +1,9 @@
+<view catchtap="itemClick">
+	<view class="info">
+		<view class="info__item {{itemData.isEditing? 'isEditing' : ''}}">
+			<!-- <image class="image" src="{{itemData.img}}"></image> -->
+			<view class="image" style="background: url({{itemData.img}}) no-repeat center; background-size: cover;"></view>
+			<image class="select" hidden="{{!itemData.isEditing}}" src="{{selected? '../images/icon_xiangce_selected@2x.png' : '../images/icon_xiangce_normal@2x.png'}}"></image>
+		</view>
+	</view>
+</view>

@@ -1,2 +1,102 @@
-<!--miniprogram/pages/profile/profile.wxml-->
-<text>我的</text>
+<view class="profile-container">
+  <view class="verified">
+    <view class="left">
+      <text class="blod">你还没有实名认证</text>
+      <text class="normal">只有完成实名认证才能进行线下约会</text>
+    </view>
+    <button class="btn themeBackgroundColor" bind:tap="verified">去实名</button>
+  </view>
+  <view class="info-area">
+    <view class="name">
+      <text>我叫月老</text>
+      <image class="setting" src="./images/icon_wod_shezhi@2x.png"></image>
+    </view>
+    <view class="info">
+      <text class="label">性别：</text>
+      <text class="content">男</text>
+    </view>
+    <view class="info">
+      <text class="label">出生日期：</text>
+      <text class="content">1990.01.01</text>
+    </view>
+    <view class="info">
+      <text class="label">学历：</text>
+      <text class="content textColor">待完善</text>
+    </view>
+    <view class="info">
+      <text class="label">户籍：</text>
+      <text class="content textColor">待完善</text>
+    </view>
+    <view class="info">
+      <text class="label">收入：</text>
+      <text class="content textColor">待完善</text>
+    </view>
+    <button class="btn themeBackgroundColor" bind:tap="editInfo">编辑资料</button>
+  </view>
+  <view class="photo-area">
+    <view class="name">照片墙</view>
+    <scroll-view scroll-x="{{true}}" style="height: 200rpx">
+      <view class="photo-box">
+        <view class="default" wx:if="{{photo.length === 0}}">
+          <image src="./images/icon_xiangce_shangchuan@2x.png" class="camera" mode="widthFix"></image>
+          <text class="text">添加照片</text>
+        </view>
+        <view class="photo" data-imgsrc="{{item.img}}" bind:tap="goEditPhoto" wx:for="{{photo}}" wx:key="img" style="background: url({{item.img}}) no-repeat center; background-size: cover;"></view>
+        <!-- <image class="photo" data-imgsrc="{{item.img}}" bind:tap="onPreviewImage" wx:for="{{photo}}" wx:key="img" src="{{item.img}}" mode="aspectFit"></image> -->
+        
+      </view>
+    </scroll-view>
+    <button class="btn themeBackgroundColor" bind:tap="chooseImage">上传照片</button>
+  </view>
+</view>
+<view class="wallet">
+  <view class="left">钱包</view>
+  <view class="right">
+    <text class="num">35</text>
+    <text class="text">金币</text>
+    <view class="my-arrow"></view>
+  </view>
+</view>
+<view class="date-record">
+  <view class="header">
+    <view class="left">约会记录</view>
+    <view class="right">
+      <text class="text">更多</text>
+      <view class="my-arrow"></view>
+    </view>
+  </view>
+  <view class="record-box">
+    <view class="record">
+      <view class="date">
+        <text class="day">27</text>
+        <text class="month">09月</text>
+      </view>
+      <view class="content">
+        <text class="name">美奈子</text>
+        <view class="status themeBackgroundColor">进行中</view>
+      </view>
+    </view>
+    <view class="record">
+      <view class="date">
+        <text class="day">27</text>
+        <text class="month">09月</text>
+      </view>
+      <view class="content">
+        <text class="name">美奈子美奈子美奈子美奈子美奈子美奈子</text>
+        <view class="status themeBackgroundColor">进行中</view>
+      </view>
+    </view>
+    <view class="record">
+      <view class="date">
+        <text class="day">27</text>
+        <text class="month">09月</text>
+      </view>
+      <view class="content">
+        <text class="name">美奈子</text>
+        <view class="status themeBackgroundColor">进行中</view>
+      </view>
+    </view>
+  </view>
+</view>
+<canvas type="2d" id="myCanvas" hidden="{{true}}"></canvas>
+
