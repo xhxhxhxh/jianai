@@ -12,6 +12,9 @@
     overflow: hidden;
     padding: 8rpx;
     box-sizing: border-box; }
+    .info__item .image.selected {
+      filter: grayscale(100%);
+    }
     .info__item .image {
       border-radius: 12rpx;
       width: 100%;

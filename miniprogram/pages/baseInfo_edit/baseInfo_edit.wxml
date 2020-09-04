@@ -1,0 +1,5 @@
+<view class="baseInfo_edit">
+  <view class="title">基本信息</view>
+  <x-baseInfo bind:sendUserInfo="sendUserInfo"></x-baseInfo>
+  <button class="submit themeBackgroundColor" disabled="{{buttonDisabled}}" bind:tap="saveInfo">保存</button>
+</view>

@@ -1,0 +1,166 @@
+<view class="detailInfo_edit">
+	<view class="information">
+		<view class="information-item">
+			<view class="name">住房情况</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{house}}" range="{{houseArr}}" style="width: 100%; height: 100%" range-key="v" data-type="house">
+					<view class="picker" wx:if="{{houseSelected}}">
+						{{houseArr[house].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">买车情况</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{car}}" range="{{carArr}}" style="width: 100%; height: 100%" range-key="v" data-type="car">
+					<view class="picker" wx:if="{{carSelected}}">
+						{{carArr[car].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">民族</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{nation}}" range="{{nationArr}}" style="width: 100%; height: 100%" range-key="v" data-type="nation">
+					<view class="picker" wx:if="{{nationSelected}}">
+						{{nationArr[nation].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">信仰</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{belief}}" range="{{beliefArr}}" style="width: 100%; height: 100%" range-key="v" data-type="belief">
+					<view class="picker" wx:if="{{beliefSelected}}">
+						{{beliefArr[belief].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">毕业院校</view>
+			<view class="ipt">
+				<input placeholder="请输入您的毕业院校" placeholder-style="color: #ccc" class="my-input" bindinput="handleInputChange" value="{{school}}" data-type="school"></input>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">职业</view>
+			<view class="ipt">
+				<input placeholder="请输入您的职业" placeholder-style="color: #ccc" class="my-input" bindinput="handleInputChange" value="{{job}}" data-type="job"></input>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">公司类型</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{company}}" range="{{companyArr}}" style="width: 100%; height: 100%" range-key="v" data-type="company">
+					<view class="picker" wx:if="{{companySelected}}">
+						{{companyArr[company].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">是否抽烟</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{smoke}}" range="{{smokeArr}}" style="width: 100%; height: 100%" range-key="v" data-type="smoke">
+					<view class="picker" wx:if="{{smokeSelected}}">
+						{{smokeArr[smoke].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">是否喝酒</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{drink}}" range="{{drinkArr}}" style="width: 100%; height: 100%" range-key="v" data-type="drink">
+					<view class="picker" wx:if="{{drinkSelected}}">
+						{{drinkArr[drink].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">是否有孩子</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{have_children}}" range="{{have_childrenArr}}" style="width: 100%; height: 100%" range-key="v" data-type="have_children">
+					<view class="picker" wx:if="{{have_childrenSelected}}">
+						{{have_childrenArr[have_children].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">是否想要孩子</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{wanna_children}}" range="{{wanna_childrenArr}}" style="width: 100%; height: 100%" range-key="v" data-type="wanna_children">
+					<view class="picker" wx:if="{{wanna_childrenSelected}}">
+						{{wanna_childrenArr[wanna_children].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="information-item">
+			<view class="name">何时结婚</view>
+			<view class="content">
+				<picker bindchange="detailChange" value="{{wedding}}" range="{{weddingArr}}" style="width: 100%; height: 100%" range-key="v" data-type="wedding">
+					<view class="picker" wx:if="{{weddingSelected}}">
+						{{weddingArr[wedding].v}}
+					</view>
+					<view class="default-text picker" wx:else>{{defaultText}}</view>
+				</picker>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="introduction">
+  <view class="title">个人自我介绍</view>
+  <view class="textarea-box">
+    <textarea maxlength="200" class="textarea" placeholder="例：本人身高185，长相阳光…" bindinput="introductionChange" value="{{introduction}}"></textarea>
+    <text class="num">{{introductionLength}}/200</text>
+  </view>
+  <view class="hobby">
+    <view class="hobby-box">
+      <view class="title">运动爱好</view>
+      <view class="tags">
+        <view class="item" wx:for="{{sport}}" wx:key="*this">{{item}}</view>
+        <view class="add" bind:tap="addHobby" data-type="sport">
+          <text>添加爱好</text>
+          <mp-icon icon="add" color="#fff" size="{{20}}"></mp-icon>
+        </view>
+      </view>
+    </view>
+    <view class="hobby-box">
+      <view class="title">爱好美食</view>
+      <view class="tags">
+        <view class="item" wx:for="{{food}}" wx:key="*this">{{item}}</view>
+        <view class="add" bind:tap="addHobby" data-type="food">
+          <text>添加美食</text>
+          <mp-icon icon="add" color="#fff" size="{{20}}"></mp-icon>
+        </view>
+      </view>
+    </view>
+    <view class="hobby-box">
+      <view class="title">旅游足迹</view>
+      <view class="tags">
+        <view class="item" wx:for="{{travel}}" wx:key="*this">{{item}}</view>
+        <view class="add" bind:tap="addHobby" data-type="travel">
+          <text>添加足迹</text>
+          <mp-icon icon="add" color="#fff" size="{{20}}"></mp-icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="submit themeBackgroundColor" bind:tap="saveInfo">保存</button>
+</view>

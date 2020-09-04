@@ -1,20 +1,5 @@
-.title {
-  font-size:46rpx;
-  font-weight:bold;
-  color:rgba(51,51,51,1);
-  text-align: center;
-}
-
-.warn {
-  margin-top: 15rpx;
-  font-size:30rpx;
-  color:rgba(153,153,153,1);
-  margin-bottom: 65rpx;
-  text-align: center;
-}
-
 .information {
-  margin-top: 30rpx;
+  margin-top: 26rpx;
 }
 
 .information-item {
@@ -28,6 +13,17 @@
   color:rgba(51,51,51,1);
   white-space: nowrap;
   line-height: 44rpx;
+}
+
+.information-item .ipt {
+  flex: 1;
+  height: 100%;
+  padding-left: 20rpx;
+}
+
+.information-item .ipt .my-input {
+  text-align: right;
+  height: 100%;
 }
 
 .information-item .content {

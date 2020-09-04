@@ -36,7 +36,7 @@ Page({
 		// 离开页面后，更新我的中的照片
 		const pages = getCurrentPages()
 		const prevPage = pages[pages.length - 2]
-		if(prevPage.route === "pages/profile/profile") {
+		if(prevPage && prevPage.route === "pages/profile/profile") {
 			prevPage.getPhoto()
 		}
 	},

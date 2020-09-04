@@ -1,0 +1,22 @@
+<mp-navigation-bar show="{{true}}" ext-class="my-navigation" class="navigation-container" background="{{navigationBackground}}" title="" back="{{true}}"></mp-navigation-bar>
+<view class="page">
+  <view class="banner" style="background: url({{bannerUrl}}) no-repeat center -{{statusBarHeight}}px; background-size: cover; height: {{350 - statusBarHeight * 2}}rpx">
+    <view class="title">我的金币</view>
+    <view class="money">
+      <image src="./images/icon_chongzhi_jinbi@2x.png" class="image"></image>
+      <text>0</text>
+    </view>
+  </view>
+  <view class="recharge-area">
+    <view class="title">充值余额</view>
+    <view class="recharge-box">
+      <view wx:for="{{rechargeList}}" wx:key="id" class="item">
+        <view class="gold">
+          <image src="./images/icon_chongzhi_jinbi@2x.png" class="image"></image>
+          <text>{{item.gold}}</text>
+        </view>
+        <text class="rmb">{{item.money}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+<view class="setting-container">
+	<view class="setting">
+		<view class="setting-item">
+			<view class="name">接收推送通知</view>
+			<view class="content">
+				<switch checked="{{noticeReceive}}" bindchange="noticeReceiveChange" color="#FF4F4C" />
+			</view>
+		</view>
+		<view class="setting-item" bind:tap="update">
+			<view class="name">检测更新</view>
+			<view class="content my-arrow">
+				<text>1.0.0</text>
+			</view>
+		</view>
+    <view class="setting-item">
+			<view class="name">实名认证</view>
+			<view class="content my-arrow">
+				<text>已认证</text>
+			</view>
+		</view>
+    <view class="setting-item">
+			<view class="name">清理缓存</view>
+			<view class="content my-arrow">
+				<text>0M</text>
+			</view>
+		</view>
+    <view class="line"></view>
+    <view class="setting-item">
+			<view class="name">用户协议</view>
+			<view class="content my-arrow">
+			</view>
+		</view>
+    <view class="setting-item">
+			<view class="name">隐私政策</view>
+			<view class="content my-arrow">
+			</view>
+		</view>
+     <button class="submit themeBackgroundColor" bind:tap="logout">退出登录</button>
+	</view>
+  <my-dialog showDialog="{{showDialog}}" title="{{title}}" content="{{content}}" buttons="{{buttons}}" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog"></my-dialog>
+</view>

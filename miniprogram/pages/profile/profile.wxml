@@ -8,28 +8,28 @@
   </view>
   <view class="info-area">
     <view class="name">
-      <text>我叫月老</text>
-      <image class="setting" src="./images/icon_wod_shezhi@2x.png"></image>
+      <text>{{nickname ? nickname : '简约3093'}}</text>
+      <image class="setting" src="./images/icon_wod_shezhi@2x.png" bind:tap="goSetting"></image>
     </view>
     <view class="info">
       <text class="label">性别：</text>
-      <text class="content">男</text>
+      <text class="content{{sex ? '' : ' textColor'}}">{{!sex ? '未完善' : sex === 1 ? '男' : '女'}}</text>
     </view>
     <view class="info">
       <text class="label">出生日期：</text>
-      <text class="content">1990.01.01</text>
+      <text class="content{{birthday ? '' : ' textColor'}}">{{birthday ? birthday : '未完善'}}</text>
     </view>
     <view class="info">
       <text class="label">学历：</text>
-      <text class="content textColor">待完善</text>
+      <text class="content{{education ? '' : ' textColor'}}">{{education ? education : '未完善'}}</text>
     </view>
     <view class="info">
       <text class="label">户籍：</text>
-      <text class="content textColor">待完善</text>
+      <text class="content{{huji ? '' : ' textColor'}}">{{huji ? huji : '未完善'}}</text>
     </view>
     <view class="info">
       <text class="label">收入：</text>
-      <text class="content textColor">待完善</text>
+      <text class="content{{income ? '' : ' textColor'}}">{{income ? income : '未完善'}}</text>
     </view>
     <button class="btn themeBackgroundColor" bind:tap="editInfo">编辑资料</button>
   </view>

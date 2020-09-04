@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-dialog": "/components/dialog/dialog"
+  },
+  "navigationBarTitleText": "系统设置"
+}

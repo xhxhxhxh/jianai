@@ -1,0 +1,166 @@
+page {
+  background-color: #F6F6F6;
+}
+
+.detailInfo_edit {
+  padding: 40rpx;
+  background-color: #fff;
+}
+
+.information-item {
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+}
+
+.information-item .name {
+  font-size:32rpx;
+  color:rgba(51,51,51,1);
+  white-space: nowrap;
+  line-height: 44rpx;
+}
+
+.information-item .ipt {
+  flex: 1;
+  height: 100%;
+  padding-left: 20rpx;
+}
+
+.information-item .ipt .my-input {
+  text-align: right;
+  height: 100%;
+}
+
+.information-item .content {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.information-item .content:after {
+  content: "";
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  transform: rotate(-45deg) translateY(-50%);
+  border-bottom: 4rpx solid #CCCCCC;
+  border-right: 4rpx solid #CCCCCC;
+  right: 0;
+  top: 50%;
+  box-sizing: border-box;
+}
+
+.information-item .picker {
+  text-align: right;
+  font-size:32rpx;
+  height: 100%;
+  line-height: 104rpx;
+  padding-right: 40rpx;
+}
+
+.information-item .default-text {
+  color: #ccc;
+}
+
+.information-item .locale-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.submit {
+  width:100%!important;
+  height:96rpx!important;
+  border-radius:48rpx!important;
+  font-size:32rpx!important;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  margin-top: 60rpx;
+  padding: 0;
+  line-height: 96rpx;
+}
+
+.introduction {
+  padding: 32rpx 40rpx 60rpx;
+  margin-top: 16rpx;
+  background-color: #fff;
+}
+
+.introduction .title {
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 44rpx;
+}
+
+.textarea-box {
+  position: relative;
+}
+
+.textarea-box .num {
+  position: absolute;  
+  font-size: 22rpx;
+  color: #999999;
+  bottom: 12rpx;
+  right: 16rpx;
+}
+
+.introduction .textarea {
+  height: 220rpx;
+  width: 100%;
+  background: #F5F5F5;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  padding: 32rpx 24rpx 60rpx;
+  box-sizing: border-box;
+  margin-top: 24rpx;
+}
+
+.hobby {
+  margin-top: 60rpx;
+}
+
+.hobby-box {
+  margin-bottom: 40rpx;
+}
+
+.hobby-box .title {
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 44rpx;
+}
+
+.hobby-box .tags {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags .item {
+  padding: 0 32rpx;
+  height: 52rpx;
+  border-radius: 26rpx;
+  border: 1px solid #E0E0E0;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 52rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.tags .add {
+  width: 200rpx;
+  height: 52rpx;
+  background: #FF4F4C;
+  border-radius: 26rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}

@@ -1,0 +1,20 @@
+<view class="verified">
+  <view class="warn">
+    <text>婚恋实名制是相亲的基础；每个有婚恋需求的人都希望遇见有诚意、真实的人，因此请从自己做起，完善实名认证</text>
+  </view>
+  <view class="information">
+    <view class="information-item">
+			<view class="name">姓名</view>
+			<view class="ipt">
+				<input placeholder="请输入姓名" placeholder-style="color: #ccc" class="my-input" bindinput="handleNameChange" value="{{name}}" data-type="name" maxlength="10"></input>
+			</view>
+		</view>
+    <view class="information-item">
+			<view class="name">身份证</view>
+			<view class="ipt">
+				<input placeholder="请输入身份证号" placeholder-style="color: #ccc" class="my-input" bindinput="handleIdChange" value="{{idCard}}" data-type="idCard" type="idcard" maxlength="18"></input>
+			</view>
+		</view>
+  </view>
+  <button class="submit themeBackgroundColor" bind:tap="saveInfo">提交</button>
+</view>

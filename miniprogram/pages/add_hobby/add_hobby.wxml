@@ -1,0 +1,16 @@
+<view class="add_hobby-container">
+  <view class="input-area">
+    <input placeholder="未填写" class="ipt" maxlength="10" placeholder-style="color: #ccc" value="{{value}}" bindinput="inputChange"></input>
+    <view class="add themeBackgroundColor" bind:tap="addTags">添加</view>
+  </view>
+  <view class="show-tags">
+    <view class="title">已添加<text class="textColor">{{hobby.length}}</text>个标签</view>
+    <view class="tags">
+      <view class="item" wx:for="{{hobby}}" wx:key="id" data-id="{{item.id}}" bind:tap="deleteTag">{{item.name}}
+        <view class="close themeBackgroundColor">
+          <mp-icon icon="close" color="#fff" size="{{8}}" class="close-icon"></mp-icon>
+        </view>
+      </view>    
+    </view>
+  </view>
+</view>

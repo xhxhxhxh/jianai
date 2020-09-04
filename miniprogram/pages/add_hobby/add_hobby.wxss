@@ -1,0 +1,79 @@
+.add_hobby-container {
+  padding: 40rpx;
+}
+
+.input-area {
+  height: 104rpx;
+  border-bottom: 1px solid #F0F0F0;
+  display: flex;
+  align-items: center;
+}
+
+.input-area .ipt {
+  height: 100%;
+  padding: 0 20rpx; 
+  font-size: 32rpx;
+  font-weight: bold;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.input-area .add {
+  width: 128rpx;
+  height: 60rpx;
+  border-radius: 34rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.show-tags {
+  margin-top: 60rpx;
+}
+
+.show-tags .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 44rpx;
+}
+
+.show-tags .tags {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tags .item {
+  height: 52rpx;
+  background: #FFE3E2;
+  border-radius: 26rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  line-height: 52rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 0 32rpx;
+  position: relative;
+}
+.tags .item .close {
+  position: absolute;
+  top: -4rpx;
+  right: 0;
+  width: 24rpx;
+  height: 24rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-icon {
+  display: flex;
+  align-items: center;
+}

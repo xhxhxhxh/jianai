@@ -1,0 +1,49 @@
+.infoPrecent-container {
+  padding: 0 40rpx;
+}
+
+.info-box {
+  height: 184rpx;
+  display: flex;
+  align-items: center;
+}
+.info-box.spouse {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-box .icon {
+  flex: 0 0 104rpx;
+  height: 104rpx;
+  margin-right: 24rpx;
+}
+
+.info-box .info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info .text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.info .precent {  
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.info .my-arrow {
+  width: 24rpx;
+  height: 24rpx;
+  box-sizing: border-box;
+  border-right: 2rpx solid #000;
+  border-bottom: 2rpx solid #000;
+  transform: rotate(-45deg);
+}

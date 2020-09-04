@@ -75,6 +75,7 @@ page {
   line-height: 80rpx;
   font-size: 34rpx;
   color: #333333;
+  display: flex;
 }
 
 .info-area .info .label {
@@ -82,7 +83,11 @@ page {
 }
 
 .info-area .info .content {
+  flex: 1;
   font-weight: bold;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .info-area .btn, .photo-area .btn {

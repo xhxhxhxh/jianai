@@ -1,0 +1,32 @@
+<view class="infoPrecent-container">
+  <view class="info-box" bind:tap="skipToEdit" data-page="baseInfo_edit">
+    <image class="icon" src="./images/base_info.png"></image>
+    <view class="info">
+      <text class="text">基础信息填写</text>
+      <view class="precent">
+        <text class="textColor">{{base_rate}}%</text>
+        <view class="my-arrow"></view>
+      </view>
+    </view>
+  </view>
+  <view class="info-box spouse" bind:tap="skipToEdit" data-page="spouseInfo_edit">
+    <image class="icon" src="./images/spouse_info.png"></image>
+    <view class="info">
+      <text class="text">择偶信息填写</text>
+      <view class="precent">
+        <text class="textColor">{{spouse_rate}}%</text>
+        <view class="my-arrow"></view>
+      </view>
+    </view>
+  </view>
+  <view class="info-box" bind:tap="skipToEdit" data-page="detailInfo_edit">
+    <image class="icon" src="./images/detail.png"></image>
+    <view class="info">
+      <text class="text">详细信息填写</text>
+      <view class="precent">
+        <text class="textColor">{{detail_rate}}%</text>
+        <view class="my-arrow"></view>
+      </view>
+    </view>
+  </view>
+</view>

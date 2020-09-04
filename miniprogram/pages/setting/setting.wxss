@@ -1,0 +1,54 @@
+.setting {
+  padding: 40rpx;
+}
+
+.setting-item {
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+}
+
+.setting-item .name {
+  font-size:32rpx;
+  color:rgba(51,51,51,1);
+  white-space: nowrap;
+  line-height: 44rpx;
+}
+
+.setting-item .content {
+  flex: 1;
+  height: 100%;
+  padding-left: 20rpx;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+.setting-item .content.my-arrow:after {
+  content: "";
+  width: 20rpx;
+  height: 20rpx;
+  transform: rotate(-45deg);
+  border-bottom: 4rpx solid #CCCCCC;
+  border-right: 4rpx solid #CCCCCC;
+  box-sizing: border-box;
+  margin-left: 20rpx;
+}
+
+.line {
+  height: 16rpx;
+  background-color: #F6F6F6;
+  margin: 134rpx -40rpx 0;
+}
+
+.submit {
+  width:590rpx!important;
+  height:96rpx!important;
+  border-radius:48rpx!important;
+  font-size:32rpx!important;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  padding: 0;
+  line-height: 96rpx;
+  margin: 90rpx auto 0;
+}

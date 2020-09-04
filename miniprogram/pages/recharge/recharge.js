@@ -1,0 +1,88 @@
+// miniprogram/pages/recharge/recharge.js
+const rechargeList = [
+  {
+    id: 1,
+    gold: 210,
+    money: 68
+  },
+  {
+    id: 2,
+    gold: 210,
+    money: 68
+  },
+  {
+    id: 3,
+    gold: 210,
+    money: 68
+  },
+  {
+    id: 4,
+    gold: 210,
+    money: 68
+  },
+  {
+    id: 5,
+    gold: 210,
+    money: 68
+  },
+  {
+    id: 6,
+    gold: 210,
+    money: 68
+  },
+]
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    bannerUrl: '',
+    navigationBackground: '',
+    statusBarHeight: 0,
+    rechargeList
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getBannerImage()
+    // this.getNavigationHeight()
+    const query = wx.createSelectorQuery()
+    query.select('.navigation-container').boundingClientRect((res) => {
+      console.log(res)
+      this.setData({
+        statusBarHeight: res.height
+      })
+    }).exec()
+  },
+
+  // 从云存储中获取图片
+  getBannerImage() {
+    wx.cloud.getTempFileURL({
+      fileList: ['cloud://dev-sw74b.6465-dev-sw74b-1302913306/images/img_chongzhi_banner@2x.png'],
+      success: res => {
+        console.log(res)
+        const url = res.fileList[0].tempFileURL
+        this.setData({
+          bannerUrl: url,
+          navigationBackground: `url(${url}) no-repeat top center`
+        })
+      },
+      fail: console.error
+    })
+  },
+
+  // 获取系统信息取得导航栏高度
+  // getNavigationHeight() {
+  //   const system = wx.getSystemInfoSync();
+  //   console.log(system)
+  //   let isIOS = system.platform === 'ios';
+  //   let statusBarHeight = system.statusBarHeight
+  //   this.setData({
+  //     isIOS,
+  //     statusBarHeight
+  //   })
+  // }
+})

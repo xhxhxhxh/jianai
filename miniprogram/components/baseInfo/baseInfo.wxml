@@ -1,0 +1,75 @@
+<view class="information">
+	<view class="information-item">
+		<view class="name">性别</view>
+		<view class="content">
+			<picker bindchange="sexChange" value="{{sex}}" range="{{sexArr}}" style="width: 100%; height: 100%">
+				<view class="picker" wx:if="{{sexSelected}}">
+					{{sexArr[sex]}}
+				</view>
+				<view class="default-text picker" wx:else>{{defaultText}}</view>
+			</picker>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">昵称</view>
+		<view class="ipt">
+			<input placeholder="请输入(必填)" placeholder-style="color: #ccc" class="my-input" bindinput="nicknameChange" value="{{nickname}}"></input>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">体重</view>
+		<view class="ipt">
+			<input placeholder="请输入(必填)" placeholder-style="color: #ccc" class="my-input" bindinput="weightChange" type="number" value="{{weight}}"></input>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">身高</view>
+		<view class="ipt">
+			<input placeholder="请输入(必填)" placeholder-style="color: #ccc" class="my-input" bindinput="heightChange" type="number" value="{{height}}"></input>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">常住地</view>
+		<view class="content">
+			<picker bindchange="regionChange" mode="region" value="{{region}}" style="width: 100%; height: 100%">
+				<view class="picker locale-text" wx:if="{{regionSelected}}">
+					{{regionStr}}
+				</view>
+				<view class="default-text picker" wx:else>{{defaultText}}</view>
+			</picker>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">户籍</view>
+		<view class="content">
+			<picker bindchange="hujiChange" mode="region" value="{{huji}}" style="width: 100%; height: 100%">
+				<view class="picker locale-text" wx:if="{{hujiSelected}}">
+					{{hujiStr}}
+				</view>
+				<view class="default-text picker" wx:else>{{defaultText}}</view>
+			</picker>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">学历</view>
+		<view class="content">
+			<picker bindchange="educationChange" value="{{education}}" range="{{educationArr}}" range-key="v" style="width: 100%; height: 100%">
+				<view class="picker" wx:if="{{educationSelected}}">
+					{{educationArr[education]['v']}}
+				</view>
+				<view class="default-text picker" wx:else>{{defaultText}}</view>
+			</picker>
+		</view>
+	</view>
+	<view class="information-item">
+		<view class="name">月收入</view>
+		<view class="content">
+			<picker bindchange="incomeChange" value="{{income}}" range="{{incomeArr}}" range-key="v" style="width: 100%; height: 100%">
+				<view class="picker" wx:if="{{incomeSelected}}">
+					{{incomeArr[income]['v']}}
+				</view>
+				<view class="default-text picker" wx:else>{{defaultText}}</view>
+			</picker>
+		</view>
+	</view>
+</view>

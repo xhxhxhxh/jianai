@@ -1,0 +1,22 @@
+.baseInfo_edit {
+  padding: 40rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 50rpx;
+}
+
+.submit {
+  width:100%!important;
+  height:96rpx!important;
+  border-radius:48rpx!important;
+  font-size:32rpx!important;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  margin-top: 60rpx;
+  padding: 0;
+  line-height: 96rpx;
+}

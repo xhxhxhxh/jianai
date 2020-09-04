@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "x-baseInfo": "/components/baseInfo/baseInfo"
+  }
+}

@@ -1,0 +1,5 @@
+<view class="spouseInfo_edit">
+  <view class="title">择偶信息</view>
+   <x-moreInformation bind:getInformation="getInformation" class="information" more="{{true}}" style="width: 100%"/>
+  <button class="submit themeBackgroundColor" disabled="{{buttonDisabled}}" bind:tap="saveInfo">保存</button>
+</view>

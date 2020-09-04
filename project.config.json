@@ -117,6 +117,61 @@
 					"pathName": "pages/editPhoto/editPhoto",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "infoPrecent",
+					"pathName": "pages/infoPrecent/infoPrecent",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "baseInfo_edit",
+					"pathName": "pages/baseInfo_edit/baseInfo_edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "spouseInfo_edit",
+					"pathName": "pages/spouseInfo_edit/spouseInfo_edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "detailInfo_edit",
+					"pathName": "pages/detailInfo_edit/detailInfo_edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "add_hobby",
+					"pathName": "pages/add_hobby/add_hobby",
+					"query": "type=sport",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "verified",
+					"pathName": "pages/verified/verified",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "setting",
+					"pathName": "pages/setting/setting",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "recharge",
+					"pathName": "pages/recharge/recharge",
+					"scene": null
 				}
 			]
 		}

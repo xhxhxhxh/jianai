@@ -8,7 +8,15 @@
     "pages/genderSelect/genderSelect",
     "pages/spouseInformation/spouseInformation",
     "pages/chat/chat",
-    "pages/editPhoto/editPhoto"
+    "pages/editPhoto/editPhoto",
+    "pages/infoPrecent/infoPrecent",
+    "pages/baseInfo_edit/baseInfo_edit",
+    "pages/spouseInfo_edit/spouseInfo_edit",
+    "pages/detailInfo_edit/detailInfo_edit",
+    "pages/add_hobby/add_hobby",
+    "pages/verified/verified",
+    "pages/setting/setting",
+    "pages/recharge/recharge"
   ],
   "window": {
     "backgroundColor": "#FFF",
