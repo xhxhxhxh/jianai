@@ -1,0 +1,79 @@
+.whoLikeMe-container {
+  padding: 0 40rpx;
+}
+
+.whoLikeMe {
+  height: 164rpx;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.whoLikeMe .avatar {
+  flex: 0 0 104rpx;
+  height: 100%;
+  margin-right: 24rpx;
+  padding: 30rpx 0;
+  box-sizing: border-box;
+}
+
+.whoLikeMe .avatar .image {
+  width: 100%;
+  height: 100%;
+}
+
+.whoLikeMe .content-box {
+  flex: 0 0 254rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+  overflow: hidden;
+}
+
+.content-box .content-top {
+  line-height: 32rpx;
+}
+
+.content-top .name {
+  font-size:32rpx;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.content-top .time {
+  font-size:20rpx;
+  font-weight:bold;
+  color:#999999;
+}
+
+.content-bottom {
+  font-size:26rpx;
+  color:rgba(153,153,153,1);
+  line-height:36rpx;
+}
+
+.operate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin-left: 32rpx;
+}
+
+.operate .check, .operate .ignore {
+  width: 120rpx;
+  height: 60rpx;
+  border-radius: 32rpx;
+  line-height: 60rpx; 
+  font-size: 22rpx;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.ignore {
+  background-color: #ccc;
+}

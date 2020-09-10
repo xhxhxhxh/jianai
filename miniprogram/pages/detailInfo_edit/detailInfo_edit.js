@@ -111,7 +111,7 @@ Page({
           drinkIndex: 0,
           have_childrenIndex: 0,
           wanna_childrenIndex: 0,
-          wedding: 0
+          weddingIndex: 0
         }
 
         // 获取各参数在下拉表中的序号

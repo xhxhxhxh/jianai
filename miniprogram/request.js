@@ -1,7 +1,7 @@
 const md5 = require('blueimp-md5')
 const dayjs = require('dayjs')
 
-const baseURL = 'http://139.224.113.46:81/AppGateway.ashx'
+const baseURL = 'https://www.97yuehui.com/AppGateway.ashx'
 
 function getAuth(appArg) {
   const app = appArg || getApp()
@@ -78,6 +78,21 @@ const request = function(opt, data, method, app) {
         if(data.error === -10007) { // token过期
           wx.redirectTo({
             url: '/pages/login/login',
+          })
+        }
+        if(data.error === -10006) { // 未登录
+          wx.showModal({
+            title: '未登录',
+            content: '还未登录,是否立即登录?',
+            success (res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
           })
         }
         resolve(res.data)

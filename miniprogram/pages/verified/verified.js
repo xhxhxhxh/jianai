@@ -19,11 +19,11 @@ Page({
   },
 
   onUnload() {
-		const pages = getCurrentPages()
-		const prevPage = pages[pages.length - 2]
-		if(prevPage && prevPage.route === "pages/profile/profile") {
-			prevPage.getUserInfo()
-		}
+		// const pages = getCurrentPages()
+		// const prevPage = pages[pages.length - 2]
+		// if(prevPage && prevPage.route === "pages/profile/profile") {
+		// 	prevPage.getUserInfo()
+		// }
 	},
 
   handleNameChange(e) {
@@ -57,9 +57,9 @@ Page({
           title: '认证成功',
           icon: 'success'
         })
-      }else if(res.error === -1003) {      
+      }else {      
         wx.showToast({
-          title: '已实名认证',
+          title: res.msg,
           icon: 'none'
         })
       }

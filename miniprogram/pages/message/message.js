@@ -1,47 +1,8 @@
-// miniprogram/pages/message/message.js
-const message = [
-  {
-    id: 1,
-    type: 'user',
-    avatar: '/images/img_xiaoxi_ta@2x.png',
-    name: '海绵宝宝',
-    date: '10:20',
-    message: '小哥哥在吗？有没有兴趣和我深入交流一下',
-    messageNum: 3
-  },
-  {
-    id: 2,
-    type: 'user',
-    avatar: '/images/img_xiaoxi_ta@2x.png',
-    name: '海绵宝宝',
-    date: '10:20',
-    message: '小哥哥在吗？有没有兴趣和我深入交流一下',
-    messageNum: 5
-  },
-  {
-    id: 3,
-    type: 'user',
-    avatar: '/images/img_xiaoxi_ta@2x.png',
-    name: '海绵宝宝',
-    date: '10:20',
-    message: '小哥哥在吗？有没有兴趣和我深入交流一下11111111111',
-    messageNum: 1
-  },
-]
-
-for(let i = 4; i < 20; i++) {
-  message.push(
-    {
-      id: i,
-      type: 'user',
-      avatar: '/images/img_xiaoxi_ta@2x.png',
-      name: '海绵宝宝',
-      date: '10:20',
-      message: '小哥哥在吗？有没有兴趣和我深入交流一下11111111111',
-      messageNum: 1
-    }
-  )
-}
+const request = require('../../request.js')
+const dayjs = require('dayjs')
+require('dayjs/locale/zh-cn')
+const calendar = require('dayjs/plugin/calendar')
+dayjs.extend(calendar)
 
 Page({
 
@@ -49,20 +10,106 @@ Page({
    * 页面的初始数据
    */
   data: {
-    message: message
+    message: [],
+    sys: {},
+    match: {},
+    slideButtons: [
+      {
+        text: '置顶',
+      },
+      {
+        text: '删除',
+        extClass: 'delete',
+      }
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
+    this.getMessage()
+  },
 
+  getMessage() {
+    request(20).then(res => {
+      console.log(res)
+      if(res.error === 0) {
+        const chat = res.chat
+        chat.forEach(item => {        
+          item.last_datetime = dayjs(item.last_datetime).locale('zh-cn').calendar(null, {
+            sameDay: 'HH:mm', // The same day ( Today at 2:30 AM )
+            nextDay: '[明天]', // The next day ( Tomorrow at 2:30 AM )
+            nextWeek: 'dddd', // The next week ( Sunday at 2:30 AM )
+            lastDay: '[昨天] HH:mm', // The day before ( Yesterday at 2:30 AM )
+            lastWeek: 'dddd', // Last week ( Last Monday at 2:30 AM )
+            sameElse: 'DD/MM/YYYY' // Everything else ( 7/10/2011 )
+          })
+        })
+        this.setData({
+          sys: res.sys,
+          match: res.match,
+          message: res.chat
+        })
+      }  
+    }).catch(err => {
+      console.log(err)
+    })
   },
 
   goToChat(e) {
     const userName = e.currentTarget.dataset.name
+    const tagid = e.currentTarget.dataset.tagid
     wx.navigateTo({
-      url: '/pages/chat/chat?userName=' + userName
+      url: '/pages/chat/chat?userName=' + userName + '&tagid=' + tagid
+    })
+  },
+
+  goToWhoLikeMe() {
+    wx.navigateTo({
+      url: '/pages/whoLikeMe/whoLikeMe'
+    })
+  },
+
+  slideButtonTap(e) {
+    const index = e.detail.index // 0置顶 1删除
+    const tagid = e.currentTarget.dataset.tagid
+    const num = e.currentTarget.dataset.index
+    if(index === 0) {
+      this.toTop(tagid, num)
+    }else if(index === 1) {
+      this.deleteMessage(tagid, num)
+    }
+  },
+
+  // 聊天置顶
+  toTop(tagid, index) {
+    request(33, {tag_uid: tagid}).then(res => {
+      if(res.error === 0) {
+        const message = [...this.data.message]
+        message.unshift(message.splice(index, 1)[0])
+        this.setData({
+          message
+        })
+      }  
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
+  // 删除消息
+  deleteMessage(tagid, index) {
+    request(24, {tag_uid: tagid}).then(res => {
+      if(res.error === 0) {
+        const message = [...this.data.message]
+        message.splice(index, 1)
+        this.setData({
+          message
+        })
+      }  
+    }).catch(err => {
+      console.log(err)
     })
   }
+
 })

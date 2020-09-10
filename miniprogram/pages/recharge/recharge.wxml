@@ -10,13 +10,17 @@
   <view class="recharge-area">
     <view class="title">充值余额</view>
     <view class="recharge-box">
-      <view wx:for="{{rechargeList}}" wx:key="id" class="item">
+      <view wx:for="{{rechargeList}}" wx:key="id" class="item{{selectedId === item.id ? ' selected' : ''}}" bind:tap="rechargeSelected" data-id="{{item.id}}">
         <view class="gold">
           <image src="./images/icon_chongzhi_jinbi@2x.png" class="image"></image>
           <text>{{item.gold}}</text>
         </view>
-        <text class="rmb">{{item.money}}</text>
+        <text class="rmb">{{item.money}}元</text>
+        <view class="selected-box themeBackgroundColor">
+          <mp-icon icon="done" color="#fff" size="{{16}}" extClass="done"></mp-icon>
+        </view>
       </view>
     </view>
+    <button class="submit themeBackgroundColor" bind:tap="recharge">充值</button>
   </view>
 </view>

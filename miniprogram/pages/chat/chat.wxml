@@ -1,81 +1,110 @@
 <block wx:if="{{canIUse}}">
-    <scroll-view  scroll-y style="height: {{layoutHeight}}px" scroll-into-view="{{historyList[historyList.length - 1].id}}" scroll-top="{{scrollTop}}" bindtap="closeKeyboard" class="chat-area">
-      <view class="scroll-container">
-        <block wx:for="{{historyList}}" wx:for-index="idx" wx:for-item="historyItem" wx:key="id">
-        <view class="record {{historyItem.self ? 'self' : ''}}" hidden="{{historyItem.length === 0}}" id="{{historyItem.id}}">
-          <image src="./images/icon_liaotian_nan@2x.png" class="avator"></image>
-          <view class="comment {{historyItem.type === 'image' ? 'imageMode' : ''}}">
-            <block wx:for="{{historyItem.emoji}}" wx:key="*this" wx:if="{{historyItem.emoji}}">
-              <block wx:if="{{item.type === 1}}" class="text">{{item.content}}</block>
-              <view 
-                wx:if="{{item.type === 2}}" 
-                style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
-                <view 
-                  class="{{item.imageClass}}"
-                  style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});"></view>
-              </view>
-            </block>
-            <view wx:if="{{historyItem.type === 'image'}}" class="image-box">
-              <image src="{{historyItem.imageSrc}}" mode='heightFix' class="my-image" bind:tap="previewImage" data-imgsrc="{{historyItem.imageSrc}}"></image>
-            </view>
-          </view>
-        </view>
-      </block>
-      </view>
-      
-    </scroll-view>
-    <view class="reply_wrp" style="bottom: {{isIOS ? keyboardHeight + safeHeight : keyboardHeight}}px">
-      <view class="reply_tool">
-        <view hover-class="active" class="reply_button replay_emotion_button" bindtap="showEmoji">
-          <image src="./images/icon_liaotian_biaoqing@2x.png" mode='aspectFit' class="reply_tool_pic" hidden="{{emojiShow}}"></image>
-          <image src="./images/keyboard.png" mode='aspectFit' class="reply_tool_pic" hidden="{{!emojiShow}}" bind:tap="triggerFocus"></image>
-        </view>
-        <view class="reply_form_wrp">
-          <label for="" class="reply_label">
-            <input 
-              class="reply_input" 
-              cursor-spacing="8px" 
-              confirm-type="send" 
-              adjust-position="{{false}}" 
-              confirm-hold value="{{comment}}" 
-              cursor="{{cursor}}" 
-              focus="{{focus}}" 
-              bindblur="onBlur" 
-              bind:focus="onFocus" 
-              bindinput="onInput" 
-              bindconfirm="onConfirm" 
-              bind:keyboardheightchange="onkeyboardHeightChange"
-              placeholder="主动聊天，机会更多"
-              placeholder-style="color: #ccc; font-size: 32rpx"
-            />
-          </label>
-        </view>
-        <view hover-class="active" class="reply_button replay_media_button" bindtap="chooseImage" data-type="album">
-          <image src="./images/icon_liaotian_tupian@2x.png" mode='aspectFit' class="reply_tool_pic"></image>
-        </view>
-        <view hover-class="active" class="reply_button replay_media_button" bindtap="chooseImage" data-type="camera">
-          <image src="./images/icon_liaotian_paizhao@2x.png" mode='aspectFit' class="reply_tool_pic"></image>
-        </view>
-      </view>
-      <view class="reply_panel_wrp" style="height: {{emojiShow ? 300 : 200}}px;" hidden="{{!emojiShow && !functionShow}}">
-        <view class="reply_panel {{emojiShow ? 'show': ''}}" hidden="{{!emojiShow}}">
-          <mp-emoji source="{{emojiSource}}" class="mp-emoji" bindinsertemoji="insertEmoji" binddelemoji="deleteEmoji" bindsend="onsend" backgroundColor="{{theme === 'dark' ? '#191919' : '#EDEDED'}}" theme="{{theme}}"></mp-emoji>
-        </view>
-        <view class="reply_panel {{functionShow ? 'show': ''}}" hidden="{{!functionShow}}">
-          <swiper indicator-dots="{{true}}" indicator-color="#bbbbbb" indicator-active-color="#8c8c8c">
-            <swiper-item>
-              <view class="function_list">
-                <view class="function_item" bindtap="chooseImage">
-                  <image src="{{theme === 'dark' ? './images/reply_function_image_dark.svg' : './images/reply_function_image.svg'}}" class="reply_function_pic"></image>
-                </view>
-              </view>
-            </swiper-item>
-          </swiper>
-        </view>
-      </view>
-    </view>
-    <view wx:if="{{isIOS}}" class="{{(emojiShow || functionShow) ? 'safearea_emojiShow' : 'safearea'}}" style="position:fixed; bottom: 0px; width: 100%; height: {{safeHeight}}px;"></view>
+	<scroll-view scroll-y style="height: {{layoutHeight}}px" scroll-into-view="{{scrollIntoView}}" scroll-top="{{scrollTop}}" bindtap="closeKeyboard" class="chat-area">
+		<view class="scroll-container" bindtouchstart="startTouch" bindtouchend="endTouch" style="min-height: 100%">
+			<mp-loading type="circle" wx:if="{{showLoading}}" class="loading" extClass="my-loading" tips=""></mp-loading>
+			<block wx:for="{{historyList}}" wx:for-index="idx" wx:for-item="historyItem" wx:key="id">
+				<view class="record-box">
+					<view class="time" wx:if="{{timeObj[historyItem.numid]}}">{{timeObj[historyItem.numid].time}}</view>
+					<view class="record {{historyItem.from === 1 ? 'self' : ''}}" hidden="{{historyItem.length === 0}}" id="{{historyItem.id}}">
+						<image src="./images/icon_liaotian_nan@2x.png" class="avator"></image>
+						<view class="comment {{historyItem.type === 2 ? 'imageMode' : historyItem.type === 3 ? 'applyPhotoMode' : ''}}">
+							<block wx:for="{{historyItem.emoji}}" wx:key="*this" wx:if="{{historyItem.emoji}}">
+								<block wx:if="{{item.type === 1}}" class="text">{{item.content}}</block>
+								<view wx:if="{{item.type === 2}}" style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
+									<view class="{{item.imageClass}}" style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});"></view>
+								</view>
+							</block>
+							<view wx:if="{{historyItem.type === 2}}" class="image-box">
+								<image src="{{historyItem.imageSrc}}" mode='heightFix' class="my-image" bind:tap="previewImage" data-imgsrc="{{historyItem.imageSrc}}"></image>
+							</view>
+							<view wx:if="{{historyItem.type === 3}}" class="checkPhoto">
+								<view class="msg-area">
+									<image src="/images/img_tanchuang_shenqing@2x.png" class="image"></image>
+									<text class="title">申请查看照片</text>
+									<text class="content">申请查看你的照片</text>
+								</view>
+								<view class="button-area">
+									<view class="cancel" data-id="{{historyItem.numid}}" data-index="{{idx}}" data-type="2" bind:tap="handleApplyPhoto">{{historyItem.photo_status === 2 ? '已拒绝' : '残忍拒绝'}}</view>
+									<view class="confirm themeBackgroundColor" data-id="{{historyItem.numid}}" data-index="{{idx}}" data-type="1" bind:tap="handleApplyPhoto">{{historyItem.photo_status === 1 ? '已允许' : '允许查看'}}</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+	<view class="reply_wrp" style="bottom: {{isIOS ? keyboardHeight + safeHeight : keyboardHeight}}px">
+		<view class="reply_tool">
+			<view hover-class="active" class="reply_button replay_emotion_button" bindtap="showEmoji">
+				<image src="./images/icon_liaotian_biaoqing@2x.png" mode='aspectFit' class="reply_tool_pic" hidden="{{emojiShow}}"></image>
+				<image src="./images/keyboard.png" mode='aspectFit' class="reply_tool_pic" hidden="{{!emojiShow}}" bind:tap="triggerFocus"></image>
+			</view>
+			<view class="reply_form_wrp">
+				<label for="" class="reply_label">
+					<input class="reply_input" cursor-spacing="8px" confirm-type="send" adjust-position="{{false}}" confirm-hold value="{{comment}}" cursor="{{cursor}}" focus="{{focus}}" bindblur="onBlur" bind:focus="onFocus" bindinput="onInput" bindconfirm="onConfirm" bind:keyboardheightchange="onkeyboardHeightChange" placeholder="主动聊天，机会更多" placeholder-style="color: #ccc; font-size: 32rpx" />
+				</label>
+			</view>
+			<view hover-class="active" class="reply_button replay_media_button" bindtap="chooseImage" data-type="album">
+				<image src="./images/icon_liaotian_tupian@2x.png" mode='aspectFit' class="reply_tool_pic"></image>
+			</view>
+			<view hover-class="active" class="reply_button replay_media_button" bindtap="chooseImage" data-type="camera">
+				<image src="./images/icon_liaotian_paizhao@2x.png" mode='aspectFit' class="reply_tool_pic"></image>
+			</view>
+		</view>
+		<view class="reply_panel_wrp" style="height: {{emojiShow ? 300 : 200}}px;" hidden="{{!emojiShow && !functionShow}}">
+			<view class="reply_panel {{emojiShow ? 'show': ''}}" hidden="{{!emojiShow}}">
+				<mp-emoji source="{{emojiSource}}" class="mp-emoji" bindinsertemoji="insertEmoji" binddelemoji="deleteEmoji" bindsend="onsend" backgroundColor="{{theme === 'dark' ? '#191919' : '#EDEDED'}}" theme="{{theme}}"></mp-emoji>
+			</view>
+			<view class="reply_panel {{functionShow ? 'show': ''}}" hidden="{{!functionShow}}">
+				<swiper indicator-dots="{{true}}" indicator-color="#bbbbbb" indicator-active-color="#8c8c8c">
+					<swiper-item>
+						<view class="function_list">
+							<view class="function_item" bindtap="chooseImage">
+								<image src="{{theme === 'dark' ? './images/reply_function_image_dark.svg' : './images/reply_function_image.svg'}}" class="reply_function_pic"></image>
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{isIOS}}" class="{{(emojiShow || functionShow) ? 'safearea_emojiShow' : 'safearea'}}" style="position:fixed; bottom: 0px; width: 100%; height: {{safeHeight}}px;"></view>
 </block>
 <view wx:else style="text-align: center; padding: 100px 0">
-  微信版本过低，暂不支持本功能
+	微信版本过低，暂不支持本功能
+</view>
+<canvas type="2d" id="myCanvas" hidden="{{true}}"></canvas>
+<view class="copyScrollContainer" hidden="{{!showCopyScrollContainer}}" style="min-height: 100%">
+	<mp-loading type="circle" wx:if="{{showLoading}}" class="loading" extClass="my-loading" tips=""></mp-loading>
+	<block wx:for="{{copyHistoryList}}" wx:for-index="idx" wx:for-item="historyItem" wx:key="id">
+		<view class="record-box">
+			<view class="time" wx:if="{{timeObj[historyItem.numid]}}">{{timeObj[historyItem.numid].time}}</view>
+			<view class="record {{historyItem.from === 1 ? 'self' : ''}}" hidden="{{historyItem.length === 0}}" id="{{historyItem.id}}">
+				<image src="./images/icon_liaotian_nan@2x.png" class="avator"></image>
+				<view class="comment {{historyItem.type === 2 ? 'imageMode' : historyItem.type === 3 ? 'applyPhotoMode' : ''}}">
+					<block wx:for="{{historyItem.emoji}}" wx:key="*this" wx:if="{{historyItem.emoji}}">
+						<block wx:if="{{item.type === 1}}" class="text">{{item.content}}</block>
+						<view wx:if="{{item.type === 2}}" style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
+							<view class="{{item.imageClass}}" style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});"></view>
+						</view>
+					</block>
+					<view wx:if="{{historyItem.type === 2}}" class="image-box">
+						<image src="{{historyItem.imageSrc}}" mode='heightFix' class="my-image" bind:tap="previewImage" data-imgsrc="{{historyItem.imageSrc}}"></image>
+					</view>
+					<view wx:if="{{historyItem.type === 3}}" class="checkPhoto">
+						<view class="msg-area">
+							<image src="/images/img_tanchuang_shenqing@2x.png" class="image"></image>
+							<text class="title">申请查看照片</text>
+							<text class="content">申请查看你的照片</text>
+						</view>
+						<view class="button-area">
+							<view class="cancel" data-id="{{historyItem.numid}}" data-index="{{idx}}" data-type="2" bind:tap="handleApplyPhoto">{{historyItem.photo_status === 2 ? '已拒绝' : '残忍拒绝'}}</view>
+							<view class="confirm themeBackgroundColor" data-id="{{historyItem.numid}}" data-index="{{idx}}" data-type="1" bind:tap="handleApplyPhoto">{{historyItem.photo_status === 1 ? '已允许' : '允许查看'}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
 </view>

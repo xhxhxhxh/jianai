@@ -1,5 +1,6 @@
 //app.js
 const request = require('./request')
+const dayjs = require('dayjs')
 App({
   onLaunch: function () {
     
@@ -35,7 +36,7 @@ App({
       console.log(data)
       const serverTime = data.server_time
       const time = {
-        localTime: new Date(),
+        localTime: dayjs().format(),
         serverTime
       }
       wx.setStorage({

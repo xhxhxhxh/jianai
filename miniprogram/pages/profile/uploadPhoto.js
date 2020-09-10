@@ -2,7 +2,7 @@
 // 上传图片
 const app = getApp()
 import {uploadImageURL} from '../../config'
-export default async function uploadPhotos(tempFilePaths, callback) {
+export default async function uploadPhotos(tempFilePaths, callback, data) {
   const auth = app.getGlobal('auth')
   const tempFilePath = await transformImage(tempFilePaths[0])
   wx.uploadFile({
@@ -14,7 +14,8 @@ export default async function uploadPhotos(tempFilePaths, callback) {
     formData: {
       uid: auth.uid,
       token: auth.token,
-      op: 'UploadPhoto'
+      op: data ? data.type: 'UploadPhoto',
+      tag_uid: data ? data.tagid : ''
     },
     name: 'file',
     success: (res) => {
@@ -74,7 +75,6 @@ function transformImage(tempFilePath) {
 }
 //重绘画板
 function resetCanvas(context, width, height){
-  console.log(context)
   context.fillStyle = '#fff';//背景填充
   context.fillRect(0, 0, width, height) //设置填充
 }

@@ -1,5 +1,25 @@
 page {
   border-top: 1px solid #CCCCCC;
+  position: relative;
+}
+
+.copyScrollContainer {
+  position: absolute;
+  top: 3000px;
+  left: 0;
+  opacity: 0;
+}
+
+.my-loading .weui-loadmore {
+  margin: 0 auto!important;
+  line-height: 1!important;
+}
+
+.record-box .time {
+  text-align: center; 
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 40rpx;
 }
 
 .record {
@@ -53,6 +73,70 @@ page {
   background-color: #fff !important;
   padding: 0 !important;
   border-radius: 6rpx !important;
+}
+
+.comment.applyPhotoMode {
+  background-color: #fff !important;
+  padding: 0 !important;
+  width: 520rpx;
+  height: 492rpx;
+  box-shadow: 0 4rpx 16rpx 0 #F0F0F0;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+
+.comment.applyPhotoMode .checkPhoto {
+  width: 100%;
+}
+
+.checkPhoto .msg-area {
+  height: 404rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkPhoto .msg-area .image {
+  width: 220rpx;
+  height: 210rpx;
+}
+
+.checkPhoto .msg-area .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 44rpx;
+  margin-top: 32rpx;
+  margin-bottom: 12rpx;
+}
+
+.checkPhoto .msg-area .content {
+  font-size: 24rpx;
+  color: #333333;
+  line-height: 34rpx;
+}
+
+.checkPhoto .button-area {
+  height: 88rpx;
+  display: flex;
+  font-size: 28rpx;
+}
+
+.checkPhoto .button-area .cancel, .checkPhoto .button-area .confirm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkPhoto .button-area .cancel {
+  background-color: #F6F6F6;
+  color: #333;
+}
+
+.checkPhoto .button-area .confirm {
+  color: #fff;
 }
 
 .image-box .my-image {

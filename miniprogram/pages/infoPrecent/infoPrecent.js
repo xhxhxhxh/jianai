@@ -23,11 +23,11 @@ Page({
   },
 
   onUnload() {
-		const pages = getCurrentPages()
-		const prevPage = pages[pages.length - 2]
-		if(prevPage && prevPage.route === "pages/profile/profile") {
-			prevPage.getUserInfo()
-		}
+		// const pages = getCurrentPages()
+		// const prevPage = pages[pages.length - 2]
+		// if(prevPage && prevPage.route === "pages/profile/profile") {
+		// 	prevPage.getUserInfo()
+		// }
 	},
 
   // 获取信息百分比

@@ -9,6 +9,7 @@ Page({
     noticeReceive: true,
     showDialog: false,
     title: '退出登录',
+    isLogin: false,
     content: '退出登录将无法收到信息，是否继续退出',
     buttons: [{text: '取消'}, {text: '继续退出'}],
   },
@@ -17,7 +18,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 检测是否登录
+    const auth = app.getGlobal('auth')
+    if(auth.token) {
+      this.setData({
+        isLogin: true
+      })
+    }else {
+      this.setData({
+        isLogin: false
+      })
+    }
   },
 
   noticeReceiveChange(e) {
@@ -47,9 +58,15 @@ Page({
 
   // 退出登录
   logout() {
-    this.setData({
-      showDialog: true
-    })
+    if(this.data.isLogin) {
+      this.setData({
+        showDialog: true
+      })
+    }else {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    }
   },
 
   // 确认退出

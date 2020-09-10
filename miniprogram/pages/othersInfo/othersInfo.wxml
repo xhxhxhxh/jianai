@@ -1,0 +1,79 @@
+<view class="otherInfo-container">
+	<swiper duration="{{duration}}" style="height: 600rpx" bindchange="swiperChange">
+		<swiper-item class="photo-box" wx:if="{{lock_photo || photo.length === 0}}">
+			<view class="photo applyPhoto" style="background-image: url({{bannerUrl}})">
+				<view class="title">{{lock_photo ? '通过申请，经过对方同意即可查看对方照片' : '该用户暂未上传照片去提醒TA吧'}}</view>
+				<button class="submit themeBackgroundColor" bind:tap="applyPhoto">申请查看照片</button>
+			</view>
+		</swiper-item>
+		<swiper-item class="photo-box" wx:for="{{photo}}" wx:key="*this">
+			<view class="photo" style="background: url({{item}}) no-repeat center;" data-img="{{item}}" bind:tap="onPreviewImage"></view>
+		</swiper-item>
+	</swiper>
+	<view class="photo-index" wx:if="{{!lock_photo && photo.length > 0}}">{{swiperIndex}}/{{photo.length}}</view>
+	<view class="baseInfo">
+		<view class="title name">{{nickname}}</view>
+		<view class="self-area tags-area">
+			<view class="tag">{{age}}岁</view>
+			<view class="tag">{{weight}}kg</view>
+			<view class="tag">{{height}}cm</view>
+			<view class="tag">{{region}}</view>
+			<view class="tag">￥{{incomeObj[income]}}</view>
+		</view>
+		<view class="introduction-area">
+			<view class="title">个人自我介绍</view>
+			<view class="introduction{{introduction ? '' : ' tips'}}">{{introduction ? introduction : '这家伙很懒，还没有填写自我介绍，你在和对方聊天时记得提醒TA'}}</view>
+		</view>
+		<view class="detail-area">
+			<view class="title">详细资料</view>
+			<view class="detail tags-area">
+				<view class="tag" wx:if="{{house !== -1}}">{{houseObj[house]}}</view>
+				<view class="tag" wx:if="{{car !== -1}}">{{carObj[car]}}</view>
+				<view class="tag" wx:if="{{nation !== -1}}">{{nationObj[nation]}}</view>
+				<view class="tag" wx:if="{{belief !== -1}}">{{beliefObj[belief]}}</view>
+				<view class="tag" wx:if="{{school}}">{{school}}</view>
+				<view class="tag" wx:if="{{company !== -1}}">{{companyObj[company]}}</view>
+				<view class="tag" wx:if="{{job}}">职业:{{job}}</view>
+				<view class="tag" wx:if="{{smoke !== -1}}">{{smokeObj[smoke]}}</view>
+				<view class="tag" wx:if="{{drink !== -1}}">{{drinkObj[drink]}}</view>
+				<view class="tag" wx:if="{{have_children !== -1}}">{{have_childrenObj[have_children]}}</view>
+				<view class="tag" wx:if="{{wanna_children !== -1}}">{{wanna_childrenObj[wanna_children]}}</view>
+				<view class="tag" wx:if="{{wedding !== -1}}">{{weddingObj[wedding]}}</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="spouse-info">
+	<view class="title">择偶信息</view>
+	<view class="spouse tags-area">
+		<view class="tag">{{age_min}}-{{age_max}}岁</view>
+    <view class="tag">{{height_min}}-{{height_max}}cm</view>
+		<view class="tag">{{educationObj[education_min]}}-{{educationObj[education_max]}}</view>
+		<view class="tag">￥{{incomeObj[spouse_income]}}</view>
+    <view class="tag">{{spouse_region}}</view>
+	</view>
+</view>
+<view class="hobby-info">
+	<view class="title">运动爱好</view>
+	<view class="sport tags-area">
+		<view class="tag" wx:for="{{sport}}" wx:key="*this">{{item}}</view>
+	</view>
+  <view class="title">美食爱好</view>
+	<view class="sport tags-area">
+		<view class="tag" wx:for="{{food}}" wx:key="*this">{{item}}</view>
+	</view>
+  <view class="title">旅游足迹</view>
+	<view class="sport tags-area">
+		<view class="tag" wx:for="{{travel}}" wx:key="*this">{{item}}</view>
+	</view>
+</view>
+<view class="operate-area">
+	<view class="hi" bind:tap="goChat">
+		<image src="./images/icon_zhuye_zhaohu@2x.png" class="image"></image>
+		<text>打招呼</text>
+	</view>
+	<view class="cancel themeBackgroundColor" bind:tap="cancel">
+		<mp-icon icon="close" color="#FF4F4C" size="{{24}}" class="close"></mp-icon>
+		<text>取消</text>
+	</view>
+</view>

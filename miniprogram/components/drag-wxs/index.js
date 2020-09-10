@@ -61,6 +61,10 @@ Component({
 			type: Number,
 			value: 0
 		},
+		isEditing: {
+			type: Boolean,
+			value: false
+		}
 	},
 	data: {
 		/* 未渲染数据 */

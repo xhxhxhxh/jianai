@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "mp-navigation-bar": "/miniprogram_npm/weui-miniprogram/navigation-bar/navigation-bar"
+    "mp-navigation-bar": "/miniprogram_npm/weui-miniprogram/navigation-bar/navigation-bar",
+    "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "disableScroll": true
 }

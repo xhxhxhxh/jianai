@@ -1,15 +1,42 @@
 <view class="message-container">
-  <view class="message" wx:for="{{message}}" wx:key="id" bind:tap="goToChat" data-name="{{item.name}}">
-    <view class="avatar">
-      <image src="{{item.avatar}}" class="image"></image>
-      <text class="message-num">{{item.messageNum}}</text>
-    </view>
-    <view class="content-box">
-      <view class="content-top">
-        <text class="name">{{item.name}}</text>
-        <text class="time">{{item.date}}</text>
-      </view>
-      <view class="content-bottom">{{item.message}}</view>
-    </view>
-  </view>
+	<view class="message">
+		<view class="avatar">
+			<image src="/images/icon_xiaoxi_xitongtongzhi@2x.png" class="image"></image>
+			<text class="message-num">{{sys.new}}</text>
+		</view>
+		<view class="content-box">
+			<view class="content-top">
+				<text class="name">系统通知</text>
+			</view>
+			<view class="content-bottom">{{sys.msg ? sys.msg : '还没有新通知'}}</view>
+		</view>
+	</view>
+	<view class="message" bind:tap="goToWhoLikeMe">
+		<view class="avatar">
+			<image src="/images/icon_xiaoxi_xihunwo@2x.png" class="image"></image>
+			<text class="message-num">{{match.new}}</text>
+		</view>
+		<view class="content-box">
+			<view class="content-top">
+				<text class="name">配对记录</text>
+			</view>
+			<view class="content-bottom">别错过，正在等待回应的人</view>
+		</view>
+	</view>
+	<mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{message}}" wx:key="tag_uid" data-tagid="{{item.tag_uid}}" data-index="{{index}}">
+		<view class="message" bind:tap="goToChat" data-name="{{item.nickname}}" data-tagid="{{item.tag_uid}}" >
+			<view class="avatar">
+				<image src="/images/img_xiaoxi_ta@2x.png" class="image"></image>
+				<text class="message-num">{{item.new}}</text>
+			</view>
+			<view class="content-box">
+				<view class="content-top">
+					<text class="name">{{item.nickname}}</text>
+					<text class="time">{{item.last_datetime}}</text>
+				</view>
+				<view class="content-bottom">{{item.last_msg}}</view>
+			</view>
+		</view>
+	</mp-slideview>
+
 </view>

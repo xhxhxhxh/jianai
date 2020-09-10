@@ -4,5 +4,6 @@
     "drag-item": "./drag-item/index",
     "mp-actionSheet": "/miniprogram_npm/weui-miniprogram/actionsheet/actionsheet"
   },
-  "navigationBarTitleText": "编辑照片"
+  "navigationBarTitleText": "编辑照片",
+  "disableScroll": true
 }

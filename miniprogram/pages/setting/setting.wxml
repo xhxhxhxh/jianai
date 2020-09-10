@@ -35,7 +35,7 @@
 			<view class="content my-arrow">
 			</view>
 		</view>
-     <button class="submit themeBackgroundColor" bind:tap="logout">退出登录</button>
+     <button class="submit themeBackgroundColor" bind:tap="logout">{{isLogin ? '退出登录' : '登录'}}</button>
 	</view>
   <my-dialog showDialog="{{showDialog}}" title="{{title}}" content="{{content}}" buttons="{{buttons}}" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog"></my-dialog>
 </view>

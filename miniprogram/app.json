@@ -16,7 +16,9 @@
     "pages/add_hobby/add_hobby",
     "pages/verified/verified",
     "pages/setting/setting",
-    "pages/recharge/recharge"
+    "pages/recharge/recharge",
+    "pages/othersInfo/othersInfo",
+    "pages/whoLikeMe/whoLikeMe"
   ],
   "window": {
     "backgroundColor": "#FFF",

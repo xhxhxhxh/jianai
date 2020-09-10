@@ -26,15 +26,17 @@
   position: absolute;
   top: 28rpx;
   right: -4rpx;
-  width:34rpx;
+  min-width:34rpx;
   height:34rpx;
-  background:rgba(255,226,36,1);
+  background:#FFE224;
   font-size:28rpx;
   font-weight:bold;
   color:rgba(255,255,255,1);
   text-align: center;
   line-height: 34rpx;
-  border-radius: 50%;
+  border-radius: 17rpx;
+  padding: 0 8rpx;
+  box-sizing: border-box;
 }
 
 .message .content-box {
@@ -75,4 +77,8 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.delete .weui-slideview__btn{
+  background-color: #FF3A39!important;
 }

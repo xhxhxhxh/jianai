@@ -1,0 +1,17 @@
+<view class="whoLikeMe-container">
+  <view class="whoLikeMe" wx:for="{{list}}" wx:key="mid">
+		<view class="avatar">
+			<image src="/images/img_xiaoxi_ta@2x.png" class="image"></image>
+		</view>
+		<view class="content-box">
+			<view class="content-top">
+				<view class="name">{{item.nickname}}</view>
+			</view>
+			<view class="content-bottom">{{item.match_date}}</view>
+		</view>
+    <view class="operate">
+      <view class="check themeBackgroundColor" data-mid="{{item.mid}}" data-tagid="{{item.tag_id}}" bind:tap="checkOthers">查看主页</view>
+      <view class="ignore" data-mid="{{item.mid}}" data-index="{{index}}" bind:tap="ignore">忽略</view>
+    </view>
+	</view>
+</view>

@@ -24,7 +24,6 @@ Page({
     const length = phone.length
     const head = phone.slice(0, length - 8)
     const foot = phone.slice(length - 4, length)
-    console.log(phone)
     this.setData({
       sendedNumber: head + '****' + foot
     })
@@ -104,7 +103,7 @@ Page({
           data: auth,
           key: 'auth',
         })
-        wx.switchTab({
+        wx.reLaunch({
           url: '/pages/match/match',
         })
       }

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-slideview": "/miniprogram_npm/weui-miniprogram/slideview/slideview"
+  },
   "navigationBarTitleText": "消息"
 }

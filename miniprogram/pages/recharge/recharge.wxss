@@ -33,7 +33,6 @@
   border-radius: 32rpx;
   margin-top: -32rpx;
   padding: 60rpx 40rpx 0;
-
   background-color: #fff;
 }
 
@@ -61,6 +60,30 @@
   align-items: center;
   flex-direction: column;
   margin-bottom: 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.recharge-box .item .selected-box {
+  display: none;
+  position: absolute;
+  right: -34rpx;
+  bottom: -34rpx;
+  width: 68rpx;
+  height: 68rpx;
+  transform: rotate(45deg);
+}
+
+.recharge-box .item .selected-box .done {
+  transform: rotate(-48deg) translate(-4rpx, 0);
+}
+
+.recharge-box .item.selected {
+  border-color: #FF4F4C;
+}
+
+.recharge-box .item.selected .selected-box {
+  display: block;
 }
 
 .recharge-box .gold {
@@ -80,4 +103,16 @@
 .recharge-box .gold .image {
   width: 32rpx;
   height: 32rpx;
+}
+
+.submit {
+  width:100%!important;
+  height:88rpx!important;
+  border-radius:44rpx!important;
+  font-size:32rpx!important;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  padding: 0;
+  line-height: 88rpx;
+  margin-top: 60rpx;
 }

@@ -12,6 +12,7 @@
 				extra-nodes="{{extraNodes}}"
 				list-data="{{listData}}"
 				columns="{{size}}"
+				isEditing="{{isEditing}}"
 				scroll-top="{{scrollTop}}"
 				item-height="{{(750 - 64) / size}}"
 				top-size="0"

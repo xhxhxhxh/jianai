@@ -3,32 +3,32 @@ const rechargeList = [
   {
     id: 1,
     gold: 210,
-    money: 68
+    money: 68.00
   },
   {
     id: 2,
     gold: 210,
-    money: 68
+    money: 68.00
   },
   {
     id: 3,
     gold: 210,
-    money: 68
+    money: 68.00
   },
   {
     id: 4,
     gold: 210,
-    money: 68
+    money: 68.00
   },
   {
     id: 5,
     gold: 210,
-    money: 68
+    money: 68.00
   },
   {
     id: 6,
     gold: 210,
-    money: 68
+    money: 68.00
   },
 ]
 Page({
@@ -40,6 +40,7 @@ Page({
     bannerUrl: '',
     navigationBackground: '',
     statusBarHeight: 0,
+    selectedId: '',
     rechargeList
   },
 
@@ -63,7 +64,6 @@ Page({
     wx.cloud.getTempFileURL({
       fileList: ['cloud://dev-sw74b.6465-dev-sw74b-1302913306/images/img_chongzhi_banner@2x.png'],
       success: res => {
-        console.log(res)
         const url = res.fileList[0].tempFileURL
         this.setData({
           bannerUrl: url,
@@ -73,6 +73,13 @@ Page({
       fail: console.error
     })
   },
+
+  rechargeSelected(e) {
+    const id = e.currentTarget.dataset.id
+    this.setData({
+      selectedId: id
+    })
+  }
 
   // 获取系统信息取得导航栏高度
   // getNavigationHeight() {

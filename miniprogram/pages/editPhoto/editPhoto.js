@@ -34,11 +34,11 @@ Page({
 
 	onUnload() {
 		// 离开页面后，更新我的中的照片
-		const pages = getCurrentPages()
-		const prevPage = pages[pages.length - 2]
-		if(prevPage && prevPage.route === "pages/profile/profile") {
-			prevPage.getPhoto()
-		}
+		// const pages = getCurrentPages()
+		// const prevPage = pages[pages.length - 2]
+		// if(prevPage && prevPage.route === "pages/profile/profile") {
+		// 	prevPage.getPhoto()
+		// }
 	},
 
 	// 获取照片

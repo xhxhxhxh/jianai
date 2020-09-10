@@ -37,7 +37,7 @@
     <view class="name">照片墙</view>
     <scroll-view scroll-x="{{true}}" style="height: 200rpx">
       <view class="photo-box">
-        <view class="default" wx:if="{{photo.length === 0}}">
+        <view class="default" wx:if="{{photo.length === 0}}" bind:tap="chooseImage">
           <image src="./images/icon_xiangce_shangchuan@2x.png" class="camera" mode="widthFix"></image>
           <text class="text">添加照片</text>
         </view>
@@ -49,7 +49,7 @@
     <button class="btn themeBackgroundColor" bind:tap="chooseImage">上传照片</button>
   </view>
 </view>
-<view class="wallet">
+<view class="wallet" bind:tap="goRecharge">
   <view class="left">钱包</view>
   <view class="right">
     <text class="num">35</text>

@@ -9,6 +9,7 @@
   overflow-y: unset;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .my-dialog .weui-dialog__hd {

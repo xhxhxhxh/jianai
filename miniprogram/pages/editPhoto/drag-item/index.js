@@ -7,6 +7,10 @@ Component({
 		itemData: {
 			type: Object,
 			value: {}
+		},
+		isEditing: {
+			type: Boolean,
+			value: false
 		}
 	},
 	data: {
@@ -21,9 +25,11 @@ Component({
 	},
 	methods: {
 		itemClick(e) {
-			this.setData({
-				selected: !this.data.selected
-			})
+			if(this.properties.isEditing) {
+				this.setData({
+					selected: !this.data.selected
+				})
+			}
 			this.triggerEvent('click', {
 				selected: this.data.selected
 			});

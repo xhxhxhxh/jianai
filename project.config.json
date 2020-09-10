@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -101,7 +101,7 @@
 					"id": 6,
 					"name": "chat",
 					"pathName": "pages/chat/chat",
-					"query": "userName=test",
+					"query": "userName=哈哈&tagid=6",
 					"scene": null
 				},
 				{
@@ -171,6 +171,21 @@
 					"id": -1,
 					"name": "recharge",
 					"pathName": "pages/recharge/recharge",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "othersInfo",
+					"pathName": "pages/othersInfo/othersInfo",
+					"query": "mid=189",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "whoLikeMe",
+					"pathName": "pages/whoLikeMe/whoLikeMe",
+					"query": "mid=143",
 					"scene": null
 				}
 			]
