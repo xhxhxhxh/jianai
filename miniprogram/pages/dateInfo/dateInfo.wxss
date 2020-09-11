@@ -1,0 +1,179 @@
+page {
+  background-color: #F5F5F5;
+}
+
+.my-tab{
+  background-color: #fff;
+}
+
+.tab-box {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.my-tab .tabs {
+  display: flex!important;
+}
+
+.my-tab .tabs .tabs__item {
+  flex: 1!important;
+  padding: 0!important;
+  display: flex!important;
+  justify-content: center;
+}
+
+.date-record {
+  padding: 120rpx 40rpx 40rpx;
+}
+.date-record .record {
+  height: 160rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding-left: 24rpx;
+  padding-right: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.date-record .record .date {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.record .date .day {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 56rpx;
+}
+
+.record .date .month {
+  font-size: 22rpx;
+  color: #999999;
+  line-height: 32rpx;
+}
+
+.record .content {
+  margin-left: 40rpx;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.record .content .name {
+  font-size: 32rpx;
+  color: #333;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.record .content .status {
+  flex: 0 0 158rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  text-align: center;
+  line-height: 72rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-left: 50rpx;
+  background-color: #F0F0F0;
+}
+
+.record .content .status.red {
+  color: #fff;
+  background-color: #FF4F4C;
+}
+
+.my-dialog .weui-dialog{
+  width: 600rpx;
+  border-radius: 40rpx;
+}
+
+.my-dialog .weui-dialog .weui-dialog__bd {
+  padding: 0 40rpx;
+  margin-bottom: 62rpx;
+  overflow-y: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-dialog .weui-dialog__hd {
+  padding-top: 40rpx;
+  padding-bottom: 48rpx;
+}
+
+.my-dialog .weui-dialog__title {
+  font-size:36rpx;
+  color: #333;
+}
+
+.dialog-box {
+  font-size:28rpx;
+  color:rgba(51,51,51,1);
+  line-height:40rpx;
+}
+
+
+.dialog-box .text {
+  font-size:28rpx;
+  color:#999999;
+  line-height:40rpx;
+  margin-top: 34rpx;
+}
+
+.my-dialog .weui-dialog__ft {
+  min-height: unset;
+  line-height: unset;
+}
+
+.my-dialog .weui-dialog__ft::after {
+  border-top: 0;
+}
+
+.my-dialog .weui-dialog__ft .weui-dialog__btn:first-child {
+  background:rgba(246,246,246,1);
+  font-size:32rpx;
+  color:rgba(51,51,51,1);
+  font-weight: 500;
+  min-height: 96rpx;
+  line-height: 96rpx;
+}
+
+.my-dialog .weui-dialog__ft .weui-dialog__btn:last-child {
+  background:#FF4F4C;
+  font-size:32rpx;
+  color:#fff;
+  font-weight: 500;
+  min-height: 96rpx;
+  line-height: 96rpx;
+}
+
+.noInfo {
+  margin-top: 84rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noInfo .image {
+  width: 300rpx;
+  height: 236rpx;
+}
+
+.noInfo .text {
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 40rpx;
+  margin-top: 20rpx;
+}

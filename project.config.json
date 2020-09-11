@@ -187,6 +187,13 @@
 					"pathName": "pages/whoLikeMe/whoLikeMe",
 					"query": "mid=143",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "dateInfo",
+					"pathName": "pages/dateInfo/dateInfo",
+					"query": "mid=189",
+					"scene": null
 				}
 			]
 		}

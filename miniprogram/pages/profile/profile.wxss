@@ -293,6 +293,97 @@ page {
   line-height: 72rpx;
   font-size: 32rpx;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #333;
   margin-left: 50rpx;
+  background-color: #F0F0F0;
+}
+
+.record .content .status.red {
+  color: #fff;
+  background-color: #FF4F4C;
+}
+
+.my-dialog .weui-dialog{
+  width: 600rpx;
+  border-radius: 40rpx;
+}
+
+.my-dialog .weui-dialog .weui-dialog__bd {
+  padding: 0 40rpx;
+  margin-bottom: 62rpx;
+  overflow-y: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-dialog .weui-dialog__hd {
+  padding-top: 40rpx;
+  padding-bottom: 48rpx;
+}
+
+.my-dialog .weui-dialog__title {
+  font-size:36rpx;
+  color: #333;
+}
+
+.dialog-box {
+  font-size:28rpx;
+  color:rgba(51,51,51,1);
+  line-height:40rpx;
+}
+
+
+.dialog-box .text {
+  font-size:28rpx;
+  color:#999999;
+  line-height:40rpx;
+  margin-top: 34rpx;
+}
+
+.my-dialog .weui-dialog__ft {
+  min-height: unset;
+  line-height: unset;
+}
+
+.my-dialog .weui-dialog__ft::after {
+  border-top: 0;
+}
+
+.my-dialog .weui-dialog__ft .weui-dialog__btn:first-child {
+  background:rgba(246,246,246,1);
+  font-size:32rpx;
+  color:rgba(51,51,51,1);
+  font-weight: 500;
+  min-height: 96rpx;
+  line-height: 96rpx;
+}
+
+.my-dialog .weui-dialog__ft .weui-dialog__btn:last-child {
+  background:#FF4F4C;
+  font-size:32rpx;
+  color:#fff;
+  font-weight: 500;
+  min-height: 96rpx;
+  line-height: 96rpx;
+}
+
+.noInfo {
+  margin-top: 84rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noInfo .image {
+  width: 300rpx;
+  height: 236rpx;
+}
+
+.noInfo .text {
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 40rpx;
+  margin-top: 20rpx;
 }

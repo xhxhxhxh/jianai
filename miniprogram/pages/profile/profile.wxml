@@ -60,43 +60,33 @@
 <view class="date-record">
   <view class="header">
     <view class="left">约会记录</view>
-    <view class="right">
+    <view class="right" bind:tap="goDateInfo">
       <text class="text">更多</text>
       <view class="my-arrow"></view>
     </view>
   </view>
+  <view class="noInfo" wx:if="{{dateList.length === 0}}">
+    <image src="/images/img_quesun@2x.png" class="image"></image>
+    <text class="text">暂无约会记录哦~</text>
+  </view>
   <view class="record-box">
-    <view class="record">
+    <view class="record" wx:for="{{dateList}}" wx:key="mid">
       <view class="date">
-        <text class="day">27</text>
-        <text class="month">09月</text>
+        <text class="day">{{item.day}}</text>
+        <text class="month">{{item.month}}月</text>
       </view>
       <view class="content">
-        <text class="name">美奈子</text>
-        <view class="status themeBackgroundColor">进行中</view>
-      </view>
-    </view>
-    <view class="record">
-      <view class="date">
-        <text class="day">27</text>
-        <text class="month">09月</text>
-      </view>
-      <view class="content">
-        <text class="name">美奈子美奈子美奈子美奈子美奈子美奈子</text>
-        <view class="status themeBackgroundColor">进行中</view>
-      </view>
-    </view>
-    <view class="record">
-      <view class="date">
-        <text class="day">27</text>
-        <text class="month">09月</text>
-      </view>
-      <view class="content">
-        <text class="name">美奈子</text>
-        <view class="status themeBackgroundColor">进行中</view>
+        <text class="name">{{item.nickname}}</text>
+        <view class="status{{item.status === 2 ? ' red' : ''}}" data-index="{{index}}" bind:tap="showScore">{{item.status === 2 ? '进行中' : item.status === 4 ? '已拒绝' : (item.status === 5 && item.score === -1) ? '去评分' : '已评分'}}</view>
       </view>
     </view>
   </view>
 </view>
+<mp-dialog show="{{showDialog}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask-closable="{{false}}" ext-class="my-dialog">
+  <view class="dialog-box">
+    <mp-icon icon="star" color="#FF4F4C" size="{{30}}" extClass="star" type="{{starNumObj[index] ? 'field' : 'outline'}}" wx:for="{{5}}" wx:key="*this" bind:tap="selectStar" data-star="{{index}}"></mp-icon>
+    <view class="text">点击星星进行评分</view>
+  </view>
+</mp-dialog>
 <canvas type="2d" id="myCanvas" hidden="{{true}}"></canvas>
 

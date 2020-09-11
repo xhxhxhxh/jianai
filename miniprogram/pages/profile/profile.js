@@ -9,12 +9,16 @@ Page({
    */
   data: {
     photo: [],
+    dateList: [],
     nickname: '',
     sex: 0,
     birthday: '',
     education: 0,
     huji: '',
     income: 0,
+    showDialog: false,
+    buttons: [{text: '关闭评价'}, {text: '提交'}],
+    starNumObj: {}
   },
 
   /**
@@ -23,6 +27,7 @@ Page({
   onShow: function (options) {
     this.getPhoto()
     this.getSelectData()
+    this.getDateInfo()
   },
 
   // 跳转编辑照片页
@@ -122,6 +127,32 @@ Page({
     })
   },
 
+  // 获取约会记录
+  getDateInfo() {
+    request(27, {
+      page: 1,
+      size: 3,
+      status: 0
+    }).then(data => {
+      console.log(data)
+      if(data.error === 0) {
+        const dateList = data.data
+        dateList.forEach(item => {
+          const datetime = item.datetime
+          const datetimeArr = datetime.split('-')
+          item.day = datetimeArr[2]
+          item.month = datetimeArr[1]
+        })
+        this.setData({
+          dateList
+        })
+      }
+      
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
   editInfo() {
     wx.navigateTo({
       url: '/pages/infoPrecent/infoPrecent',
@@ -144,5 +175,60 @@ Page({
     wx.navigateTo({
       url: '/pages/recharge/recharge',
     })
+  },
+
+  goDateInfo() {
+    wx.navigateTo({
+      url: '/pages/dateInfo/dateInfo',
+    })
+  },
+
+  // button点击事件
+  tapDialogButton(e) {
+    const index = e.detail.index // 0左 1右
+    if(index === 0) {
+      this.setData({
+        showDialog: false,
+        starNumObj: {}
+      })
+    }else if(index === 1) {
+      const keys = Object.keys(this.data.starNumObj)
+      request(28, {
+        score: keys.length,
+        mid: this.mid,
+      }).then(data => {
+        if(data.error === 0) {
+          this.setData({
+            showDialog: false,
+            starNumObj: {}
+          })
+        }        
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  },
+
+  selectStar(e) {
+    const starNum = e.currentTarget.dataset.star
+    const starNumObj = {}
+    for(let i = 0; i <= starNum; i++) {
+      starNumObj[i] = true
+    }
+    this.setData({
+      starNumObj
+    })
+  },
+
+  // 显示评分弹窗
+  showScore(e) {
+    const index = e.currentTarget.dataset.index
+    const current = this.data.dateList[index]
+    if(current.status === 5 && current.score === -1) {
+      this.mid = current.mid
+      this.setData({
+        showDialog: true
+      })
+    }
   }
 })

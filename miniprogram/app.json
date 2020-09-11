@@ -18,7 +18,8 @@
     "pages/setting/setting",
     "pages/recharge/recharge",
     "pages/othersInfo/othersInfo",
-    "pages/whoLikeMe/whoLikeMe"
+    "pages/whoLikeMe/whoLikeMe",
+    "pages/dateInfo/dateInfo"
   ],
   "window": {
     "backgroundColor": "#FFF",

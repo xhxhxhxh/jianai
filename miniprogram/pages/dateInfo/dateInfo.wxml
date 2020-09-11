@@ -1,0 +1,27 @@
+<view class="tab-box">
+<x-tab tab-cur="{{tabCur}}" tab-data="{{tabData}}" color="{{color}}" size="{{size}}" scroll bindchange="tabChange" my-tab="my-tab"></x-tab>
+</view>
+<view class="date-record">
+  <view class="noInfo" wx:if="{{dateList.length === 0}}">
+    <image src="/images/img_quesun@2x.png" class="image"></image>
+    <text class="text">暂无约会记录哦~</text>
+  </view>
+  <view class="record-box">
+    <view class="record" wx:for="{{dateList}}" wx:key="mid" wx:if="{{showAll || status === item.status}}">
+      <view class="date">
+        <text class="day">{{item.day}}</text>
+        <text class="month">{{item.month}}月</text>
+      </view>
+      <view class="content">
+        <text class="name">{{item.nickname}}</text>
+        <view class="status{{item.status === 2 ? ' red' : ''}}" data-index="{{index}}" bind:tap="showScore">{{item.status === 2 ? '进行中' : item.status === 4 ? '已拒绝' : (item.status === 5 && item.score === -1) ? '去评分' : '已评分'}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<mp-dialog show="{{showDialog}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask-closable="{{false}}" ext-class="my-dialog">
+  <view class="dialog-box">
+    <mp-icon icon="star" color="#FF4F4C" size="{{30}}" extClass="star" type="{{starNumObj[index] ? 'field' : 'outline'}}" wx:for="{{5}}" wx:key="*this" bind:tap="selectStar" data-star="{{index}}"></mp-icon>
+    <view class="text">点击星星进行评分</view>
+  </view>
+</mp-dialog>
