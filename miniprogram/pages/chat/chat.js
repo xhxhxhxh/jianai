@@ -66,7 +66,6 @@ Page({
     wx.setNavigationBarTitle({
       title: option.userName
     })
-    this.clearTimeout()
     this.timeObj = {}
     this.cacheHistoryList = []
     applyPhotoFlag = true
@@ -122,7 +121,7 @@ Page({
   // 获取聊天记录
   async getChatInfo(addToTop) {
     if(addToTop){
-      await this.sleep(2000)
+      await this.sleep(1500)
     }
     request(22, {
       page: cachePage,
@@ -183,7 +182,7 @@ Page({
           }     
         })
         if(!addToTop){
-          timeout = setInterval(this.getNewMessage, 1500)
+          timeout = setInterval(this.getNewMessage, 2000)
         }
       }
     }).catch(err => {

@@ -52,7 +52,7 @@
 <view class="wallet" bind:tap="goRecharge">
   <view class="left">钱包</view>
   <view class="right">
-    <text class="num">35</text>
+    <text class="num">{{gold}}</text>
     <text class="text">金币</text>
     <view class="my-arrow"></view>
   </view>

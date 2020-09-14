@@ -29,6 +29,7 @@ Page({
 	},
 
 	onLoad() {
+		deletePhotoObj = {}
 		this.getPhoto()
 	},
 

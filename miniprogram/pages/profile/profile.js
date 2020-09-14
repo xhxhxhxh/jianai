@@ -16,6 +16,7 @@ Page({
     education: 0,
     huji: '',
     income: 0,
+    gold: 0,
     showDialog: false,
     buttons: [{text: '关闭评价'}, {text: '提交'}],
     starNumObj: {}
@@ -28,6 +29,7 @@ Page({
     this.getPhoto()
     this.getSelectData()
     this.getDateInfo()
+    this.getGold()
   },
 
   // 跳转编辑照片页
@@ -59,6 +61,19 @@ Page({
       educationArr = data.education
       incomeArr = data.income
       this.getUserInfo() // 确保已经得到下拉数据
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
+  // 获取金币数
+  getGold() {
+    request(30).then(res => {
+      if(res.error === 0) {
+        this.setData({
+          gold: res.gold
+        })
+      }
     }).catch(err => {
       console.log(err)
     })

@@ -1,4 +1,3 @@
-let noticeReceive = true
 const app = getApp()
 Page({
 
@@ -20,19 +19,32 @@ Page({
   onLoad: function (options) {
     // 检测是否登录
     const auth = app.getGlobal('auth')
+
+    // 获取本地接受推送的设置
+    let noticeReceive = wx.getStorageSync('noticeReceive')
+    if(noticeReceive !== 1 && noticeReceive !== 0) {
+      noticeReceive = 1
+    }
+
     if(auth.token) {
       this.setData({
-        isLogin: true
+        isLogin: true,
+        noticeReceive: !!noticeReceive
       })
     }else {
       this.setData({
-        isLogin: false
+        isLogin: false,
+        noticeReceive: !!noticeReceive
       })
     }
   },
 
   noticeReceiveChange(e) {
-    noticeReceive = e.detail.value
+    const noticeReceive = e.detail.value
+    wx.setStorage({
+      data: noticeReceive ? 1 : 0,
+      key: 'noticeReceive',
+    })
   },
 
   // 检查更新

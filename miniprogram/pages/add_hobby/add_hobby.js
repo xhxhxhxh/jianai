@@ -19,6 +19,8 @@ Page({
    */
   onLoad: function (options) {
     type = options.type
+    inputValue = ''
+    flag = true
     let name = ''
     switch(type) {
       case 'sport': name = '运动爱好'; break;

@@ -1,4 +1,5 @@
-// miniprogram/pages/recharge/recharge.js
+const request = require('../../request.js')
+
 const rechargeList = [
   {
     id: 1,
@@ -49,10 +50,10 @@ Page({
    */
   onLoad: function (options) {
     this.getBannerImage()
+    this.getRechargeList()
     // this.getNavigationHeight()
     const query = wx.createSelectorQuery()
     query.select('.navigation-container').boundingClientRect((res) => {
-      console.log(res)
       this.setData({
         statusBarHeight: res.height
       })
@@ -79,7 +80,21 @@ Page({
     this.setData({
       selectedId: id
     })
-  }
+  },
+
+  // 获取内购信息
+  getRechargeList() {
+    request(29).then(res => {
+      console.log(res)
+      if(res.error === 0) {
+        this.setData({
+          priceList: res
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  },
 
   // 获取系统信息取得导航栏高度
   // getNavigationHeight() {

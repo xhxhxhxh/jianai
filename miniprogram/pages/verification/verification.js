@@ -55,6 +55,11 @@ Page({
       }).then(data => {
         if(data.error === 0) {
           this.startTimeout()
+        }else {
+          wx.showToast({
+            title: data.msg,
+            icon: 'none'
+          })
         }
       }).catch(err => {
         console.log(err)
@@ -70,7 +75,7 @@ Page({
 
   // 倒计时
   startTimeout() {
-    let num = 10
+    let num = 60
     timeout = setInterval(() => {
       num--
       if(num < 0) {
