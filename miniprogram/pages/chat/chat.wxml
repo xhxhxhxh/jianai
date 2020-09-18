@@ -76,7 +76,6 @@
 </view>
 <canvas type="2d" id="myCanvas" hidden="{{true}}"></canvas>
 <view class="copyScrollContainer" hidden="{{!showCopyScrollContainer}}" style="min-height: 100%">
-	<mp-loading type="circle" wx:if="{{showLoading}}" class="loading" extClass="my-loading" tips=""></mp-loading>
 	<block wx:for="{{copyHistoryList}}" wx:for-index="idx" wx:for-item="historyItem" wx:key="id">
 		<view class="record-box">
 			<view class="time" wx:if="{{timeObj[historyItem.numid]}}">{{timeObj[historyItem.numid].time}}</view>

@@ -1,114 +1,59 @@
 const request = require('../../request.js')
-import uploadPhotos from '../profile/uploadPhoto'
 
 const dayjs = require('dayjs')
 require('dayjs/locale/zh-cn')
 const calendar = require('dayjs/plugin/calendar')
 dayjs.extend(calendar)
 
-let tagid = ''
+let tagid = -99
 let applyPhotoFlag = true // 防止多次申请
 let getNewInfoFlag = true 
 let cachePage = 1
 let scrollBottom = 0
 let timeout = null
-function compareVersion(v1, v2) {
-  v1 = v1.split('.')
-  v2 = v2.split('.')
-  const len = Math.max(v1.length, v2.length)
-
-  while (v1.length < len) {
-    v1.push('0')
-  }
-  while (v2.length < len) {
-    v2.push('0')
-  }
-
-  for (let i = 0; i < len; i++) {
-    const num1 = parseInt(v1[i], 10)
-    const num2 = parseInt(v2[i], 10)
-
-    if (num1 > num2) {
-      return 1
-    } else if (num1 < num2) {
-      return -1
-    }
-  }
-
-  return 0
-}
+let index = 2
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
     lineHeight: 24,
-    functionShow: false,
-    emojiShow: false,
     comment: '',
-    focus: false,
-    cursor: 0,
-    _keyboardShow: false,
     emojiSource: 'https://res.wx.qq.com/op_res/eROMsLpnNC10dC40vzF8qviz63ic7ATlbGg20lr5pYykOwHRbLZFUhgg23RtVorX',
     historyList:[],
+    layoutHeight: '0px',
     copyHistoryList: [], // 用于计算聊天区域高度
     showCopyScrollContainer: false,
-    layoutHeight: '0px',
-    safeHeight: 0,
-    keyboardHeight: 0,
-    isIOS: false,
-    canIUse: true,
     scrollTop: 0,
     showLoading: false,
     scrollIntoView: '', // 控制滚动到的元素id
     timeObj: {} // 记录聊天时间
   },
 
-  onLoad(option) {
-    // 设置导航栏
-    wx.setNavigationBarTitle({
-      title: option.userName
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
     this.timeObj = {}
     this.cacheHistoryList = []
     applyPhotoFlag = true
     getNewInfoFlag = true
     cachePage = 1
     scrollBottom = 0
-
-    tagid = option.tagid
     this.getChatInfo()
     this.getDiffTime()
-
-    const system = wx.getSystemInfoSync();
-    let isIOS = system.platform === 'ios';
-    
-    this.safeHeight = (system.screenHeight - system.safeArea.bottom);
-    const replyHeight = 80
-    let layoutHeight = wx.getSystemInfoSync().windowHeight - replyHeight;
-    if(isIOS) {
-      layoutHeight -= this.safeHeight
-    }
-    this.layoutHeight = layoutHeight
-    this.setData({
-      isIOS,
-      safeHeight: this.safeHeight,
-      layoutHeight,
-    })    
     const emojiInstance = this.selectComponent('.mp-emoji')
     this.emojiNames = emojiInstance.getEmojiNames()
     this.parseEmoji = emojiInstance.parseEmoji;
+    let layoutHeight = wx.getSystemInfoSync().windowHeight;
+    this.setData({
+      layoutHeight,
+    })
   },
 
   onUnload() {
     this.clearTimeout()
-  },
-
-  onReady() {
-    // 解决基础库小于 2.9.2 的兼容问题
-    const { SDKVersion } = wx.getSystemInfoSync();
-    if(compareVersion(SDKVersion, '2.9.1') < 0) {
-      this.setData({
-        canIUse: false,
-      })
-    }
   },
 
   clearTimeout() {
@@ -130,6 +75,9 @@ Page({
     }).then(res => {
       console.log(res)
       getNewInfoFlag = true
+      res.data = [
+        {from: 1, id: 699, type: 1, content: "欢迎!", datetime: "2020-09-16 13:40:08"},
+      ]
       if(res.error === 0) {
         let historyList = [...this.data.historyList] 
         let cacheHistoryList = [...res.data] // 缓存原始数据，防止出现自己的好友申请
@@ -183,7 +131,7 @@ Page({
               historyList: [...data.copyHistoryList],
               showCopyScrollContainer: false,
               showLoading: false
-            }) 
+            })  
           }     
         })
         if(!addToTop){
@@ -343,38 +291,6 @@ Page({
     })
   },
 
-  onkeyboardHeightChange(e) {
-    const {height} = e.detail
-    if (height === 0) {
-      this.data._keyboardShow = false
-      console.log('关闭键盘')
-      const {emojiShow, functionShow} = this.data
-      if(!emojiShow && !functionShow) {
-        this.setData({
-          safeHeight: this.safeHeight,
-          keyboardHeight: height,
-          layoutHeight: this.layoutHeight
-        })
-      }
-    } else {
-      this.data._keyboardShow = true
-      const layoutHeight = this.data.isIOS ? this.layoutHeight - height + this.safeHeight : this.layoutHeight - height
-      this.setData({
-        safeHeight: 0,
-        functionShow: false,
-        emojiShow: false,
-        keyboardHeight: height,
-        layoutHeight
-      }, async () => {
-        const res = await this.getScrollHeight()
-        this.setData({
-          scrollTop: res.height
-        })    
-      })
-    }
-    
-  },
-
   // 获取滚动区域内容高度
   getScrollHeight() {
     return new Promise((res, rej) => {
@@ -407,169 +323,6 @@ Page({
     })
   },
 
-  showEmoji() {
-    const {emojiShow} = this.data
-    console.log('显示emoji')
-    const data = {
-      functionShow: false,
-      emojiShow: !this.data.emojiShow,
-      safeHeight: this.safeHeight,
-      keyboardHeight: 0,
-    }
-    if(emojiShow) {
-      data.layoutHeight = this.layoutHeight
-    }else {
-      data.layoutHeight = this.layoutHeight - 300
-    }  
-    this.setData(data, async () => {
-      if(!emojiShow) {
-        const res = await this.getScrollHeight()
-        this.setData({
-          scrollTop: res.height
-        })
-      }     
-    })  
-  },
-  showFunction() {
-    const {functionShow} = this.data
-    const data = {
-      emojiShow: false,
-      functionShow: !this.data.functionShow,
-      safeHeight: this.safeHeight,
-      keyboardHeight: 0,
-    }
-    if(functionShow) {
-      data.layoutHeight = this.layoutHeight
-    }else {
-      data.layoutHeight = this.layoutHeight - 200
-    }
-    this.setData(data, async () => {
-      if(!functionShow) {
-        const res = await this.getScrollHeight()
-        this.setData({
-          scrollTop: res.height
-        })
-      }     
-    })  
-  },
-
-  // 选择图片
-  chooseImage(e) {
-    const type = e.currentTarget.dataset.type
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: [type],
-      success: (res) => {
-        uploadPhotos(res.tempFilePaths, (data) => {
-          this.sendImage(res.tempFilePaths, data.last_msg_id)
-				}, {tagid, type: 'UploadChat '})
-      },
-    })
-  },
-
-  onFocus() {
-    this.data._keyboardShow = true
-    console.log('聚焦')
-  },
-
-  // 主动出发键盘弹起
-  triggerFocus() {
-    this.data._keyboardShow = true
-    this.setData({
-      focus: true
-    })
-  },
-
-  // 关闭键盘及emoji区域
-  closeKeyboard() {
-    const {_keyboardShow, functionShow, emojiShow} = this.data
-    if(!_keyboardShow && (functionShow || emojiShow)) {     
-      this.setData({
-        emojiShow: false,
-        functionShow: false,
-        layoutHeight: this.layoutHeight
-      })
-    }
-  },
-
-  onBlur(e) {
-    this.data._keyboardShow = false
-    this.data.cursor = e.detail.cursor || 0
-  },
-  onInput(e) {
-    const value = e.detail.value
-    this.data.comment = value
-  },
-  onConfirm() {
-    this.onsend()
-  },
-  insertEmoji(evt) {
-    const emotionName = evt.detail.emotionName
-    const {cursor, comment} = this.data
-    const newComment =
-      comment.slice(0, cursor) + emotionName + comment.slice(cursor)
-    this.setData({
-      comment: newComment,
-      cursor: cursor + emotionName.length
-    })
-  },
-  onsend() {
-    const comment = this.data.comment.trim()
-    if(!comment) return
-    request(21, {
-      tag_uid: tagid,
-      content: comment,
-    }).then(res => {
-      console.log(res)    
-      if(res.error === 0) {
-        const last_msg_id = res.last_msg_id
-        const parsedComment = {
-          emoji: this.parseEmoji(comment),
-          id: `emoji_${last_msg_id}`,
-          type: 1,
-          from: 1,
-          numid: last_msg_id,
-          datetime: dayjs().add(this.diffServerTime, 'ms').format('YYYY-MM-DD HH:mm:ss')
-        }
-        this.cacheHistoryList.push(parsedComment)
-        this.calculateTime([parsedComment], true)
-        const data = {
-          historyList: [...this.data.historyList, parsedComment],
-          comment: '',
-          scrollIntoView: parsedComment.id,
-          timeObj: {...this.timeObj}
-        }
-        this.setData(data)
-      }
-    }).catch(err => {
-      console.log(err)
-    })
-  },
-
-  // 发送图片
-  sendImage(data, id) {
-    const parsedComment = []
-    const historyList = this.data.historyList
-    data.forEach(item => {
-      parsedComment.push({
-        id: 'emoji_' + id,
-        imageSrc: item,
-        type: 2,
-        from: 1,
-        numid: id,
-        datetime: dayjs().add(this.diffServerTime, 'ms').format('YYYY-MM-DD HH:mm:ss')
-      })
-    });
-    this.cacheHistoryList.push(parsedComment[0])
-    this.calculateTime(parsedComment, true)
-    this.setData({
-      historyList: historyList.concat(parsedComment),
-      scrollIntoView: parsedComment[0].id,
-      timeObj: {...this.timeObj}
-    })
-  },
-
   // 预览图片
   previewImage(e) {
     const current = e.currentTarget.dataset.imgsrc
@@ -577,42 +330,4 @@ Page({
       urls: [current] // 需要预览的图片http链接列表
     })
   },
-
-  deleteEmoji() {
-    const pos = this.data.cursor
-    const comment = this.data.comment
-    let result = ''
-    let cursor = 0
-
-    let emojiLen = 6
-    let startPos = pos - emojiLen
-    if (startPos < 0) {
-      startPos = 0
-      emojiLen = pos
-    }
-    const str = comment.slice(startPos, pos)
-    const matchs = str.match(/\[([\u4e00-\u9fa5\w]+)\]$/g)
-    // 删除表情
-    if (matchs) {
-      const rawName = matchs[0]
-      const left = emojiLen - rawName.length
-      if (this.emojiNames.indexOf(rawName) >= 0) {
-        const replace = str.replace(rawName, '')
-        result = comment.slice(0, startPos) + replace + comment.slice(pos)
-        cursor = startPos + left
-      }
-      // 删除字符
-    } else {
-      let endPos = pos - 1
-      if (endPos < 0) endPos = 0
-      const prefix = comment.slice(0, endPos)
-      const suffix = comment.slice(pos)
-      result = prefix + suffix
-      cursor = endPos
-    }
-    this.setData({
-      comment: result,
-      cursor
-    })
-  }
 })

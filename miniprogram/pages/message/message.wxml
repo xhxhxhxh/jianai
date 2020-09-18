@@ -1,5 +1,5 @@
 <view class="message-container">
-	<view class="message">
+	<view class="message" bind:tap="goToSystemInfo">
 		<view class="avatar">
 			<image src="/images/icon_xiaoxi_xitongtongzhi@2x.png" class="image"></image>
 			<text class="message-num">{{sys.new}}</text>

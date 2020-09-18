@@ -19,7 +19,8 @@
     "pages/recharge/recharge",
     "pages/othersInfo/othersInfo",
     "pages/whoLikeMe/whoLikeMe",
-    "pages/dateInfo/dateInfo"
+    "pages/dateInfo/dateInfo",
+    "pages/systemInfo/systemInfo"
   ],
   "window": {
     "backgroundColor": "#FFF",

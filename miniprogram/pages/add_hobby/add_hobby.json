@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon"
-  }
+  },
+  "navigationBarTitleText": "运动爱好"
 }

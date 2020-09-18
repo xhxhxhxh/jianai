@@ -16,7 +16,7 @@ function getAuth(appArg) {
       os_version: system[1],
       app_version: '0.0.1',
       time_stamp: '20120912120100',
-      channel: 'wx',
+      channel: 'develop',
       uid: -1,
       token: ''
     }

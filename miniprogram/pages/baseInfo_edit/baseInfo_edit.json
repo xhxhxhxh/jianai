@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "x-baseInfo": "/components/baseInfo/baseInfo"
-  }
+  },
+  "navigationBarTitleText": "编辑资料"
 }

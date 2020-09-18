@@ -4,7 +4,7 @@
     <view class="title">我的金币</view>
     <view class="money">
       <image src="./images/icon_chongzhi_jinbi@2x.png" class="image"></image>
-      <text>0</text>
+      <text>{{gold}}</text>
     </view>
   </view>
   <view class="recharge-area">
@@ -15,7 +15,7 @@
           <image src="./images/icon_chongzhi_jinbi@2x.png" class="image"></image>
           <text>{{item.gold}}</text>
         </view>
-        <text class="rmb">{{item.money}}元</text>
+        <text class="rmb">{{item.price}}元</text>
         <view class="selected-box themeBackgroundColor">
           <mp-icon icon="done" color="#fff" size="{{16}}" extClass="done"></mp-icon>
         </view>

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "x-moreInformation": "/components/spouseInformationComponent/moreInformation/moreInformation"
-  }
+  },
+  "navigationBarTitleText": "择偶信息"
 }

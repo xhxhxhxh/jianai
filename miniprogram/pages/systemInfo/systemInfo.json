@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-emoji": "../../miniprogram_npm/@miniprogram-component-plus/emoji",
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
+  },
+  "disableScroll": true
+}

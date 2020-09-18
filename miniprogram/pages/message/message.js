@@ -71,6 +71,12 @@ Page({
     })
   },
 
+  goToSystemInfo() {
+    wx.navigateTo({
+      url: '/pages/systemInfo/systemInfo'
+    })
+  },
+
   slideButtonTap(e) {
     const index = e.detail.index // 0置顶 1删除
     const tagid = e.currentTarget.dataset.tagid

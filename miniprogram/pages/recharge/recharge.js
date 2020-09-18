@@ -42,7 +42,8 @@ Page({
     navigationBackground: '',
     statusBarHeight: 0,
     selectedId: '',
-    rechargeList
+    rechargeList: [],
+    gold: 0
   },
 
   /**
@@ -51,6 +52,7 @@ Page({
   onLoad: function (options) {
     this.getBannerImage()
     this.getRechargeList()
+    this.getGold()
     // this.getNavigationHeight()
     const query = wx.createSelectorQuery()
     query.select('.navigation-container').boundingClientRect((res) => {
@@ -88,7 +90,20 @@ Page({
       console.log(res)
       if(res.error === 0) {
         this.setData({
-          priceList: res
+          rechargeList: res.data
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
+  // 获取金币数
+  getGold() {
+    request(30).then(res => {
+      if(res.error === 0) {
+        this.setData({
+          gold: res.gold
         })
       }
     }).catch(err => {

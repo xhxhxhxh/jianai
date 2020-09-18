@@ -194,6 +194,12 @@
 					"pathName": "pages/dateInfo/dateInfo",
 					"query": "mid=189",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "systemInfo",
+					"pathName": "pages/systemInfo/systemInfo",
+					"scene": null
 				}
 			]
 		}

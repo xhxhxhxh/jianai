@@ -1,5 +1,5 @@
 <view class="profile-container">
-  <view class="verified">
+  <view class="verified" wx:if="{{!birthday}}">
     <view class="left">
       <text class="blod">你还没有实名认证</text>
       <text class="normal">只有完成实名认证才能进行线下约会</text>

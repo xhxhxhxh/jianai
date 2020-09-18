@@ -3,5 +3,6 @@
     "x-tab": "/components/tab/index",
     "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog",
     "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon"
-  }
+  },
+  "navigationBarTitleText": "约会记录"
 }
