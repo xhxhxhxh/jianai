@@ -17,10 +17,13 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      scale: 1
+    }
 
     this.loadLocalInfo()
     this.getServerTime()
+    this.getScreenScale()
     let auth = this.getGlobal('auth')
     if(!auth.token) {
       wx.redirectTo({
@@ -64,6 +67,17 @@ App({
   // 获取global的值
   getGlobal(key) {
     return this.globalData[key]
+  },
+
+  // 获取屏幕放大倍数
+  getScreenScale() {
+    // 获取屏幕宽度，计算钩子的放大倍数
+    wx.getSystemInfo({
+      success: (result) => {
+        const screenWidth = result.screenWidth
+        this.setGlobal('scale', screenWidth / 375)
+      },
+    })
   }
 })
 

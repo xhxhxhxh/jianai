@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "my-dialog": "/components/dialog/dialog"
+  },
   "navigationBarTitleText": "实名认证"
 }

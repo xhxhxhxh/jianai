@@ -127,7 +127,7 @@ Page({
             const scrollTop = res.height - scrollBottom
             console.log(res.height,scrollBottom)
             this.setData({
-              scrollTop: scrollTop === this.data.scrollTop ? scrollTop - 0.01 : scrollTop,
+              scrollTop: scrollTop === this.data.scrollTop ? scrollTop + 0.01 : scrollTop,
               historyList: [...data.copyHistoryList],
               showCopyScrollContainer: false,
               showLoading: false

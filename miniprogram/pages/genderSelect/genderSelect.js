@@ -1,4 +1,5 @@
 // miniprogram/pages/genderSelect/genderSelect.js
+const request = require('../../request.js')
 let gender
 Page({
 
@@ -31,8 +32,20 @@ Page({
 
   submit() {
     console.log(gender)
-    // wx.navigateTo({
-    //   url: '/pages/spouseInformation/spouseInformation'
-    // })
+    request(3, {sex: gender.male ? 1 : 2}).then(res => {
+      if(res.error === 0) {
+        wx.navigateTo({
+          url: '/pages/spouseInformation/spouseInformation'
+        })
+      }else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+   
   }
 })

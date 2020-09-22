@@ -124,6 +124,10 @@ page {
   background-color: #fff;
 }
 
+.hobby-info {
+  padding-bottom: 120rpx;
+}
+
 .hobby-info .title {
   margin-bottom: 32rpx;
 }

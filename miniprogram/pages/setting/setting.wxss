@@ -38,7 +38,7 @@
 .line {
   height: 16rpx;
   background-color: #F6F6F6;
-  margin: 134rpx -40rpx 0;
+  margin: 0 -40rpx 0;
 }
 
 .submit {

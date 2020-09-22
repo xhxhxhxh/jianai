@@ -15,7 +15,7 @@ function getAuth(appArg) {
       os: system[0],
       os_version: system[1],
       app_version: '0.0.1',
-      time_stamp: '20120912120100',
+      time_stamp: dayjs().format('YYYYMMDDHHmmss'),
       channel: 'develop',
       uid: -1,
       token: ''
@@ -78,21 +78,6 @@ const request = function(opt, data, method, app) {
         if(data.error === -10007) { // token过期
           wx.redirectTo({
             url: '/pages/login/login',
-          })
-        }
-        if(data.error === -10006) { // 未登录
-          wx.showModal({
-            title: '未登录',
-            content: '还未登录,是否立即登录?',
-            success (res) {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
           })
         }
         resolve(res.data)

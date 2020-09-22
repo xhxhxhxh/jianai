@@ -30,6 +30,8 @@ page {
   padding-left: 0;
   font-size:34rpx;
   color:rgba(51,51,51,1);
+  height: 112rpx;
+  line-height: 112rpx;
 }
 
 .weui-cell__hd {
@@ -42,7 +44,7 @@ page {
 
 .arrow::after {
   position: absolute;
-  top: 50rpx;
+  top: 54rpx;
   right: 40rpx;
 }
 

@@ -1,8 +1,8 @@
-<view class="message-container">
+<view class="message-container" wx:if="{{logined}}">
 	<view class="message" bind:tap="goToSystemInfo">
 		<view class="avatar">
 			<image src="/images/icon_xiaoxi_xitongtongzhi@2x.png" class="image"></image>
-			<text class="message-num">{{sys.new}}</text>
+			<text class="message-num" hidden="{{sys.new === 0}}">{{sys.new}}</text>
 		</view>
 		<view class="content-box">
 			<view class="content-top">
@@ -14,7 +14,7 @@
 	<view class="message" bind:tap="goToWhoLikeMe">
 		<view class="avatar">
 			<image src="/images/icon_xiaoxi_xihunwo@2x.png" class="image"></image>
-			<text class="message-num">{{match.new}}</text>
+			<text class="message-num" hidden="{{match.new === 0}}">{{match.new}}</text>
 		</view>
 		<view class="content-box">
 			<view class="content-top">
@@ -27,7 +27,7 @@
 		<view class="message" bind:tap="goToChat" data-name="{{item.nickname}}" data-tagid="{{item.tag_uid}}" >
 			<view class="avatar">
 				<image src="/images/img_xiaoxi_ta@2x.png" class="image"></image>
-				<text class="message-num">{{item.new}}</text>
+				<text class="message-num" hidden="{{item.new === 0}}">{{item.new}}</text>
 			</view>
 			<view class="content-box">
 				<view class="content-top">
@@ -39,4 +39,9 @@
 		</view>
 	</mp-slideview>
 
+</view>
+<view class="need-login" wx:if="{{!logined}}">
+	<image src="/images/img_tanchuang_shenqing@2x.png"></image>
+	<text class="text">您还没有登录, 请登录后查看消息</text>
+	<button class="login themeBackgroundColor" bind:tap="login">登录</button>
 </view>

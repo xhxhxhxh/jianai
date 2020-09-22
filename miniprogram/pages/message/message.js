@@ -1,5 +1,6 @@
 const request = require('../../request.js')
 const dayjs = require('dayjs')
+const app = getApp()
 require('dayjs/locale/zh-cn')
 const calendar = require('dayjs/plugin/calendar')
 dayjs.extend(calendar)
@@ -22,12 +23,23 @@ Page({
         extClass: 'delete',
       }
     ],
+    logined: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onShow: function (options) {
+    const token = app.getGlobal('auth').token
+    if(token) {
+      this.setData({
+        logined: true
+      })
+    }else {
+      this.setData({
+        logined: false
+      })
+    }
     this.getMessage()
   },
 
@@ -115,6 +127,12 @@ Page({
       }  
     }).catch(err => {
       console.log(err)
+    })
+  },
+
+  login() {
+    wx.navigateTo({
+      url: '/pages/login/login',
     })
   }
 

@@ -75,7 +75,10 @@
 }
 
 .recharge-box .item .selected-box .done {
-  transform: rotate(-48deg) translate(-4rpx, 0);
+  position: absolute;
+  transform: rotate(-48deg);
+  top: 20rpx;
+  left: -2rpx;
 }
 
 .recharge-box .item.selected {
@@ -104,6 +107,7 @@
   width: 32rpx;
   height: 32rpx;
 }
+
 
 .submit {
   width:100%!important;

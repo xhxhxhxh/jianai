@@ -20,31 +20,41 @@ Page({
     contentTitle: '',
     showImage: false,
     showClose: false,
-    imageSrc: '/images/img_tanchuang_shenqing@2x.png'
+    imageSrc: '/images/img_tanchuang_shenqing@2x.png',
+    remainMatchNum: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+   this.getRemainMatchNum()
   },
 
   onShow: function() {
     if(matchError === -1401 || matchError === -1402 || matchError === -1403) {
       this.setData({
-        buttons: [{text: '填写完成'}, {text: '去填写'}]
+        showDialog: false
+      })
+    }
+    if(matchError === -1406) {
+      this.setData({
+        buttons: [{text: '充值完成'}, {text: '去充值'}]
       })
     }
   },
 
   async startMatch() {
-    request(14, {test: 18888888888}).then(res => {
+    const data = {test: 17363566010}
+    if(this.buy) {
+      data.buy = true
+    }
+    request(14, data).then(res => {
       let error = matchError = res.error
       if(error === 0) {
         this.startTimer()
         this.setData({
-          matching: true
+          matching: true,
         })
         matchTimer = setInterval(() => {
           if(this.data.matching) {
@@ -59,6 +69,26 @@ Page({
         this.unSpouseInfoDialog()
       }else if(error === -1404) {
         this.isMatchingDialog()
+      }else if(error === -1405) {
+        this.needBuyDialog(res.need_gold)
+      }else if(error === -1406) {
+        this.payFail()
+      }else if(error === -10006) {
+        this.needLogin()
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
+  // 获取剩余匹配数
+  getRemainMatchNum() {
+    request(30).then(res => {
+      if(res.error === 0) {
+        console.log(res)
+        this.setData({
+          remainMatchNum: res.left_count
+        })
       }
     }).catch(err => {
       console.log(err)
@@ -69,9 +99,12 @@ Page({
   getMatchInfo() {
     request(16).then(res => {
       console.log(res)
-      const {error, status, mid, tag_id} = res
+      const {error, status, mid, tag_id, nickname} = res
       if(error === 0 && status === 2) {
-        this.matchSuccessDialog(mid, tag_id)
+        this.matchSuccessDialog(mid, tag_id, nickname)
+        this.setData({
+          remainMatchNum: this.data.remainMatchNum - 1
+        })
       }
     }).catch(err => {
       console.log(err)
@@ -79,23 +112,23 @@ Page({
   },
 
   stopMatch() {
-    // request(15).then(res => {
-    //   if(res.error === 0) {
-    //     this.matchSuccessDialog()
-    //   }
-    // }).catch(err => {
-    //   console.log(err)
-    // })
-    this.stopTimer()
-    this.setData({
-      matching: false,
-      loadingIndex: 0
-    })
-    this.clesrMatchingInterval()
+    request(15).then(res => {
+      console.log(res)
+      if(res.error === 0 ) {
+        this.stopTimer()
+        this.setData({
+          matching: false,
+          loadingIndex: 0
+        })
+        this.clearMatchingInterval()
+      }
+    }).catch(err => {
+      console.log(err)
+    })  
   },
 
   // 清除match定时器
-  clesrMatchingInterval() {
+  clearMatchingInterval() {
     if(matchTimer) {
       clearInterval(matchTimer)
       matchTimer = null
@@ -145,7 +178,7 @@ Page({
   },
 
   // 匹配成功弹窗
-  matchSuccessDialog(mid, tagid) {
+  matchSuccessDialog(mid, tagid, nickname) {
     this.setData({
       showDialog: true,
       matching: false,
@@ -160,7 +193,7 @@ Page({
     })
     this.confirmDialog = function() {
       wx.navigateTo({
-        url: '/pages/chat/chat?tagid=' + tagid,
+        url: '/pages/chat/chat?tagid=' + tagid + '&userName=' + nickname,
       })
     }
     this.cancelDialog = function() {
@@ -171,7 +204,7 @@ Page({
         url: '/pages/othersInfo/othersInfo?mid=' + mid + '&tagid=' + tagid,
       })
     }
-    this.clesrMatchingInterval()
+    this.clearMatchingInterval()
   },
 
   // 未实名弹窗
@@ -190,6 +223,31 @@ Page({
     this.confirmDialog = function() {
       wx.navigateTo({
         url: '/pages/verified/verified',
+      })
+    }
+    this.cancelDialog = function() {
+      this.setData({
+        showDialog: false
+      })
+    }
+  },
+
+  // 未登录弹窗
+  needLogin() {
+    this.setData({
+      showDialog: true,
+      title: '未登录',
+      contentTitle: '',
+      content: '您需要登录后才可以匹配',
+      buttons: [{text: '取消'}, {text: '去登录'}],
+      textColorPosition: [],
+      showImage: false,
+      showClose: false,
+      imageSrc: ''
+    })
+    this.confirmDialog = function() {
+      wx.navigateTo({
+        url: '/pages/login/login',
       })
     }
     this.cancelDialog = function() {
@@ -265,6 +323,59 @@ Page({
     this.confirmDialog = function() {
       this.setData({
         showDialog: false
+      })
+    }
+    this.cancelDialog = function() {
+      this.setData({
+        showDialog: false
+      })
+    }
+  },
+
+  // 需要支付金币弹窗
+  needBuyDialog(gold) {
+    this.setData({
+      showDialog: true,
+      title: '增加匹配次数',
+      contentTitle: '',
+      content: `将消耗${gold}金币，增加您的匹配次数，每周都有免费次数，是否增加？`,
+      buttons: [{text: '狠心离开'}, {text: '支付'}],
+      textColorPosition: [3, 5],
+      showImage: false,
+      showClose: false,
+      imageSrc: ''
+    })
+    this.confirmDialog = function() {
+      this.buy = true
+      this.startMatch(true)
+      this.buy = false
+      this.setData({
+        showDialog: false
+      })
+    }
+    this.cancelDialog = function() {
+      this.setData({
+        showDialog: false
+      })
+    }
+  },
+
+  // 支付失败弹窗
+  payFail() {
+    this.setData({
+      showDialog: true,
+      title: '支付失败',
+      contentTitle: '',
+      content: `金币不足，无法支付`,
+      buttons: [{text: '取消'}, {text: '去充值'}],
+      textColorPosition: [],
+      showImage: false,
+      showClose: false,
+      imageSrc: ''
+    })
+    this.confirmDialog = function() {
+      wx.navigateTo({
+        url: '/pages/recharge/recharge',
       })
     }
     this.cancelDialog = function() {

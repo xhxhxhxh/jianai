@@ -43,7 +43,8 @@ Page({
     statusBarHeight: 0,
     selectedId: '',
     rechargeList: [],
-    gold: 0
+    gold: 0,
+    scale: 1
   },
 
   /**
@@ -53,6 +54,17 @@ Page({
     this.getBannerImage()
     this.getRechargeList()
     this.getGold()
+
+    // 获取屏幕宽度，计算钩子的放大倍数
+    wx.getSystemInfo({
+      success: (result) => {
+        const screenWidth = result.screenWidth
+        this.setData({
+          scale: screenWidth / 375
+        })
+      },
+    })
+
     // this.getNavigationHeight()
     const query = wx.createSelectorQuery()
     query.select('.navigation-container').boundingClientRect((res) => {

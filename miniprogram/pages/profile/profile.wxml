@@ -4,12 +4,12 @@
       <text class="blod">你还没有实名认证</text>
       <text class="normal">只有完成实名认证才能进行线下约会</text>
     </view>
-    <button class="btn themeBackgroundColor" bind:tap="verified">去实名</button>
+    <button class="btn themeBackgroundColor" bind:tap="goPage" data-page="verified">去实名</button>
   </view>
   <view class="info-area">
     <view class="name">
       <text>{{nickname ? nickname : '简约3093'}}</text>
-      <image class="setting" src="./images/icon_wod_shezhi@2x.png" bind:tap="goSetting"></image>
+      <image class="setting" src="./images/icon_wod_shezhi@2x.png" bind:tap="goPage" data-page="setting"></image>
     </view>
     <view class="info">
       <text class="label">性别：</text>
@@ -31,7 +31,7 @@
       <text class="label">收入：</text>
       <text class="content{{income ? '' : ' textColor'}}">{{income ? income : '未完善'}}</text>
     </view>
-    <button class="btn themeBackgroundColor" bind:tap="editInfo">编辑资料</button>
+    <button class="btn themeBackgroundColor" bind:tap="goPage" data-page="infoPrecent">编辑资料</button>
   </view>
   <view class="photo-area">
     <view class="name">照片墙</view>
@@ -41,7 +41,7 @@
           <image src="./images/icon_xiangce_shangchuan@2x.png" class="camera" mode="widthFix"></image>
           <text class="text">添加照片</text>
         </view>
-        <view class="photo" data-imgsrc="{{item.img}}" bind:tap="goEditPhoto" wx:for="{{photo}}" wx:key="img" style="background: url({{item.img}}) no-repeat center; background-size: cover;"></view>
+        <view class="photo" data-imgsrc="{{item.img}}" bind:tap="goPage" data-page="editPhoto" wx:for="{{photo}}" wx:key="img" style="background: url({{item.img}}) no-repeat center; background-size: cover;"></view>
         <!-- <image class="photo" data-imgsrc="{{item.img}}" bind:tap="onPreviewImage" wx:for="{{photo}}" wx:key="img" src="{{item.img}}" mode="aspectFit"></image> -->
         
       </view>
@@ -49,7 +49,7 @@
     <button class="btn themeBackgroundColor" bind:tap="chooseImage">上传照片</button>
   </view>
 </view>
-<view class="wallet" bind:tap="goRecharge">
+<view class="wallet" bind:tap="goPage" data-page="recharge">
   <view class="left">钱包</view>
   <view class="right">
     <text class="num">{{gold}}</text>
@@ -60,7 +60,7 @@
 <view class="date-record">
   <view class="header">
     <view class="left">约会记录</view>
-    <view class="right" bind:tap="goDateInfo">
+    <view class="right" bind:tap="goPage" data-page="dateInfo">
       <text class="text">更多</text>
       <view class="my-arrow"></view>
     </view>

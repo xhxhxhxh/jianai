@@ -17,7 +17,7 @@
         </view>
         <text class="rmb">{{item.price}}元</text>
         <view class="selected-box themeBackgroundColor">
-          <mp-icon icon="done" color="#fff" size="{{16}}" extClass="done"></mp-icon>
+          <mp-icon icon="done" color="#fff" size="{{16 * scale}}" extClass="done"></mp-icon>
         </view>
       </view>
     </view>

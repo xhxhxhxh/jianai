@@ -12,7 +12,7 @@
               <input class="weui-input" placeholder="请在这里输入手机号" placeholder-style="color: #ccc; font-size: 34rpx" type="number" bindinput="handleInput" value="{{inputValue}}" 
               maxlength="11"/>         
               <view class="clearArea" bind:tap="clearNumber">
-                <mp-icon type="field" icon="close2" color="#d8d8d8" size="{{20}}" class="close" 
+                <mp-icon type="field" icon="close2" color="#d8d8d8" size="{{20 * scale}}" class="close" wx:if="{{inputValue.length > 0}}"
                   ></mp-icon>
               </view>
           </view>

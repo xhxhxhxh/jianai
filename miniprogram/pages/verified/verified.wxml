@@ -17,4 +17,5 @@
 		</view>
   </view>
   <button class="submit themeBackgroundColor" bind:tap="saveInfo">提交</button>
+	<my-dialog showDialog="{{showDialog}}" title="已完成实名认证" content="如要进行匹配，还需完善个人信息，如果已完善请正常匹配" buttons="{{buttons}}" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog" showClose="{{true}}" bind:closeDialog="closeDialog"></my-dialog>
 </view>

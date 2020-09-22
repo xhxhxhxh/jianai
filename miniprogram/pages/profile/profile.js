@@ -1,4 +1,5 @@
 const request = require('../../request.js')
+const app = getApp()
 import uploadPhotos from './uploadPhoto'
 let educationArr = []
 let incomeArr = []
@@ -30,13 +31,6 @@ Page({
     this.getSelectData()
     this.getDateInfo()
     this.getGold()
-  },
-
-  // 跳转编辑照片页
-  goEditPhoto() {
-    wx.navigateTo({
-      url: '/pages/editPhoto/editPhoto',
-    })
   },
 
   // 获取照片
@@ -81,6 +75,14 @@ Page({
 
   // 选择图片
 	chooseImage() {
+    const token = app.getGlobal('auth').token
+    if(!token) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return
+    }
+    
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'],
@@ -168,34 +170,19 @@ Page({
     })
   },
 
-  editInfo() {
-    wx.navigateTo({
-      url: '/pages/infoPrecent/infoPrecent',
-    })
-  },
-
-  verified() {
-    wx.navigateTo({
-      url: '/pages/verified/verified',
-    })
-  },
-
-  goSetting() {
-    wx.navigateTo({
-      url: '/pages/setting/setting',
-    })
-  },
-
-  goRecharge() {
-    wx.navigateTo({
-      url: '/pages/recharge/recharge',
-    })
-  },
-
-  goDateInfo() {
-    wx.navigateTo({
-      url: '/pages/dateInfo/dateInfo',
-    })
+  // 跳转相应页面
+  goPage(e) {
+    const token = app.getGlobal('auth').token
+    if(token) {
+      const page = e.currentTarget.dataset.page
+      wx.navigateTo({
+        url: `/pages/${page}/${page}`,
+      })
+    }else {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }   
   },
 
   // button点击事件

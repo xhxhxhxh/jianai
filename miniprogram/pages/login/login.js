@@ -1,4 +1,5 @@
 // miniprogram/pages/login/login.js
+const app = getApp()
 let cacheInputValue = ''
 Page({
 
@@ -9,7 +10,15 @@ Page({
     countryCodes: ["+86", "+80", "+84", "+87"],
     countryCodeIndex: 0,
     buttonDisabled: true,
-    inputValue: ''
+    inputValue: '',
+    scale: app.getGlobal('scale')
+  },
+
+  onLoad () {
+    console.log(app.getGlobal('scale'))
+    this.setData({
+      scale: app.getGlobal('scale')
+    })
   },
 
   // 输入手机号
@@ -19,11 +28,13 @@ Page({
     cacheInputValue = value
     if(reg.test(value)) {
       this.setData({
-        buttonDisabled: false
+        buttonDisabled: false,
+        inputValue: value
       })
     }else {
       this.setData({
-        buttonDisabled: true
+        buttonDisabled: true,
+        inputValue: value
       })
     }
   },

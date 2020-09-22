@@ -31,11 +31,26 @@ Component({
     maskClosable: false,
     redContent: '',
     head: '',
-    tail: ''
+    tail: '',
+    scale: 1
   },
 
   options: {
     styleIsolation: 'shared'
+  },
+
+  lifetimes: {
+    attached() {
+      // 获取屏幕宽度，计算钩子的放大倍数
+    wx.getSystemInfo({
+      success: (result) => {
+        const screenWidth = result.screenWidth
+        this.setData({
+          scale: screenWidth / 375
+        })
+      },
+    })
+    }
   },
 
   observers: {

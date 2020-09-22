@@ -108,8 +108,19 @@ Page({
           data: auth,
           key: 'auth',
         })
-        wx.reLaunch({
-          url: '/pages/match/match',
+        if(data.register) {
+          wx.navigateTo({
+            url: '/pages/genderSelect/genderSelect',
+          })
+        }else {
+          wx.reLaunch({
+            url: '/pages/match/match',
+          })
+        }      
+      }else {
+        wx.showToast({
+          title: data.msg,
+          icon: 'none'
         })
       }
     }).catch(err => {

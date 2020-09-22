@@ -121,6 +121,7 @@ Component({
             incomeSelected: income !== -1,
             regionSelected: !!res.region,
             hujiSelected: !!res.huji,
+            birthday: res.birthday
           }
 
           const {nickname, height, weight, regionStr, hujiStr} = info
@@ -142,6 +143,13 @@ Component({
     },
 
     sexChange(e) {
+      if(this.data.birthday) {
+        wx.showToast({
+          title: '实名认证后无法修改性别',
+          icon: 'none'
+        })
+        return
+      }
       const value = e.detail.value
       userInfo.sex = parseInt(value) + 1
       this.setData({

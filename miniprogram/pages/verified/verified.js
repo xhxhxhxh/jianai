@@ -8,7 +8,9 @@ Page({
    */
   data: {
     name: '',
-    idCard: ''
+    idCard: '',
+    showDialog: false,
+    buttons: [{text: '完善信息'}, {text: '去匹配'}],
   },
 
   /**
@@ -54,9 +56,8 @@ Page({
 
     request(10, {name, id_card: idCard}).then(res => {
       if(res.error === 0) {      
-        wx.showToast({
-          title: '认证成功',
-          icon: 'success'
+        this.setData({
+          showDialog: true
         })
       }else {      
         wx.showToast({
@@ -66,6 +67,26 @@ Page({
       }
     }).catch(err => {
       console.log(err)
+    })
+  },
+
+  // 确认弹窗
+  confirmDialog() {
+    wx.switchTab({
+      url: '/pages/match/match',
+    })
+  },
+
+  // 取消弹窗
+  cancelDialog() {
+    wx.navigateTo({
+      url: '/pages/infoPrecent/infoPrecent',
+    })
+  },
+
+  closeDialog() {
+    this.setData({
+      showDialog: false
     })
   }
 })

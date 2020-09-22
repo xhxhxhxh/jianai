@@ -252,6 +252,7 @@ page {
   /* background: var(--weui-BG-3); */
 
 }
+
 .reply_panel[hidden] {
   display: block;
 }

@@ -25,6 +25,11 @@ Page({
           icon: 'success',
           duration: 2000
         })
+      }else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+        })
       }
     }).catch(err => {
       console.log(err)

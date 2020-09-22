@@ -51,8 +51,9 @@ Page({
     have_childrenObj: {},
     wanna_childrenObj: {},
     weddingObj: {},
-    duration: 1000,
+    duration: 300,
     lock_photo: true,
+    showDialog: false,
     bannerUrl: 'https://6465-dev-sw74b-1302913306.tcb.qcloud.la/images/img_zhuye_moren%402x.png',
     swiperIndex: 1
   },
@@ -138,9 +139,18 @@ Page({
   applyPhoto() {
     request(25, {mid}).then(res => {
       if(res.error === 0) {
+        this.setData({
+          showDialog: true
+        })
+        setTimeout(() => {
+          this.setData({
+            showDialog: false
+          })
+        }, 2000)
+      }else {
         wx.showToast({
-          title: '申请已发送',
-          icon: 'success'
+          title: res.msg,
+          icon: 'none'
         })
       }
      

@@ -262,6 +262,11 @@ Page({
           title: '修改成功',
           icon: 'success'
         })
+      }else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+        })
       }
     }).catch(err => {
       console.log(err)

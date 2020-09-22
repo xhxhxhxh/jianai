@@ -1,6 +1,6 @@
 <view class="match-container">
   <view class="remain-number">
-   本周剩余<text class="textColor">3</text>次
+   本周剩余<text class="textColor">{{remainMatchNum}}</text>次
   </view>
   <image src="/images/img_pipei@2x.png" class="iamge"></image>
   <view class="circle first" wx:if="{{matching}}"></view>

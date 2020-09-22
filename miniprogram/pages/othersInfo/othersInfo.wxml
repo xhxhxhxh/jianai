@@ -77,3 +77,4 @@
 		<text>取消</text>
 	</view>
 </view>
+ <my-dialog showDialog="{{showDialog}}" imageSrc="/images/img_tanchuang_shenqing@2x.png" showImage="{{true}}" contentTitle="申请查看" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog" content="申请已发送成功，等待对方通过"></my-dialog>
