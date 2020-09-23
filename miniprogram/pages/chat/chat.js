@@ -58,7 +58,11 @@ Page({
     scrollTop: 0,
     showLoading: false,
     scrollIntoView: '', // 控制滚动到的元素id
-    timeObj: {} // 记录聊天时间
+    timeObj: {}, // 记录聊天时间
+    showDialog: false,
+    dialogContent: '',
+    buttons: [{text: '狠心离开'}, {text: '支付'}],
+    textColorPosition: []
   },
 
   onLoad(option) {
@@ -462,7 +466,11 @@ Page({
       sourceType: [type],
       success: (res) => {
         uploadPhotos(res.tempFilePaths, (data) => {
-          this.sendImage(res.tempFilePaths, data.last_msg_id)
+          if(data.error === 0) {
+            this.sendImage(res.tempFilePaths, data.last_msg_id)
+          }else if(data.error === -2101) {
+            this.showPayGoldDialog(data)
+          }       
 				}, {tagid, type: 'UploadChat '})
       },
     })
@@ -541,6 +549,8 @@ Page({
           timeObj: {...this.timeObj}
         }
         this.setData(data)
+      }else if(res.error === -2101) { // 延长聊天
+        this.showPayGoldDialog(res)
       }
     }).catch(err => {
       console.log(err)
@@ -567,6 +577,17 @@ Page({
       historyList: historyList.concat(parsedComment),
       scrollIntoView: parsedComment[0].id,
       timeObj: {...this.timeObj}
+    })
+  },
+
+  // 显示延长聊天弹窗
+  showPayGoldDialog(res) {
+    const gold = res.gold
+    this.trade_id = res.trade_id
+    this.setData({
+      showDialog: true,
+      dialogContent: `聊天时效只有24小时，如仍需聊天需支付${gold}金币延长时间`,
+      textColorPosition: [19, 19 + gold.toString().length - 1]
     })
   },
 
@@ -614,5 +635,36 @@ Page({
       comment: result,
       cursor
     })
-  }
+  },
+
+  // 确认弹窗
+  confirmDialog() {
+    request(34, {
+      id: this.trade_id,
+    }).then(res => {
+      if(res.error === 0) {
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success'
+        })
+        this.setData({
+          showDialog: false
+        })
+      }else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }       
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+
+  // 取消弹窗
+  cancelDialog() {
+    this.setData({
+      showDialog: false
+    })
+  },
 })

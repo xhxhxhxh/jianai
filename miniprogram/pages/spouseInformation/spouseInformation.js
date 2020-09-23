@@ -1,5 +1,6 @@
 // miniprogram/pages/spouseInformation/spouseInformation.js
 const request = require('../../request.js')
+const app = getApp()
 let stepIndex = 1
 let informationBoxWidth = 0
 let complete = false // 资料是否全部填写完成
@@ -162,6 +163,7 @@ Page({
     request(7, data).then(data => {
       if(data.error === 0) {
         const pages = getCurrentPages()
+        app.setGlobal('dataComplete', true)
         wx.navigateBack().then(() => {
           pages[pages.length - 2].closeDialog()      
         }).catch(err => {

@@ -88,12 +88,13 @@ Page({
       sizeType: ['original', 'compressed'],
       success: (res) => {
         uploadPhotos(res.tempFilePaths, (data) => {
-          const photo = this.data.photo
-          photo.unshift({img: data.path})
-          console.log(photo)
-          this.setData({
-            photo
-          })
+          if(data.error === 0) {
+            const photo = this.data.photo
+            photo.unshift({img: data.path})
+            this.setData({
+              photo
+            })
+          }          
         })
       },
     })

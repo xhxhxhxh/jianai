@@ -74,6 +74,7 @@
 <view wx:else style="text-align: center; padding: 100px 0">
 	微信版本过低，暂不支持本功能
 </view>
+	<my-dialog showDialog="{{showDialog}}" title="聊天已超时" content="{{dialogContent}}" buttons="{{buttons}}" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog" textColorPosition="{{textColorPosition}}"></my-dialog>
 <canvas type="2d" id="myCanvas" hidden="{{true}}"></canvas>
 <view class="copyScrollContainer" hidden="{{!showCopyScrollContainer}}" style="min-height: 100%">
 	<block wx:for="{{copyHistoryList}}" wx:for-index="idx" wx:for-item="historyItem" wx:key="id">

@@ -3,6 +3,7 @@ let timer = null // 定时更换匹配文字
 let matchTimer = null // 延迟匹配
 let matchError = ''
 const request = require('../../request.js')
+const app = getApp()
 Page({
 
   /**
@@ -33,9 +34,12 @@ Page({
 
   onShow: function() {
     if(matchError === -1401 || matchError === -1402 || matchError === -1403) {
-      this.setData({
-        showDialog: false
-      })
+      const dataComplete = app.getGlobal('dataComplete')
+      if(dataComplete) {
+        this.setData({
+          showDialog: false
+        })
+      }    
     }
     if(matchError === -1406) {
       this.setData({
@@ -62,10 +66,13 @@ Page({
           }
         }, 3000)    
       }else if(error === -1401) {
+        app.setGlobal('dataComplete', false)
         this.unverifiedDialog()
       }else if(error === -1402) {
+        app.setGlobal('dataComplete', false)
         this.unBaseInfoDialog()
       }else if(error === -1403) {
+        app.setGlobal('dataComplete', false)
         this.unSpouseInfoDialog()
       }else if(error === -1404) {
         this.isMatchingDialog()

@@ -18,7 +18,8 @@ App({
     }
 
     this.globalData = {
-      scale: 1
+      scale: 1,
+      dataComplete: false // 匹配失败时，跳转页面完成信息填写后为true
     }
 
     this.loadLocalInfo()

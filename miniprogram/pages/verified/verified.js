@@ -1,6 +1,7 @@
 let name = ''
 let idCard = ''
 const request = require('../../request.js')
+const app = getApp()
 Page({
 
   /**
@@ -55,7 +56,8 @@ Page({
     }
 
     request(10, {name, id_card: idCard}).then(res => {
-      if(res.error === 0) {      
+      if(res.error === 0) {
+        app.setGlobal('dataComplete', true)      
         this.setData({
           showDialog: true
         })

@@ -20,9 +20,7 @@ export default async function uploadPhotos(tempFilePaths, callback, data) {
     name: 'file',
     success: (res) => {
       const data = JSON.parse(res.data)
-      if(data.error === 0) {
-        callback(data)
-      }
+      callback(data)
     },
     fail (err) {
       console.log(err)

@@ -1,4 +1,5 @@
 const request = require('../../request.js')
+const app = getApp()
 let userInfo = {}
 Page({
 
@@ -40,6 +41,7 @@ Page({
     request(3, userInfo).then(res => {
       console.log(res)
       if(res.error === 0) {
+        app.setGlobal('dataComplete', true)
         wx.showToast({
           title: '修改成功',
           icon: 'success',

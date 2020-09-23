@@ -145,8 +145,10 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: [type],
       success: (res) => {
-        uploadPhotos(res.tempFilePaths, () => {
-					this.getPhoto()
+        uploadPhotos(res.tempFilePaths, (data) => {
+					if(data.error === 0) {
+						this.getPhoto()
+					}				
 				})
       },
     })
