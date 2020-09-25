@@ -74,7 +74,8 @@
 	</view>
 	<view class="cancel themeBackgroundColor" bind:tap="cancel">
 		<mp-icon icon="close" color="#FF4F4C" size="{{24}}" class="close"></mp-icon>
-		<text>取消</text>
+		<text>拒绝</text>
 	</view>
 </view>
  <my-dialog showDialog="{{showDialog}}" imageSrc="/images/img_tanchuang_shenqing@2x.png" showImage="{{true}}" contentTitle="申请查看" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog" content="申请已发送成功，等待对方通过"></my-dialog>
+ <my-dialog showDialog="{{showWarnDialog}}" title="取消匹配" bind:cancelDialog="cancelDialog" buttons="{{buttons}}" bind:confirmDialog="confirmDialog" content="取消匹配后将无法与对方联系, 是否继续"></my-dialog>

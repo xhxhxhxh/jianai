@@ -57,9 +57,10 @@ Page({
       let error = matchError = res.error
       if(error === 0) {
         this.startTimer()
-        this.setData({
+        const info = {
           matching: true,
-        })
+        }
+        this.setData(info)
         matchTimer = setInterval(() => {
           if(this.data.matching) {
             this.getMatchInfo()
@@ -110,7 +111,7 @@ Page({
       if(error === 0 && status === 2) {
         this.matchSuccessDialog(mid, tag_id, nickname)
         this.setData({
-          remainMatchNum: this.data.remainMatchNum - 1
+          remainMatchNum: this.data.remainMatchNum <= 0 ? 0 : this.data.remainMatchNum - 1
         })
       }
     }).catch(err => {

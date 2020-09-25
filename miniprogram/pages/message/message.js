@@ -48,7 +48,8 @@ Page({
       console.log(res)
       if(res.error === 0) {
         const chat = res.chat
-        chat.forEach(item => {        
+        let topIndex
+        chat.forEach((item, index) => {        
           item.last_datetime = dayjs(item.last_datetime).locale('zh-cn').calendar(null, {
             sameDay: 'HH:mm', // The same day ( Today at 2:30 AM )
             nextDay: '[明天]', // The next day ( Tomorrow at 2:30 AM )
@@ -57,7 +58,13 @@ Page({
             lastWeek: 'dddd', // Last week ( Last Monday at 2:30 AM )
             sameElse: 'DD/MM/YYYY' // Everything else ( 7/10/2011 )
           })
+          if(res.top_chat_uid === item.tag_uid) {
+            topIndex = index
+          }
         })
+        if(topIndex !== undefined) {
+          chat.unshift(chat.splice(topIndex, 1)[0])
+        }
         this.setData({
           sys: res.sys,
           match: res.match,

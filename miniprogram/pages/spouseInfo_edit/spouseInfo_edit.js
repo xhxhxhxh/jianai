@@ -69,6 +69,14 @@ Page({
       income: spouseInfo.income,
       region: spouseInfo.locale
     }
+
+    if(spouseInfo.region_city_code) {
+      data.region_city_code = spouseInfo.region_city_code
+    }
+    if(spouseInfo.region_ad_code) {
+      data.region_ad_code = spouseInfo.region_ad_code
+    }
+
     request(7, data).then(res => {
       console.log(res)
       if(res.error === 0) {

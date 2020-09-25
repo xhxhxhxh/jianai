@@ -186,6 +186,7 @@ page {
   font-size: 22rpx;
   color: #999999;
   margin-right: 10rpx;
+  line-height: 34rpx;
 }
 
 .wallet .right .my-arrow {

@@ -125,11 +125,15 @@ Page({
 
   getInformation(e) {
     information = e.detail
-    let num = 0
+    console.log(information)
+    let [totalNum, num] = [0, 0]
     for(let key in information) {
-      if(information[key]) num++
+      totalNum++
+      if(information[key]) {
+        num++
+      }
     }
-    if(num === 4) {
+    if(totalNum === num && num !== 0) {
       this.setData({
         buttonDisabled: false
       })
@@ -158,8 +162,18 @@ Page({
       education_min: information.education[0],
       education_max: information.education[1],
       income: information.income,
-      region: information.locale
+      region: information.locale,
+      region_city_code: information.region_city_code,
+      region_ad_code: information.region_ad_code
     }
+
+    if(information.region_city_code) {
+      data.region_city_code = information.region_city_code
+    }
+    if(information.region_ad_code) {
+      data.region_ad_code = information.region_ad_code
+    }
+
     request(7, data).then(data => {
       if(data.error === 0) {
         const pages = getCurrentPages()

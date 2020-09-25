@@ -7,7 +7,7 @@
     <text class="text">暂无约会记录哦~</text>
   </view>
   <view class="record-box">
-    <view class="record" wx:for="{{dateList}}" wx:key="mid" wx:if="{{showAll || status === item.status}}">
+    <view class="record" wx:for="{{dateList}}" wx:key="mid" wx:if="{{showAll || status === item.status}}" bind:tap="goOtherInfo" data-index="{{index}}">
       <view class="date">
         <text class="day">{{item.day}}</text>
         <text class="month">{{item.month}}月</text>

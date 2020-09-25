@@ -134,5 +134,17 @@ Page({
         status: 4
       })
     }
-  }
+  },
+
+  goOtherInfo(e) {
+    const index = e.currentTarget.dataset.index
+    const info = this.data.dateList[index]
+    if(info.status !== 4) {
+      const mid = info.mid
+      const tagId = info.tag_uid
+      wx.navigateTo({
+        url: `/pages/othersInfo/othersInfo?mid=${mid}&tagid=${tagId}`,
+      })
+    }
+  },
 })

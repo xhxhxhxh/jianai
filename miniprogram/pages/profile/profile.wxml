@@ -52,8 +52,7 @@
 <view class="wallet" bind:tap="goPage" data-page="recharge">
   <view class="left">钱包</view>
   <view class="right">
-    <text class="num">{{gold}}</text>
-    <text class="text">金币</text>
+    <text class="text"><text class="num">{{gold}}</text>金币</text>
     <view class="my-arrow"></view>
   </view>
 </view>
@@ -70,7 +69,7 @@
     <text class="text">暂无约会记录哦~</text>
   </view>
   <view class="record-box">
-    <view class="record" wx:for="{{dateList}}" wx:key="mid">
+    <view class="record" wx:for="{{dateList}}" wx:key="mid" bind:tap="goOtherInfo" data-index="{{index}}">
       <view class="date">
         <text class="day">{{item.day}}</text>
         <text class="month">{{item.month}}月</text>

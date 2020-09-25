@@ -142,6 +142,7 @@ Component({
             income: income === -1 ? 2 : incomeIndex,
             education: education_min === -1 ? [2, 2] : [educationMinIndex, educationMaxIndex],
             localeStr: region,
+            locale: region.split('/'),
             sexSelected: sex !== -1,
             educationSelected: education_min !== -1,
             incomeSelected: income !== -1,
@@ -232,11 +233,18 @@ Component({
 
     localeChange(e) {
       const locale = e.detail.value
+      const regionCode = e.detail.code
       let localeStr = ''
       locale.forEach(item => {
         localeStr += '/' + item
       })
       information.locale = localeStr.substr(1)
+      if(regionCode[1]) {
+        information.region_city_code = regionCode[1]
+      }
+      if(regionCode[2]) {
+        information.region_ad_code = regionCode[2]
+      }
       this.setData({
         locale,
         localeStr: localeStr.substr(1),

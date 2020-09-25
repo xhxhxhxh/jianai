@@ -46,7 +46,7 @@ Page({
   getPhoto() {
     request(12).then(res => {
       if(res.error === 0) {
-        const photos = res.photo
+				const photos = res.photo
 				photos.forEach(item => {
 					item.selected = false
 					item.dragId = item.id
@@ -74,9 +74,21 @@ Page({
 
 	sortEnd(e) {
 		console.log("sortEnd", e.detail.listData)
+		const listData = e.detail.listData
+		let length = listData.length
 		this.setData({
-			listData: e.detail.listData
+			listData: listData
 		});
+		listData.forEach(item => {
+			item.sort = length--
+		})
+		request(35, e.detail.listData).then(res => {
+      if(res.error === 0) {
+				console.log(res)
+      }
+    }).catch(err => {
+      console.log(err)
+    })
 	},
 	change(e) {
 		console.log("change", e.detail.listData)

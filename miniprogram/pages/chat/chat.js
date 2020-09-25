@@ -666,5 +666,5 @@ Page({
     this.setData({
       showDialog: false
     })
-  },
+  }
 })

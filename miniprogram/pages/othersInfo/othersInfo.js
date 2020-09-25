@@ -54,6 +54,8 @@ Page({
     duration: 300,
     lock_photo: true,
     showDialog: false,
+    showWarnDialog: false,
+    buttons: [{text: '再想想'}, {text: '拒绝'}],
     bannerUrl: 'https://6465-dev-sw74b-1302913306.tcb.qcloud.la/images/img_zhuye_moren%402x.png',
     swiperIndex: 1
   },
@@ -160,12 +162,8 @@ Page({
   },
 
   cancel() {
-    wx.navigateBack({
-      fail() {
-        wx.switchTab({
-          url: '/pages/match/match',
-        })
-      }
+    this.setData({
+      showWarnDialog: true
     })
   },
 
@@ -190,4 +188,33 @@ Page({
       urls: this.data.photo
     })
   },
+
+  cancelDialog() {
+    this.setData({
+      showWarnDialog: false
+    })
+  },
+
+  confirmDialog() {
+    request(18, {mid}).then(res => {
+      console.log(res)
+      if(res.error === 0) {
+        wx.navigateBack({
+          fail() {
+            wx.switchTab({
+              url: '/pages/match/match',
+            })
+          }
+        })
+      }else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+    
+  }
 })

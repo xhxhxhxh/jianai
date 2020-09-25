@@ -116,6 +116,8 @@ Component({
             education: education === -1 ? 0 : educationIndex,
             hujiStr: res.huji,
             regionStr: res.region,
+            region: res.region.split('/'),
+            huji: res.huji.split('/'),
             sexSelected: res.sex !== -1,
             educationSelected: education !== -1,
             incomeSelected: income !== -1,
@@ -204,12 +206,22 @@ Component({
     },
 
     regionChange(e) {
+      console.log(e)
       const region = e.detail.value
+      const regionCode = e.detail.code
       let regionStr = ''
       region.forEach(item => {
         regionStr += '/' + item
       })
       userInfo.region = regionStr.substr(1)
+
+      if(regionCode[1]) {
+        userInfo.region_city_code = regionCode[1]
+      }
+      if(regionCode[2]) {
+        userInfo.region_ad_code = regionCode[2]
+      }
+      
       this.setData({
         regionStr: regionStr.substr(1),
         regionSelected: true
