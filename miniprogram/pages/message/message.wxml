@@ -45,3 +45,4 @@
 	<text class="text">您还没有登录, 请登录后查看消息</text>
 	<button class="login themeBackgroundColor" bind:tap="login">登录</button>
 </view>
+<my-dialog showDialog="{{showDialog}}" content="{{content}}" buttons="{{buttons}}" imageSrc="/images/img_tanchuang_shenqing@2x.png" showImage="{{true}}" contentTitle="申请查看照片" showClose="{{true}}" bind:closeDialog="closeDialog" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog"></my-dialog>

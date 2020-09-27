@@ -1,3 +1,7 @@
+.top-dialog .weui-dialog{
+  top: 240rpx
+}
+
 .my-dialog .weui-dialog{
   width: 600rpx;
   border-radius: 40rpx;

@@ -1,6 +1,7 @@
 const request = require('../../request.js')
 import uploadPhotos from '../profile/uploadPhoto'
 
+const app = getApp()
 const dayjs = require('dayjs')
 require('dayjs/locale/zh-cn')
 const calendar = require('dayjs/plugin/calendar')
@@ -62,7 +63,8 @@ Page({
     showDialog: false,
     dialogContent: '',
     buttons: [{text: '狠心离开'}, {text: '支付'}],
-    textColorPosition: []
+    textColorPosition: [],
+    extClass: 'my-dialog'
   },
 
   onLoad(option) {
@@ -85,7 +87,7 @@ Page({
     let isIOS = system.platform === 'ios';
     
     this.safeHeight = (system.screenHeight - system.safeArea.bottom);
-    const replyHeight = 80
+    const replyHeight = 80 * app.getGlobal('scale')
     let layoutHeight = wx.getSystemInfoSync().windowHeight - replyHeight;
     if(isIOS) {
       layoutHeight -= this.safeHeight
@@ -150,13 +152,23 @@ Page({
           item.numid = item.id
           item.id = 'emoji_' + item.id
           if(item.type === 1) {
-            item.emoji = this.parseEmoji(item.content)
+            item.emoji = this.parseEmoji(item.content.replace(/&lf;/g, '\n').replace(/&add;/g, '+'))
           }
           if(item.type === 2) {
             item.imageSrc = item.content
           }
           return item.type === 1 || item.type === 2 || (item.type === 3 && item.from === 2)
         })
+
+        if(newInfo.length === 0) { // 处理当出现10条信息都是自己的照片申请时
+          cachePage++
+          getNewInfoFlag = false
+          cacheHistoryList.reverse()
+          this.cacheHistoryList = cacheHistoryList
+          this.getChatInfo()
+          return
+        }
+
         newInfo.reverse()
         cacheHistoryList.reverse()
         this.calculateTime(newInfo)
@@ -168,7 +180,7 @@ Page({
           data.copyHistoryList = newInfo.concat(historyList)
           data.showCopyScrollContainer = true
         }else {
-          this.cacheHistoryList = cacheHistoryList
+          this.cacheHistoryList = this.cacheHistoryList ? cacheHistoryList.concat(this.cacheHistoryList) : cacheHistoryList
           data.historyList = historyList.concat(newInfo)
           data.scrollIntoView = data.historyList[data.historyList.length - 1].id
           data.showLoading = false
@@ -223,7 +235,7 @@ Page({
           item.numid = item.id
           item.id = 'emoji_' + item.id
           if(item.type === 1) {
-            item.emoji = this.parseEmoji(item.content)
+            item.emoji = this.parseEmoji(item.content.replace(/&lf;/g, '\n').replace(/&add;/g, '+'))
           }
           if(item.type === 2) {
             item.imageSrc = item.content
@@ -249,6 +261,7 @@ Page({
 
   // 计算聊天时间
   calculateTime(data, send) { // 从输入框添加的内容需传递send参数
+    console.log('newInfo', data)
     let historyList = this.data.historyList
     let originTime = dayjs(data[0].datetime)
     const timeObj = this.timeObj
@@ -357,7 +370,8 @@ Page({
         this.setData({
           safeHeight: this.safeHeight,
           keyboardHeight: height,
-          layoutHeight: this.layoutHeight
+          layoutHeight: this.layoutHeight,
+          extClass: 'my-dialog'
         })
       }
     } else {
@@ -368,6 +382,7 @@ Page({
         functionShow: false,
         emojiShow: false,
         keyboardHeight: height,
+        extClass: 'my-dialog top-dialog',
         layoutHeight
       }, async () => {
         const res = await this.getScrollHeight()
@@ -422,8 +437,10 @@ Page({
     }
     if(emojiShow) {
       data.layoutHeight = this.layoutHeight
+      data.extClass =  'my-dialog'
     }else {
       data.layoutHeight = this.layoutHeight - 300
+      data.extClass =  'my-dialog top-dialog'
     }  
     this.setData(data, async () => {
       if(!emojiShow) {
@@ -496,7 +513,8 @@ Page({
       this.setData({
         emojiShow: false,
         functionShow: false,
-        layoutHeight: this.layoutHeight
+        layoutHeight: this.layoutHeight,
+        extClass: 'my-dialog',
       })
     }
   },
@@ -527,13 +545,13 @@ Page({
     if(!comment) return
     request(21, {
       tag_uid: tagid,
-      content: comment,
+      content: comment.replace(/\n/g, '&lf;').replace(/\+/g, '&add;'),
     }).then(res => {
       console.log(res)    
       if(res.error === 0) {
         const last_msg_id = res.last_msg_id
         const parsedComment = {
-          emoji: this.parseEmoji(comment),
+          emoji: this.parseEmoji(comment.replace(/&lf;/g, '\n').replace(/&add;/g, '+')),
           id: `emoji_${last_msg_id}`,
           type: 1,
           from: 1,

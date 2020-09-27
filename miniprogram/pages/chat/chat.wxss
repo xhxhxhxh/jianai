@@ -161,7 +161,6 @@ page {
   position: fixed;
   bottom: 0;
   width: 100%;
-  max-width: 600px;
   /* background-color: #F9F9F9; */
 }
 

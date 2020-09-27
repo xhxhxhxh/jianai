@@ -20,6 +20,10 @@ Component({
       type: Boolean,
       value: false
     },
+    extClass: {
+      type: String,
+      value: 'my-dialog' // 另一值为top-dialog
+    },
     buttons: Array,
     textColorPosition: Array // 用于将content中的部分文字变红, 仅支持连续数字的数组
   },

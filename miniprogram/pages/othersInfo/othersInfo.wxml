@@ -3,7 +3,7 @@
 		<swiper-item class="photo-box" wx:if="{{lock_photo || photo.length === 0}}">
 			<view class="photo applyPhoto" style="background-image: url({{bannerUrl}})">
 				<view class="title">{{lock_photo ? '通过申请，经过对方同意即可查看对方照片' : '该用户暂未上传照片去提醒TA吧'}}</view>
-				<button class="submit themeBackgroundColor" bind:tap="applyPhoto">申请查看照片</button>
+				<button class="submit themeBackgroundColor" bind:tap="applyPhoto" wx:if="{{lock_photo}}">申请查看照片</button>
 			</view>
 		</swiper-item>
 		<swiper-item class="photo-box" wx:for="{{photo}}" wx:key="*this">
