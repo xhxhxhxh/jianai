@@ -73,7 +73,7 @@ Page({
             nextWeek: 'dddd', // The next week ( Sunday at 2:30 AM )
             lastDay: '[昨天] HH:mm', // The day before ( Yesterday at 2:30 AM )
             lastWeek: 'dddd', // Last week ( Last Monday at 2:30 AM )
-            sameElse: 'DD/MM/YYYY' // Everything else ( 7/10/2011 )
+            sameElse: 'YYYY/MM/DD' // Everything else ( 7/10/2011 )
           })
           if(res.top_chat_uid === item.tag_uid) {
             topIndex = index

@@ -27,6 +27,9 @@
 								<view class="confirm themeBackgroundColor" data-id="{{historyItem.numid}}" data-index="{{idx}}" data-type="1" bind:tap="handleApplyPhoto">{{historyItem.photo_status === 1 ? '已允许' : '允许查看'}}</view>
 							</view>
 						</view>
+						<view wx:if="{{historyItem.type === 4}}">
+							{{historyItem.content}}
+						</view>
 					</view>
 				</view>
 			</view>

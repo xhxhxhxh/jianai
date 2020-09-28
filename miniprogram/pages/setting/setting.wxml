@@ -12,10 +12,10 @@
 				<text>1.0.0</text>
 			</view>
 		</view>
-    <view class="setting-item">
+    <view class="setting-item" bind:tap="goVerified">
 			<view class="name">实名认证</view>
 			<view class="content my-arrow">
-				<text>已认证</text>
+				<text>{{verified ? '已认证' : '未认证'}}</text>
 			</view>
 		</view>
     <view class="setting-item">

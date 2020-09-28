@@ -75,9 +75,6 @@ Page({
     }).then(res => {
       console.log(res)
       getNewInfoFlag = true
-      res.data = [
-        {from: 1, id: 699, type: 1, content: "欢迎!", datetime: "2020-09-16 13:40:08"},
-      ]
       if(res.error === 0) {
         let historyList = [...this.data.historyList] 
         let cacheHistoryList = [...res.data] // 缓存原始数据，防止出现自己的好友申请
@@ -99,7 +96,7 @@ Page({
           if(item.type === 2) {
             item.imageSrc = item.content
           }
-          return item.type === 1 || item.type === 2 || (item.type === 3 && item.from === 2)
+          return item.type === 1 || item.type === 2 || (item.type === 3 && item.from === 2) || item.type === 4
         })
         newInfo.reverse()
         cacheHistoryList.reverse()
@@ -172,7 +169,7 @@ Page({
           if(item.type === 2) {
             item.imageSrc = item.content
           }
-          return item.type === 1 || item.type === 2 || (item.type === 3 && item.from === 2)
+          return item.type === 1 || item.type === 2 || (item.type === 3 && item.from === 2) || item.type === 4
         })
         newInfo.reverse()
         cacheHistoryList.reverse()

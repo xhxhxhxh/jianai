@@ -1,4 +1,5 @@
 const app = getApp()
+const request = require('../../request.js')
 Page({
 
   /**
@@ -11,12 +12,14 @@ Page({
     isLogin: false,
     content: '退出登录将无法收到信息，是否继续退出',
     buttons: [{text: '取消'}, {text: '继续退出'}],
+    verified: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getUserInfo()
     // 检测是否登录
     const auth = app.getGlobal('auth')
 
@@ -98,6 +101,28 @@ Page({
   cancelDialog() {
     this.setData({
       showDialog: false
+    })
+  },
+
+  goVerified() {
+    wx.navigateTo({
+      url: '/pages/verified/verified',
+    })
+  },
+
+  // 查询是否实名认证
+  getUserInfo() {
+    request(5).then(res => {
+      console.log(res)
+      if(res.error === 0) {
+        if(res.birthday) {
+          this.setData({
+            verified: true
+          })
+        }
+      }
+    }).catch(err => {
+      console.log(err)
     })
   },
 })

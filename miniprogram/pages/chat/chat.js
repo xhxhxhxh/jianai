@@ -261,7 +261,6 @@ Page({
 
   // 计算聊天时间
   calculateTime(data, send) { // 从输入框添加的内容需传递send参数
-    console.log('newInfo', data)
     let historyList = this.data.historyList
     let originTime = dayjs(data[0].datetime)
     const timeObj = this.timeObj
@@ -487,6 +486,11 @@ Page({
             this.sendImage(res.tempFilePaths, data.last_msg_id)
           }else if(data.error === -2101) {
             this.showPayGoldDialog(data)
+          }else { 
+            wx.showToast({
+              title: data.msg,
+              icon: 'none'
+            })
           }       
 				}, {tagid, type: 'UploadChat '})
       },
@@ -569,6 +573,11 @@ Page({
         this.setData(data)
       }else if(res.error === -2101) { // 延长聊天
         this.showPayGoldDialog(res)
+      }else { 
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
       }
     }).catch(err => {
       console.log(err)

@@ -1,5 +1,6 @@
 const md5 = require('blueimp-md5')
 const dayjs = require('dayjs')
+let app = null
 
 const baseURL = 'https://www.97yuehui.com/AppGateway.ashx'
 
@@ -57,6 +58,7 @@ function getSign(auth, opt, info) {
 }
 
 const request = function(opt, data, method, app) {
+  const wxapp = app || getApp()
   const auth = getAuth(app)
   const origin = {
     auth: JSON.stringify(auth),
@@ -76,8 +78,14 @@ const request = function(opt, data, method, app) {
       success (res) {
         const data = res.data
         if(data.error === -10007) { // token过期
-          wx.redirectTo({
-            url: '/pages/login/login',
+          wx.removeStorage({
+            key: 'auth',
+            success: (res) => {
+              wxapp.setGlobal('auth', '')
+              wx.redirectTo({
+                url: '/pages/login/login',
+              })
+            }
           })
         }
         resolve(res.data)
