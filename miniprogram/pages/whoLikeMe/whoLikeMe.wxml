@@ -15,3 +15,7 @@
     </view>
 	</view>
 </view>
+<view class="noInfo" wx:if="{{list.length === 0}}">
+  <image src="/images/img_quesun@2x.png" class="image"></image>
+  <text class="text">暂无配对记录哦~</text>
+</view>

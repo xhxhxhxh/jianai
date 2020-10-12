@@ -235,6 +235,7 @@ Page({
         console.log(err)
       })
     } else {
+      app.setGlobal('showUploadPhoto', true)
       wx.switchTab({
         url: '/pages/profile/profile',
       })

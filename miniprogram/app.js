@@ -19,7 +19,8 @@ App({
 
     this.globalData = {
       scale: 1,
-      dataComplete: false // 匹配失败时，跳转页面完成信息填写后为true
+      dataComplete: false, // 匹配失败时，跳转页面完成信息填写后为true
+      showUploadPhoto: false // 自动弹出上传照片按钮
     }
 
     this.loadLocalInfo()

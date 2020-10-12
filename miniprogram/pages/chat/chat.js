@@ -127,7 +127,7 @@ Page({
   // 获取聊天记录
   async getChatInfo(addToTop) {
     if(addToTop){
-      await this.sleep(1500)
+      await this.sleep(1000)
     }
     request(22, {
       page: cachePage,

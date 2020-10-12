@@ -1,7 +1,8 @@
 <view class="otherInfo-container">
 	<swiper duration="{{duration}}" style="height: 600rpx" bindchange="swiperChange">
 		<swiper-item class="photo-box" wx:if="{{lock_photo || photo.length === 0}}">
-			<view class="photo applyPhoto" style="background-image: url({{bannerUrl}})">
+			<view class="photo applyPhoto{{photo.length > 0 ? ' filter' : ''}}" style="background-image: url({{photo.length > 0 ? photo[0] : bannerUrl}})"></view>
+			<view class="apply-area">
 				<view class="title">{{lock_photo ? '通过申请，经过对方同意即可查看对方照片' : '该用户暂未上传照片去提醒TA吧'}}</view>
 				<button class="submit themeBackgroundColor" bind:tap="applyPhoto" wx:if="{{lock_photo}}">申请查看照片</button>
 			</view>
@@ -47,10 +48,10 @@
 	<view class="title">择偶信息</view>
 	<view class="spouse tags-area">
 		<view class="tag">{{age_min}}-{{age_max}}岁</view>
-    <view class="tag">{{height_min}}-{{height_max}}cm</view>
+		<view class="tag">{{height_min}}-{{height_max}}cm</view>
 		<view class="tag">{{educationObj[education_min]}}-{{educationObj[education_max]}}</view>
 		<view class="tag">￥{{incomeObj[spouse_income]}}</view>
-    <view class="tag">{{spouse_region}}</view>
+		<view class="tag">{{spouse_region}}</view>
 	</view>
 </view>
 <view class="hobby-info">
@@ -58,11 +59,11 @@
 	<view class="sport tags-area">
 		<view class="tag" wx:for="{{sport}}" wx:key="*this">{{item}}</view>
 	</view>
-  <view class="title">美食爱好</view>
+	<view class="title">美食爱好</view>
 	<view class="sport tags-area">
 		<view class="tag" wx:for="{{food}}" wx:key="*this">{{item}}</view>
 	</view>
-  <view class="title">旅游足迹</view>
+	<view class="title">旅游足迹</view>
 	<view class="sport tags-area">
 		<view class="tag" wx:for="{{travel}}" wx:key="*this">{{item}}</view>
 	</view>
@@ -77,5 +78,5 @@
 		<text>拒绝</text>
 	</view>
 </view>
- <my-dialog showDialog="{{showDialog}}" imageSrc="/images/img_tanchuang_shenqing@2x.png" showImage="{{true}}" contentTitle="申请查看" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog" content="申请已发送成功，等待对方通过"></my-dialog>
- <my-dialog showDialog="{{showWarnDialog}}" title="取消匹配" bind:cancelDialog="cancelDialog" buttons="{{buttons}}" bind:confirmDialog="confirmDialog" content="取消匹配后将无法与对方联系, 是否继续"></my-dialog>
+<my-dialog showDialog="{{showDialog}}" imageSrc="/images/img_tanchuang_shenqing@2x.png" showImage="{{true}}" contentTitle="申请查看" bind:cancelDialog="cancelDialog" bind:confirmDialog="confirmDialog" content="申请已发送成功，等待对方通过"></my-dialog>
+<my-dialog showDialog="{{showWarnDialog}}" title="取消匹配" bind:cancelDialog="cancelDialog" buttons="{{buttons}}" bind:confirmDialog="confirmDialog" content="取消匹配后将无法与对方联系, 是否继续"></my-dialog>

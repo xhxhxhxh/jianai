@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "喜欢我的人"
+  "navigationBarTitleText": "喜欢我的人",
+  "enablePullDownRefresh": true
 }

@@ -15,15 +15,21 @@ Page({
     this.getData()
   },
 
+  onPullDownRefresh: function() {
+    this.getData()
+  },
+
   getData() {
     request(19).then(res => {
       console.log(res)
+      wx.stopPullDownRefresh()
       if(res.error === 0) {
         this.setData({
           list: res.data
         })
       }
     }).catch(err => {
+      wx.stopPullDownRefresh()
       console.log(err)
     })
   },

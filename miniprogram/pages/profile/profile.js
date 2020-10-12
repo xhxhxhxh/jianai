@@ -31,6 +31,10 @@ Page({
     this.getSelectData()
     this.getDateInfo()
     this.getGold()
+    if(app.getGlobal('showUploadPhoto')) {
+      this.chooseImage()
+      app.setGlobal('showUploadPhoto', false)
+    }
   },
 
   // 获取照片

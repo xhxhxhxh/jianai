@@ -1,3 +1,8 @@
+page {
+  position: relative;
+  min-height: 100%;
+}
+
 .whoLikeMe-container {
   padding: 0 40rpx;
 }
@@ -76,4 +81,28 @@
 
 .ignore {
   background-color: #ccc;
+}
+
+.noInfo {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 40%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noInfo .image {
+  width: 300rpx;
+  height: 236rpx;
+}
+
+.noInfo .text {
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 40rpx;
+  margin-top: 20rpx;
 }
